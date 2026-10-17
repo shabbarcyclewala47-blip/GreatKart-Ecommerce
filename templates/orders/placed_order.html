@@ -232,6 +232,167 @@
     }
 }
 
+/* Mobile-only Order Success page improvements */
+@media (max-width: 767px) {
+
+    .order-success-page {
+        box-sizing: border-box;
+        min-height: auto;
+        padding: 22px 0 28px;
+        overflow-x: clip;
+        background-size: 100% 100%;
+        animation: none;
+    }
+
+    .order-success-page > .container {
+        width: 100%;
+        max-width: 100%;
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .order-success-page .row.justify-content-center {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .order-success-page .row.justify-content-center > .col-md-8 {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    /* Main order confirmation card */
+    .order-success-page .card {
+        border-radius: 14px;
+        animation: none;
+    }
+
+    .order-success-page .card-body {
+        min-width: 0;
+        padding: 23px 16px;
+    }
+
+    /* Success icon and heading */
+    .order-success-page .fa-check-circle {
+        font-size: 58px !important;
+    }
+
+    .order-success-page h2.text-success {
+        font-size: 23px;
+        line-height: 1.4;
+        letter-spacing: -0.3px;
+        overflow-wrap: anywhere;
+    }
+
+    .order-success-page .card-body > p.text-muted {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .order-success-page hr {
+        margin: 19px 0;
+    }
+
+    /* Order details */
+    .order-success-page .text-left {
+        min-width: 0;
+        margin-top: 22px !important;
+    }
+
+    .order-success-page .text-left h5 {
+        font-size: 17px;
+    }
+
+    .order-success-page .text-left > .row {
+        padding: 11px 9px;
+        margin-right: 0;
+        margin-left: 0;
+        border-radius: 7px;
+    }
+
+    .order-success-page .text-left .col-md-6 {
+        min-width: 0;
+        overflow-wrap: anywhere;
+        word-break: normal;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .order-success-page .text-left .col-md-6 + .col-md-6 {
+        margin-top: 3px;
+    }
+
+    .order-success-page .text-left strong {
+        font-size: 13px;
+    }
+
+    .order-success-page .badge-warning {
+        display: inline-block;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    /* Continue Shopping button */
+    .order-success-page .btn-primary {
+        display: block;
+        width: 100%;
+        min-height: 47px;
+        padding: 12px 14px;
+        margin-right: 0 !important;
+        white-space: normal;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    /* PayPal section */
+    .order-success-page #paypal-button-container {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 18px auto 0;
+    }
+
+    .order-success-page #payment-success-message {
+        padding: 12px;
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .order-success-page #paypal-button-container iframe {
+        max-width: 100%;
+    }
+}
+
+/* Extra-small phones */
+@media (max-width: 380px) {
+
+    .order-success-page > .container {
+        padding-right: 9px;
+        padding-left: 9px;
+    }
+
+    .order-success-page .card-body {
+        padding: 19px 12px;
+    }
+
+    .order-success-page h2.text-success {
+        font-size: 21px;
+    }
+
+    .order-success-page .text-left > .row {
+        padding: 9px 7px;
+    }
+
+    .order-success-page .text-left .col-md-6 {
+        font-size: 12px;
+    }
+}
+
+
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     .section-content.padding-y.bg,
@@ -249,7 +410,7 @@
 </style>
 
 
-<section class="section-content padding-y bg">
+<section class="section-content padding-y bg order-success-page">
 
     <div class="container">
 

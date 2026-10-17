@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<section class="section-content padding-y">
+<section class="section-content padding-y register-page">
 
 <!-- ============================ COMPONENT REGISTER   ================================= -->
 	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
@@ -66,4 +66,105 @@
 
 
 </section>
+
+<style>
+/* Mobile-only registration improvements */
+@media (max-width: 767px) {
+    .register-page {
+        box-sizing: border-box;
+        min-height: 75vh;
+        padding: 24px 14px;
+    }
+
+    .register-page .card {
+        width: 100%;
+        max-width: 520px;
+        margin: 12px auto 0 !important;
+        border: 1px solid #e2e9f3;
+        border-radius: 13px;
+        box-shadow: 0 5px 20px rgba(37, 63, 100, 0.07);
+    }
+
+    .register-page .card-body {
+        padding: 20px 17px;
+    }
+
+    .register-page .card-title {
+        margin-bottom: 0;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    /* Stack first and last name on narrow screens */
+    .register-page .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .register-page .form-row > .col,
+    .register-page .form-row > [class*="col-"] {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .register-page .form-group {
+        margin-bottom: 15px;
+    }
+
+    .register-page label {
+        margin-bottom: 6px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .register-page .form-control {
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        min-height: 46px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .register-page .btn-primary {
+        width: 100%;
+        min-height: 48px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+
+    .register-page > p {
+        margin: 18px 0 0 !important;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .register-page > br {
+        display: none;
+    }
+}
+
+/* Extra-small phones */
+@media (max-width: 380px) {
+    .register-page {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .register-page .card-body {
+        padding: 17px 14px;
+    }
+
+    .register-page .card-title {
+        font-size: 20px;
+    }
+}
+</style>
+
 {% endblock %}

@@ -74,24 +74,109 @@
         transform: translateY(-3px);
     }
 
-    @media (max-width: 767px) {
-        .professional-footer {
-            padding-top: 24px;
-        }
+   
+/* Mobile-only footer improvements */
+@media (max-width: 767px) {
 
-        .professional-footer .footer-column {
-            margin-bottom: 22px;
-        }
-
-        .professional-footer .footer-bottom {
-            text-align: center;
-        }
-
-        .professional-footer .payment-icons {
-            justify-content: center;
-            margin-top: 12px;
-        }
+    .professional-footer {
+        padding-top: 22px;
     }
+
+    .professional-footer > .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    /* Brand section */
+    .professional-footer .footer-column:first-child {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 22px;
+    }
+
+    .professional-footer .footer-brand {
+        font-size: 20px;
+    }
+
+    .professional-footer .footer-description {
+        max-width: 100%;
+        margin-top: 7px;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    /* Shopping and payment sections */
+    .professional-footer .footer-column:nth-child(2),
+    .professional-footer .footer-column:nth-child(3) {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-bottom: 18px;
+    }
+
+    .professional-footer .footer-heading {
+        margin-bottom: 10px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .professional-footer .footer-link {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .professional-footer .payment-icons {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 4px;
+    }
+
+    .professional-footer .payment-icons i {
+        font-size: 25px;
+    }
+
+    /* Copyright section */
+    .professional-footer .footer-bottom {
+        margin-top: 4px;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 11px;
+        line-height: 1.8;
+    }
+
+    .professional-footer .footer-bottom .row > div {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+/* Extra-small phones */
+@media (max-width: 380px) {
+
+    .professional-footer > .container {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+
+    .professional-footer .footer-column:nth-child(2),
+    .professional-footer .footer-column:nth-child(3) {
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    .professional-footer .footer-heading {
+        font-size: 11px;
+    }
+
+    .professional-footer .payment-icons {
+        gap: 8px;
+    }
+
+    .professional-footer .payment-icons i {
+        font-size: 22px;
+    }
+}
 
     @media (prefers-reduced-motion: reduce) {
         .professional-footer * {
