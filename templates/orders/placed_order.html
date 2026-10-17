@@ -1,0 +1,784 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+/* ===== Order Success Page Styling ===== */
+
+.section-content.padding-y.bg {
+    min-height: 100vh;
+    padding: 45px 0;
+    background: linear-gradient(
+        -45deg,
+        #edf3fa,
+        #f8faff,
+        #e6edf7,
+        #f3f6fc
+    );
+    background-size: 300% 300%;
+    animation: successGradient 16s ease infinite;
+}
+
+@keyframes successGradient {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Main card */
+.section-content.padding-y.bg .card {
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 15px 45px rgba(45, 67, 99, 0.12);
+    animation: successCardIn 0.65s ease both;
+    transition: box-shadow 0.3s ease;
+}
+
+.section-content.padding-y.bg .card:hover {
+    box-shadow: 0 20px 55px rgba(45, 67, 99, 0.17);
+}
+
+.section-content.padding-y.bg .card-body {
+    padding: 38px;
+}
+
+@keyframes successCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success icon */
+.section-content.padding-y.bg .fa-check-circle {
+    color: #22a06b !important;
+    font-size: 76px !important;
+    filter: drop-shadow(0 5px 9px rgba(34, 160, 107, 0.18));
+    animation: successIconIn 0.7s ease both;
+}
+
+@keyframes successIconIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.65);
+    }
+    70% {
+        transform: scale(1.12);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Heading and text */
+.section-content.padding-y.bg h2.text-success {
+    color: #168458 !important;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
+
+.section-content.padding-y.bg .text-muted {
+    color: #6b778b !important;
+    line-height: 1.7;
+}
+
+.section-content.padding-y.bg hr {
+    border: 0;
+    border-top: 1px solid #e8edf5;
+    margin: 25px 0;
+}
+
+/* Order details */
+.section-content.padding-y.bg .text-left {
+    text-align: left;
+}
+
+.section-content.padding-y.bg .text-left h5 {
+    color: #27364b;
+    font-weight: 700;
+}
+
+.section-content.padding-y.bg .text-left .row {
+    padding: 11px 13px;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 9px;
+    transition: background 0.2s ease;
+}
+
+.section-content.padding-y.bg .text-left .row:nth-of-type(odd) {
+    background: #f5f8fc;
+}
+
+.section-content.padding-y.bg .text-left .row:hover {
+    background: #eaf1fa;
+}
+
+.section-content.padding-y.bg .text-left strong {
+    color: #35445a;
+}
+
+.section-content.padding-y.bg .text-left .col-md-6:last-child {
+    overflow-wrap: anywhere;
+    color: #56657a;
+}
+
+/* Order status */
+.section-content.padding-y.bg .badge-warning {
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #fff1c7;
+    color: #805d08;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Buttons */
+.section-content.padding-y.bg .btn-primary {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #527fc5, #385e9c);
+    box-shadow: 0 5px 13px rgba(56, 94, 156, 0.2);
+    font-weight: 600;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.section-content.padding-y.bg .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 9px 20px rgba(56, 94, 156, 0.28);
+}
+
+/* PayPal payment section */
+#paypal-button-container {
+    max-width: 420px;
+    margin: 22px auto 0;
+}
+
+#payment-success-message {
+    margin-top: 18px;
+    border-radius: 12px;
+    text-align: left;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#payment-success-message.alert-success {
+    border: 1px solid #b8e6cf;
+    background: #eaf8f0;
+    color: #176a45;
+}
+
+#payment-success-message.alert-danger {
+    border: 1px solid #f2c6ca;
+    background: #fff0f1;
+    color: #a12c36;
+}
+
+#payment-success-message.alert-warning {
+    border: 1px solid #f5dfa0;
+    background: #fff8e5;
+    color: #805d08;
+}
+
+#payment-success-message.alert-info {
+    border: 1px solid #c6dafa;
+    background: #edf5ff;
+    color: #28558e;
+}
+
+/* Responsive layout */
+@media (max-width: 767px) {
+    .section-content.padding-y.bg {
+        padding: 22px 0;
+    }
+
+    .section-content.padding-y.bg .card-body {
+        padding: 24px 18px;
+    }
+
+    .section-content.padding-y.bg .fa-check-circle {
+        font-size: 64px !important;
+    }
+
+    .section-content.padding-y.bg h2.text-success {
+        font-size: 25px;
+    }
+
+    .section-content.padding-y.bg .text-left .row {
+        padding: 10px;
+    }
+
+    .section-content.padding-y.bg .text-left .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .section-content.padding-y.bg .text-left .col-md-6 + .col-md-6 {
+        margin-top: 4px;
+    }
+
+    .section-content.padding-y.bg .btn-primary {
+        width: 100%;
+        white-space: normal;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .section-content.padding-y.bg,
+    .section-content.padding-y.bg .card,
+    .section-content.padding-y.bg .fa-check-circle {
+        animation: none !important;
+    }
+
+    .section-content.padding-y.bg *,
+    .section-content.padding-y.bg *::before,
+    .section-content.padding-y.bg *::after {
+        transition: none !important;
+    }
+}
+</style>
+
+
+<section class="section-content padding-y bg">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="card">
+
+                    <div class="card-body text-center">
+
+                        <!-- ================= SUCCESS ICON ================= -->
+
+                        <div class="mb-4">
+
+                            <i class="fa fa-check-circle"
+                               style="font-size: 70px; color: #28a745;">
+                            </i>
+
+                        </div>
+
+
+                        <!-- ================= SUCCESS MESSAGE ================= -->
+
+                        <h2 class="text-success mb-3">
+                            Order Placed Successfully!
+                        </h2>
+
+                        <p class="text-muted mb-4">
+
+                            Thank you for shopping with us.
+
+                            Your order has been successfully placed.
+
+                        </p>
+
+
+                        <hr>
+
+
+                        <!-- ================= ORDER INFORMATION ================= -->
+
+                        <div class="text-left mt-4">
+
+                            <h5 class="mb-3">
+                                Order Details
+                            </h5>
+
+
+                            <!-- ORDER NUMBER -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Order Number:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ order_number }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- CUSTOMER NAME -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Customer Name:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    {{ specific_order.first_name }}
+                                    {{ specific_order.last_name }}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- EMAIL -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Email:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ specific_order.email }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- PHONE -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Phone:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ specific_order.phone_no }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- ADDRESS -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Address:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    {{ specific_order.address_line_1 }}
+
+                                    {% if specific_order.address_line_2 %}
+
+                                        , {{ specific_order.address_line_2 }}
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- CITY -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>City:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ specific_order.city }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- STATE -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>State:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ specific_order.state }}
+                                </div>
+
+                            </div>
+
+
+                            <!-- PINCODE -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Pincode:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{ specific_order.pincode }}
+                                </div>
+
+                            </div>
+
+
+                            <hr>
+
+
+                            <!-- ================= PRICE DETAILS ================= -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Order Total:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+    $ {{ specific_order.order_total|floatformat:2 }}
+</div>
+
+                            </div>
+
+
+                            <!-- TAX -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Tax:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+    $ {{ specific_order.tax|floatformat:2 }}
+</div>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <div class="row mb-2">
+
+                                <div class="col-md-6">
+                                    <strong>Status:</strong>
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <span class="badge badge-warning">
+
+                                        {{ specific_order.status }}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <!-- ================= BUTTONS ================= -->
+
+                        <div class="mt-4">
+
+                            <!-- CONTINUE SHOPPING -->
+
+                            <a href="{% url 'store' %}"
+                               class="btn btn-primary mr-2">
+
+                                <i class="fa fa-shopping-cart"></i>
+
+                                Continue Shopping
+
+                            </a>
+
+                        </div>
+
+
+                        <!-- ================= PAYPAL SECTION ================= -->
+
+                        <div class="mt-4">
+
+                            <h5 class="mb-3">
+                                Complete Your Payment
+                            </h5>
+
+                            <p class="text-muted">
+                                Click the PayPal button below to complete
+                                your payment securely.
+                            </p>
+
+
+                            <!-- PAYPAL BUTTON WILL APPEAR HERE -->
+
+                            <div id="paypal-button-container"></div>
+
+<div id="payment-success-message"
+     class="alert"
+     role="status"
+     aria-live="polite"
+     style="display: none;">
+</div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- PAYPAL SANDBOX SDK -->
+<!-- ========================================================= -->
+
+<!--
+    IMPORTANT:
+    Replace YOUR_SANDBOX_CLIENT_ID with your
+    PayPal Sandbox Client ID.
+-->
+
+<!-- PayPal Sandbox SDK -->
+
+<script src="https://www.paypal.com/sdk/js?client-id=AU9PEju9tbFoeV7dJOEEg0ELMQ9KZVuRjpxt32Ggd-1YSXk4uJPHHJJZnVT_7mnpuN0_j6M7P4U0ONrG&currency=USD"></script>
+
+<script>
+(function () {
+    "use strict";
+
+    const amount = "{{ specific_order.order_total|floatformat:2 }}";
+    const paymentUrl = "{% url 'payments' %}";
+    const orderId = "{{ specific_order.id }}";
+    const isOrderCompleted = {{ specific_order.is_ordered|yesno:"true,false" }};
+
+    const buttonContainer = document.getElementById(
+        "paypal-button-container"
+    );
+
+    // Your HTML must contain this exact ID.
+    const messageBox = document.getElementById(
+        "payment-success-message"
+    );
+
+    function showMessage(type, message) {
+        if (!messageBox) return;
+
+        messageBox.className = "alert alert-" + type;
+        messageBox.textContent = message;
+        messageBox.style.display = "block";
+    }
+
+    function getCookie(name) {
+        const cookies = document.cookie
+            ? document.cookie.split(";")
+            : [];
+
+        for (const item of cookies) {
+            const cookie = item.trim();
+
+            if (cookie.startsWith(name + "=")) {
+                return decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                );
+            }
+        }
+
+        return null;
+    }
+
+    // Do not offer payment again for an already completed order.
+    if (isOrderCompleted) {
+        if (buttonContainer) {
+            buttonContainer.style.display = "none";
+        }
+
+        showMessage(
+            "success",
+            "Order Successful! This order has already been paid."
+        );
+
+        return;
+    }
+
+    if (!buttonContainer || !messageBox) {
+        console.error(
+            "PayPal setup error: Check the payment message and button container IDs."
+        );
+        return;
+    }
+
+    if (typeof paypal === "undefined") {
+        showMessage(
+            "danger",
+            "PayPal could not load. Please refresh the page and try again."
+        );
+        return;
+    }
+
+    paypal.Buttons({
+        style: {
+            color: "blue",
+            shape: "rect",
+            label: "pay",
+            height: 40
+        },
+
+        // Create the PayPal Sandbox order.
+        createOrder: function (data, actions) {
+            const total = Number(amount);
+
+            if (!Number.isFinite(total) || total <= 0) {
+                showMessage(
+                    "danger",
+                    "The order amount is invalid. Please contact support."
+                );
+
+                throw new Error("Invalid order amount.");
+            }
+
+            return actions.order.create({
+                purchase_units: [{
+                    reference_id: orderId,
+                    amount: {
+                        currency_code: "USD",
+                        value: total.toFixed(2)
+                    }
+                }]
+            });
+        },
+
+        // Django verifies and captures the approved payment.
+        onApprove: async function (data) {
+            buttonContainer.style.display = "none";
+
+            showMessage(
+                "info",
+                "Payment approved. Verifying your transaction..."
+            );
+
+            try {
+                const csrfToken = getCookie("csrftoken");
+
+                if (!csrfToken) {
+                    throw new Error(
+                        "CSRF token not found. Refresh the page and try again."
+                    );
+                }
+
+                const response = await fetch(paymentUrl, {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": csrfToken
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        paypal_order_id: data.orderID
+                    })
+                });
+
+                const responseText = await response.text();
+                let result;
+
+                try {
+                    result = JSON.parse(responseText);
+                } catch (error) {
+                    console.error(
+                        "Django returned a non-JSON response:",
+                        responseText
+                    );
+
+                    throw new Error(
+                        "The server could not verify your payment. " +
+                        "Check the Django terminal before retrying."
+                    );
+                }
+
+                if (!response.ok || result.success !== true) {
+                    throw new Error(
+                        result.error ||
+                        "Payment verification failed. Please check your order."
+                    );
+                }
+
+                // Only show success when Django confirms success.
+                showMessage(
+                    "success",
+                    "Order Successful! Your payment has been completed. "
+                    
+                );
+
+                // Keep the PayPal button hidden.
+                buttonContainer.style.display = "none";
+
+                
+
+            } catch (error) {
+                console.error("Payment verification error:", error);
+
+                showMessage(
+                    "danger",
+                    error.message ||
+                    "We could not verify your payment. Please check your order status."
+                );
+
+                // Do not immediately offer another payment attempt:
+                // PayPal may have captured the payment already.
+                buttonContainer.style.display = "none";
+            }
+        },
+
+        onCancel: function () {
+            showMessage(
+                "warning",
+                "Payment was cancelled. Your order is still pending."
+            );
+
+            buttonContainer.style.display = "block";
+        },
+
+        onError: function (error) {
+            console.error("PayPal checkout error:", error);
+
+            showMessage(
+                "danger",
+                "PayPal checkout encountered an error. Check your connection " +
+                "and the Django terminal before trying again."
+            );
+        }
+
+    }).render("#paypal-button-container")
+      .catch(function (error) {
+          console.error("Could not render PayPal buttons:", error);
+
+          showMessage(
+              "danger",
+              "PayPal buttons could not be loaded. Please refresh the page."
+          );
+      });
+
+})();
+</script>
+
+
+{% endblock %}

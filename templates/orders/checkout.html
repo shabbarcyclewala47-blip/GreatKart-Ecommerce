@@ -1,0 +1,654 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+/* ==========================================
+   GREATKART CHECKOUT PAGE
+   Professional Blue-Grey Theme
+========================================== */
+
+.section-content.padding-y.bg {
+    min-height: 100vh;
+    padding: 40px 0;
+    background: linear-gradient(
+        -45deg,
+        #edf3fa,
+        #f8faff,
+        #e7eef7,
+        #f3f6fc
+    );
+    background-size: 300% 300%;
+    animation: checkoutGradient 16s ease infinite;
+}
+
+@keyframes checkoutGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Checkout cards */
+.section-content.padding-y.bg .card {
+    border: 1px solid #e0e8f2;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 6px 22px rgba(47, 69, 100, 0.06);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.section-content.padding-y.bg .card:hover {
+    border-color: #cfdef1;
+    box-shadow: 0 12px 30px rgba(47, 69, 100, 0.10);
+}
+
+.section-content.padding-y.bg .card-body {
+    padding: 24px;
+}
+
+/* Section headings */
+.section-content.padding-y.bg .card-title {
+    padding-bottom: 14px;
+    color: #293e59;
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: 1px solid #edf1f7;
+}
+
+/* Cart items */
+.section-content.padding-y.bg .itemside {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.section-content.padding-y.bg .img-sm {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border: 1px solid #e5ebf4 !important;
+    border-radius: 12px;
+    background: #f5f8fc;
+    transition: transform 0.25s ease;
+}
+
+.section-content.padding-y.bg .itemside:hover .img-sm {
+    transform: scale(1.04);
+}
+
+.section-content.padding-y.bg .itemside .info p {
+    margin-bottom: 8px;
+    color: #344963;
+    font-weight: 600;
+}
+
+.section-content.padding-y.bg .text-muted {
+    color: #7c8ba0 !important;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* Form labels */
+.section-content.padding-y.bg label {
+    margin-bottom: 8px;
+    color: #425671;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Inputs and dropdowns */
+.section-content.padding-y.bg .form-control {
+    min-height: 44px;
+    border: 1px solid #dce5f0;
+    border-radius: 9px;
+    background-color: #f9fbfe;
+    color: #344963;
+    font-size: 14px;
+    box-shadow: none;
+    transition: border-color 0.2s ease,
+                background-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.section-content.padding-y.bg .form-control:focus {
+    border-color: #7da3e5;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(53, 105, 200, 0.10);
+}
+
+.section-content.padding-y.bg .form-control::placeholder {
+    color: #a0adbd;
+}
+
+/* Payment accordion */
+.section-content.padding-y.bg .accordion .card {
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.section-content.padding-y.bg .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e8eef6;
+    background: #f7f9fd;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.section-content.padding-y.bg .card-header:hover {
+    background: #eef4fc;
+}
+
+.section-content.padding-y.bg .form-check {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.section-content.padding-y.bg .form-check-input {
+    accent-color: #3569c8;
+}
+
+.section-content.padding-y.bg .form-check-label {
+    margin-left: 5px;
+    color: #344963;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.section-content.padding-y.bg .accordion .card-body {
+    color: #65758b;
+    line-height: 1.8;
+}
+
+/* Order summary */
+.section-content.padding-y.bg .dlist-align {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 16px;
+    color: #65758b;
+    font-size: 14px;
+}
+
+.section-content.padding-y.bg .dlist-align dt {
+    color: #53657c;
+    font-weight: 500;
+}
+
+.section-content.padding-y.bg .dlist-align dd {
+    margin-bottom: 0;
+    color: #344963;
+    text-align: right;
+}
+
+.section-content.padding-y.bg .dlist-align strong {
+    color: #2856aa;
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.section-content.padding-y.bg hr {
+    margin: 20px 0;
+    border-top: 1px solid #e8eef6;
+}
+
+/* Buttons */
+.section-content.padding-y.bg .btn-primary {
+    border: 1px solid #3569c8;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4279d7, #2f5fb8);
+    color: #fff;
+    font-weight: 700;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+.section-content.padding-y.bg .btn-primary:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #3569c8, #244e9e);
+    box-shadow: 0 7px 17px rgba(53, 105, 200, 0.22);
+}
+
+.section-content.padding-y.bg .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Payment images */
+.section-content.padding-y.bg img[src*="payment"],
+.section-content.padding-y.bg img[src*="payments"],
+.section-content.padding-y.bg img[src*="paypal"] {
+    object-fit: contain;
+}
+
+/* Responsive layout */
+@media (max-width: 767px) {
+    .section-content.padding-y.bg {
+        padding: 22px 0;
+    }
+
+    .section-content.padding-y.bg .card-body {
+        padding: 18px;
+    }
+
+    .section-content.padding-y.bg .card-title {
+        font-size: 18px;
+    }
+
+    .section-content.padding-y.bg .img-sm {
+        width: 72px;
+        height: 72px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .section-content.padding-y.bg,
+    .section-content.padding-y.bg * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+</style>
+
+<section class="section-content padding-y bg">
+<div class="container">
+
+<!-- ============================ CHECKOUT FORM ================================= -->
+
+<form method="POST" action="{% url 'checkout' %}">
+{% csrf_token %}
+
+<div class="row">
+
+<!-- ============================ LEFT SIDE ================================= -->
+
+<main class="col-md-8">
+
+    <!-- ============================ REVIEW CART ================================= -->
+
+    <article class="card mb-4">
+
+        <div class="card-body">
+
+            <h4 class="card-title mb-4">
+                Review cart
+            </h4>
+
+            <div class="row">
+
+                {% for item in cart_items %}
+
+                <div class="col-md-6">
+
+                    <figure class="itemside mb-4">
+
+                        <div class="aside">
+
+                            <img src="{{ item.product.images.url }}"
+                                 class="border img-sm">
+
+                        </div>
+
+                        <figcaption class="info">
+
+                            <p>
+                                {{ item.product.product_name }}
+                            </p>
+
+                            <span class="text-muted">
+                               Price: ${{ item.product.price }}
+                            </span>
+
+                            <br>
+
+                            <span class="text-muted">
+                                Quantity: {{ item.quantity }}
+                            </span>
+
+                            <br>
+
+                            <span class="text-muted">
+                                Sub Total: ${{ item.sub_total }}
+                            </span>
+
+                            <br><br>
+
+                            {% for variation in item.variations.all %}
+
+                                <span class="text-muted">
+                                    {{ variation.variation_category }}:
+                                    {{ variation.variation_value }}
+                                </span>
+
+                                <br>
+
+                            {% endfor %}
+
+                        </figcaption>
+
+                    </figure>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </article>
+
+    <!-- ============================ CONTACT INFO ================================= -->
+
+    <article class="card mb-4">
+
+        <div class="card-body">
+
+            <h4 class="card-title mb-4">
+                Contact info
+            </h4>
+
+            <div class="row">
+
+                <div class="form-group col-sm-6">
+                    <label>First name</label>
+                    <input type="text"
+                           name="fname"
+                           placeholder="Type here"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>Last name</label>
+                    <input type="text"
+                           name="lname"
+                           placeholder="Type here"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>Phone</label>
+                    <input type="text"
+                           name="phone"
+                           value="+91"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>Email</label>
+                    <input type="email"
+                           name="email"
+                           placeholder="example@gmail.com"
+                           class="form-control"
+                           required>
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    <!-- ============================ DELIVERY INFO ================================= -->
+
+    <article class="card mb-4">
+
+        <div class="card-body">
+
+            <h4 class="card-title mb-4">
+                Delivery info
+            </h4>
+
+            <div class="row">
+
+                <div class="form-group col-sm-6">
+                    <label>Country</label>
+                    <select name="country" class="form-control" required>
+                        <option value="India">India</option>
+                        <option value="United States">United States</option>
+                        <option value="France">France</option>
+                        <option value="Italy">Italy</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>State</label>
+                    <select name="state" class="form-control" required>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Goa">Goa</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>City</label>
+                    <input type="text"
+                           name="city"
+                           placeholder="Type here"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label>Pincode</label>
+                    <input type="text"
+                           name="pcode"
+                           placeholder="Type here"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <label>Address line 1</label>
+                    <input type="text"
+                           name="add_1"
+                           placeholder="Type here"
+                           class="form-control"
+                           required>
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <label>Address Line 2</label>
+                    <input type="text"
+                           name="add_2"
+                           placeholder="Optional"
+                           class="form-control">
+                </div>
+
+                <div class="form-group col-sm-12">
+                    <label>Order Note</label>
+                    <input type="text"
+                           name="o_note"
+                           placeholder="Optional"
+                           class="form-control">
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+    <!-- ============================ PAYMENT ================================= -->
+
+    <article class="accordion mb-4" id="accordion_pay">
+
+        <!-- ================= PAYPAL ================= -->
+
+        <div class="card">
+
+            <header class="card-header">
+
+                <img src="{% static './images/misc/payment-paypal.png' %}"
+                     class="float-right"
+                     height="24">
+
+                <label class="form-check"
+                       data-toggle="collapse"
+                       data-target="#pay_paynet">
+
+                    <input class="form-check-input"
+                           name="payment_option"
+                           checked
+                           type="radio"
+                           value="paypal">
+
+                    <h6 class="form-check-label">
+                        Paypal
+                    </h6>
+
+                </label>
+
+            </header>
+
+            <div id="pay_paynet"
+                 class="collapse show"
+                 data-parent="#accordion_pay">
+
+                <div class="card-body">
+
+                    <p class="text-center text-muted">
+                        Connect your PayPal account and use it
+                        to pay your bills.
+                    </p>
+
+                    <p class="text-center">
+                        <a href="#">
+                            <img src="{% static './images/misc/btn-paypal.png' %}"
+                                 height="32">
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= CREDIT CARD ================= -->
+
+        <div class="card">
+
+            <header class="card-header">
+
+                <img src="{% static './images/misc/payment-card.png' %}"
+                     class="float-right"
+                     height="24">
+
+                <label class="form-check"
+                       data-toggle="collapse"
+                       data-target="#pay_payme">
+
+                    <input class="form-check-input"
+                           name="payment_option"
+                           type="radio"
+                           value="card">
+
+                    <h6 class="form-check-label">
+                        Credit Card
+                    </h6>
+
+                </label>
+
+            </header>
+
+            <div id="pay_payme"
+                 class="collapse"
+                 data-parent="#accordion_pay">
+
+                <div class="card-body">
+
+                    <p class="alert alert-success">
+                        Some information or instruction
+                    </p>
+
+                    <input type="text"
+                           class="form-control mb-2"
+                           placeholder="xxxx-xxxx-xxxx-xxxx"
+                           name="card_number">
+
+                    <input type="text"
+                           class="form-control mb-2"
+                           style="width: 150px"
+                           placeholder="MM/YY"
+                           name="card_expiry">
+
+                    <input type="text"
+                           maxlength="3"
+                           class="form-control mb-2"
+                           style="width: 150px"
+                           placeholder="CVC"
+                           name="card_cvc">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+</main>
+
+<!-- ============================ RIGHT SIDE ================================= -->
+
+<aside class="col-md-4">
+
+    <div class="card">
+
+        <div class="card-body">
+
+            <dl class="dlist-align">
+                <dt>Total price:</dt>
+                <dd class="text-right">${{ total }}</dd>
+            </dl>
+
+            <dl class="dlist-align">
+                <dt>Tax:</dt>
+                <dd class="text-right">${{ tax }}</dd>
+            </dl>
+
+            <dl class="dlist-align">
+                <dt>Final Total:</dt>
+                <dd class="text-right text-dark b">
+                    <strong>${{ final_total }}</strong>
+                </dd>
+            </dl>
+
+            <hr>
+
+            <p class="text-center mb-3">
+                <img src="{% static './images/misc/payments.png' %}"
+                     height="26">
+            </p>
+
+            <!-- PLACE ORDER BUTTON -->
+
+            <button type="submit" class="btn btn-primary btn-block">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+</aside>
+
+</div>
+
+</form>
+
+<!-- ============================ CHECKOUT FORM END ================================= -->
+
+</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,387 @@
+
+{% load static %}
+
+<style>
+    .greatkart-header {
+        position: relative;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.96);
+        border-bottom: 1px solid #e1e9f3;
+    }
+
+    .greatkart-header .top-navbar {
+        min-height: 38px;
+        background: linear-gradient(100deg, #f0f5fc, #f8faff, #edf3fb);
+        border-bottom: 1px solid #e4ebf5;
+    }
+
+    .greatkart-header .top-navbar .nav-link {
+        padding: 9px 12px;
+        color: #65758b;
+        font-size: 12px;
+        transition: color .2s ease;
+    }
+
+    .greatkart-header .top-navbar .nav-link:hover {
+        color: #3569c8;
+    }
+
+    .greatkart-header .header-main {
+        padding: 18px 0;
+        background: rgba(255, 255, 255, .94);
+    }
+
+    .greatkart-header .brand-wrap {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .greatkart-header .logo {
+        display: block;
+        max-width: 150px;
+        max-height: 58px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        transition: transform .25s ease;
+    }
+
+    .greatkart-header .brand-wrap:hover .logo {
+        transform: translateY(-2px);
+    }
+
+    .greatkart-header .btn {
+        border-radius: 9px;
+        font-weight: 600;
+        transition: transform .2s ease, box-shadow .2s ease,
+                    background-color .2s ease;
+    }
+
+    .greatkart-header .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 13px rgba(53, 105, 200, .14);
+    }
+
+    .greatkart-header .btn-primary {
+        background: #3569c8;
+        border-color: #3569c8;
+    }
+
+    .greatkart-header .btn-primary:hover {
+        background: #2856aa;
+        border-color: #2856aa;
+    }
+
+    .greatkart-header .search .form-control {
+        height: 42px;
+        border: 1px solid #dce5f1;
+        border-right: 0;
+        border-radius: 10px 0 0 10px;
+        background: #f8faff;
+        box-shadow: none;
+        transition: background-color .2s ease, border-color .2s ease;
+    }
+
+    .greatkart-header .search .form-control:focus {
+        border-color: #8baee8;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(53, 105, 200, .08);
+    }
+
+    .greatkart-header .search .input-group-append .btn {
+        height: 42px;
+        min-width: 46px;
+        border-radius: 0 10px 10px 0;
+    }
+
+    .greatkart-header .category-wrap .dropdown-menu {
+        margin-top: 10px;
+        padding: 8px;
+        border: 1px solid #e4ebf5;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(35, 58, 90, .12);
+    }
+
+    .greatkart-header .category-wrap .dropdown-item {
+        padding: 9px 12px;
+        border-radius: 7px;
+        color: #52647b;
+        font-size: 13px;
+        transition: background-color .2s ease, color .2s ease;
+    }
+
+    .greatkart-header .category-wrap .dropdown-item:hover {
+        color: #2856aa;
+        background: #edf4ff;
+    }
+
+    .greatkart-header .account-widget {
+        color: #52647b;
+        font-size: 13px;
+        line-height: 1.8;
+        white-space: nowrap;
+    }
+
+    .greatkart-header .account-widget .welcome-text {
+        display: block;
+        color: #8a97a9;
+        font-size: 11px;
+    }
+
+    .greatkart-header .account-widget a {
+        color: #3569c8;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color .2s ease;
+    }
+
+    .greatkart-header .account-widget a:hover {
+        color: #1f478f;
+    }
+
+    .greatkart-header .cart-link {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 43px;
+        height: 43px;
+        margin-left: 15px;
+        border: 1px solid #e0e8f3;
+        border-radius: 13px;
+        background: #f4f7fc;
+        color: #3569c8;
+        text-decoration: none;
+        transition: transform .2s ease, background-color .2s ease;
+    }
+
+    .greatkart-header .cart-link:hover {
+        transform: translateY(-3px);
+        background: #e8f0ff;
+    }
+
+    .greatkart-header .cart-link .notify {
+        position: absolute;
+        top: -7px;
+        right: -7px;
+        min-width: 19px;
+        padding: 4px 5px;
+        font-size: 10px;
+    }
+
+    @media (max-width: 991px) {
+        .greatkart-header .header-main {
+            padding: 14px 0;
+        }
+
+        .greatkart-header .header-main .row {
+            row-gap: 15px;
+        }
+
+        .greatkart-header .search-column {
+            order: 4;
+        }
+
+        .greatkart-header .account-column {
+            order: 3;
+        }
+    }
+
+    @media (max-width: 575px) {
+        .greatkart-header .logo {
+            max-width: 115px;
+            max-height: 45px;
+        }
+
+        .greatkart-header .category-wrap .btn {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+
+        .greatkart-header .store-button {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+
+        .greatkart-header .account-widget {
+            font-size: 12px;
+        }
+
+        .greatkart-header .cart-link {
+            width: 38px;
+            height: 38px;
+            margin-left: 9px;
+        }
+
+        .greatkart-header .top-navbar .nav-link {
+            padding: 8px 7px;
+            font-size: 11px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .greatkart-header * {
+            transition: none !important;
+        }
+    }
+</style>
+
+<header class="section-header greatkart-header">
+
+    <!-- Top navigation -->
+    <nav class="navbar p-0 navbar-expand-sm navbar-light top-navbar">
+        <div class="container">
+
+            <button class="navbar-toggler my-1" type="button"
+                    data-toggle="collapse" data-target="#navbarTop4"
+                    aria-controls="navbarTop4" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTop4">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-globe mr-1"></i> English
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-money-bill-wave mr-1"></i> USD
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-envelope mr-1"></i> Email
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fa fa-phone mr-1"></i> Call us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Main header -->
+    <section class="header-main">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- Logo -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <a href="{% url 'index' %}" class="brand-wrap">
+                        <img class="logo"
+                             src="{% static 'images/logo.png' %}"
+                             alt="GreatKart logo">
+                    </a>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <div class="category-wrap dropdown d-inline-block">
+                        <button type="button"
+                                class="btn btn-primary dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="fa fa-bars mr-1"></i> Categories
+                        </button>
+
+                        <div class="dropdown-menu">
+                            {% for category in links %}
+                                <a class="dropdown-item"
+                                   href="{{ category.get_url }}">
+                                    {{ category.category_name }}
+                                </a>
+                            {% empty %}
+                                <span class="dropdown-item text-muted">
+                                    No categories available
+                                </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Store button -->
+                <div class="col-lg-1 col-md-2 col-6">
+                    <a href="{% url 'store' %}"
+                       class="btn btn-outline-primary store-button">
+                        <i class="fas fa-store mr-1"></i> Store
+                    </a>
+                </div>
+
+                <!-- Search -->
+               
+<!-- Search -->
+<div class="col-lg-4 col-md-6 col-12 search-column">
+    <form action="{% url 'product_search' %}" method="GET" class="search">
+        <div class="input-group w-100">
+            <input type="search"
+                   name="keyword"
+                   class="form-control"
+                   placeholder="Search products, e.g. jeans..."
+                   aria-label="Search products"
+                   value="{{ request.GET.keyword|default:'' }}">
+
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"
+                        aria-label="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+                <!-- Account and cart -->
+                <div class="col-lg-3 col-md-6 col-12 account-column">
+                    <div class="d-flex align-items-center justify-content-end">
+
+                        <div class="account-widget">
+                            {% if request.user.is_authenticated %}
+                                <small class="welcome-text">
+                                    Welcome, {{ request.user.first_name|default:request.user.username }}
+                                </small>
+                                <div>
+                                    <a href="{% url 'logout' %}">Logout</a>
+                                    <span class="text-muted mx-1">|</span>
+                                    <a href="{% url 'store' %}">Dashboard</a>
+                                </div>
+                            {% else %}
+                                <small class="welcome-text">Welcome, guest!</small>
+                                <div>
+                                    <a href="{% url 'loggedin' %}">Sign in</a>
+                                    <span class="text-muted mx-1">|</span>
+                                    <a href="{% url 'register' %}">Register</a>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <a href="{% url 'cart' %}" class="cart-link"
+                           aria-label="Shopping cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            
+<span class="badge badge-pill badge-danger notify">
+    {{ cart_count|default:0 }}
+</span>
+
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</header>

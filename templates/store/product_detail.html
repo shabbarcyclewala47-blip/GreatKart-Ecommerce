@@ -1,0 +1,354 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* ===== Product Detail Page ===== */
+    .product-detail-page {
+        min-height: 100vh;
+        padding: 35px 0 50px;
+        background: linear-gradient(
+            135deg,
+            #e8eff9,
+            #f8faff,
+            #e3ebf7,
+            #f2f6fc
+        );
+        background-size: 300% 300%;
+        animation: productPageBackground 20s ease infinite;
+    }
+
+    @keyframes productPageBackground {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .product-detail-page .product-panel {
+        overflow: hidden;
+        border: 1px solid #e1e8f2;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 12px 35px rgba(40, 63, 98, 0.08);
+    }
+
+    /* Product image area */
+    .product-detail-page .product-gallery {
+        display: flex;
+        min-height: 430px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        background: linear-gradient(145deg, #f7f9fd, #edf3fb);
+    }
+
+    .product-detail-page .product-gallery img {
+        display: block;
+        width: 100%;
+        max-height: 470px;
+        object-fit: contain;
+        transition: transform 0.4s ease;
+    }
+
+    .product-detail-page .product-gallery:hover img {
+        transform: scale(1.035);
+    }
+
+    /* Product information */
+    .product-detail-page .product-information {
+        padding: 35px;
+    }
+
+    .product-detail-page .product-title {
+        margin-bottom: 15px;
+        color: #26384f;
+        font-size: 28px;
+        font-weight: 750;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .product-detail-page .product-price {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: #285cae;
+        font-size: 29px;
+        font-weight: 750;
+    }
+
+    .product-detail-page .product-description {
+        color: #6b788b;
+        font-size: 14px;
+        line-height: 1.9;
+        white-space: pre-line;
+    }
+
+    .product-detail-page .detail-divider {
+        margin: 24px 0;
+        border-top: 1px solid #edf1f6;
+    }
+
+    /* Select options */
+    .product-detail-page .option-label {
+        display: block;
+        margin-bottom: 9px;
+        color: #35465c;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .product-detail-page .product-select {
+        min-height: 45px;
+        border: 1px solid #dce5f0;
+        border-radius: 9px;
+        background-color: #fbfcff;
+        color: #3c4d63;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-detail-page .product-select:focus {
+        border-color: #6793d8;
+        box-shadow: 0 0 0 3px rgba(53, 105, 200, 0.1);
+        outline: none;
+    }
+
+    /* Add-to-cart button */
+    .product-detail-page .add-cart-button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 24px;
+        border: 0;
+        border-radius: 9px;
+        background: linear-gradient(135deg, #3569c8, #2854a2);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 650;
+        box-shadow: 0 5px 13px rgba(53, 105, 200, 0.18);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-detail-page .add-cart-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(53, 105, 200, 0.27);
+        color: #fff;
+    }
+
+    /* Customer reviews */
+    .product-detail-page .reviews-heading {
+        margin: 32px 0 16px;
+        color: #293b52;
+        font-size: 21px;
+        font-weight: 750;
+    }
+
+    .product-detail-page .review-card {
+        padding: 22px;
+        border: 1px solid #e2e9f3;
+        border-radius: 13px;
+        background: #fff;
+        box-shadow: 0 5px 18px rgba(40, 63, 98, 0.045);
+    }
+
+    .product-detail-page .review-avatar {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #e9f0fc;
+        color: #3569c8;
+        font-size: 17px;
+    }
+
+    .product-detail-page .review-name {
+        margin: 0;
+        color: #34465c;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .product-detail-page .review-date {
+        color: #929eae;
+        font-size: 12px;
+    }
+
+    @media (max-width: 767px) {
+        .product-detail-page {
+            padding: 20px 0 35px;
+        }
+
+        .product-detail-page .product-gallery {
+            min-height: 280px;
+            padding: 22px;
+        }
+
+        .product-detail-page .product-gallery img {
+            max-height: 320px;
+        }
+
+        .product-detail-page .product-information {
+            padding: 24px 20px;
+        }
+
+        .product-detail-page .product-title {
+            font-size: 23px;
+        }
+
+        .product-detail-page .product-price {
+            font-size: 25px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .product-detail-page,
+        .product-detail-page * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+</style>
+
+<div class="product-detail-page">
+    <div class="container">
+
+        <!-- Product details -->
+        <div class="product-panel">
+            <div class="row no-gutters">
+
+                <!-- Product image -->
+                <aside class="col-md-6">
+                    <div class="product-gallery">
+                        <img
+                            src="{{ single_product.images.url }}"
+                            alt="{{ single_product.product_name }}">
+                    </div>
+                </aside>
+
+                <!-- Product information -->
+                <main class="col-md-6">
+                    <form method="POST"
+                          action="{% url 'add_cart' single_product.id %}">
+                        {% csrf_token %}
+
+                        <article class="product-information">
+
+                            <h1 class="product-title">
+                                {{ single_product.product_name }}
+                            </h1>
+
+                            <div class="product-price">
+                                ${{ single_product.price }}
+                            </div>
+
+                            <p class="product-description">
+                                {{ single_product.description }}
+                            </p>
+
+                            <hr class="detail-divider">
+
+                            <!-- Color selection -->
+                            <div class="form-group">
+                                <label for="product-color" class="option-label">
+                                    <i class="fas fa-palette mr-2"></i>
+                                    Choose Color
+                                </label>
+
+                                <select
+                                    id="product-color"
+                                    name="color"
+                                    class="form-control product-select">
+
+                                    {% for variation in product_variations %}
+                                        {% if variation.variation_category == "color" %}
+                                            <option value="{{ variation.variation_value }}">
+                                                {{ variation.variation_value }}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+
+                            <!-- Size selection -->
+                            <div class="form-group mt-4">
+                                <label for="product-size" class="option-label">
+                                    <i class="fas fa-ruler mr-2"></i>
+                                    Select Size
+                                </label>
+
+                                <select
+                                    id="product-size"
+                                    name="size"
+                                    class="form-control product-select">
+
+                                    {% for variation in product_variations %}
+                                        {% if variation.variation_category == "size" %}
+                                            <option value="{{ variation.variation_value }}">
+                                                {{ variation.variation_value }}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+
+                            <hr class="detail-divider">
+
+                            <!-- Add to cart -->
+                            <button type="submit" class="btn add-cart-button">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span>Add to Cart</span>
+                            </button>
+
+                        </article>
+                    </form>
+                </main>
+
+            </div>
+        </div>
+
+        <!-- Customer reviews -->
+        <section class="row">
+            <div class="col-md-9">
+
+                <h2 class="reviews-heading">
+                    <i class="far fa-comment-dots mr-2"></i>
+                    Customer Reviews
+                </h2>
+
+                <article class="review-card">
+                    <div class="d-flex align-items-center">
+
+                        <div class="review-avatar mr-3">
+                            <i class="fas fa-user"></i>
+                        </div>
+
+                        <div>
+                            <h3 class="review-name">Customer Reviews</h3>
+                            <span class="review-date">
+                                Share your experience with this product.
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <p class="product-description mt-3 mb-0">
+                        Customer reviews will appear here when connected to your review system.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+
+{% endblock %}

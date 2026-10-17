@@ -1,0 +1,127 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* Animated background for the index page */
+    .index-page {
+        min-height: 100vh;
+        background: linear-gradient(
+            135deg,
+            #e4edf9,
+            #f7f9fd,
+            #e0eaf7,
+            #edf2fa
+        );
+        background-size: 300% 300%;
+        animation: indexBackgroundAnimation 15s ease infinite;
+        padding-bottom: 30px;
+    }
+
+    @keyframes indexBackgroundAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Keep product cards clean and white */
+    .index-page .card-product-grid {
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .index-page .card-product-grid:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(45, 75, 120, 0.12);
+    }
+
+    .index-page .intro-banner-wrap img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .index-page,
+        .index-page .card-product-grid {
+            animation: none;
+            transition: none;
+        }
+    }
+</style>
+
+<div class="index-page">
+
+    <!-- ========================= SECTION MAIN ========================= -->
+    <section class="section-intro padding-y-sm">
+        <div class="container">
+            <div class="intro-banner-wrap">
+                <img
+                    src="{% static 'images/banners/1.jpg' %}"
+                    class="img-fluid rounded"
+                    alt="Store banner"
+                >
+            </div>
+        </div>
+    </section>
+    <!-- ========================= SECTION MAIN END ========================= -->
+
+    <!-- ========================= SECTION PRODUCTS ========================= -->
+    <section class="section-name padding-y-sm">
+        <div class="container">
+
+            <header class="section-heading">
+                <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">
+                    See all
+                </a>
+                <h3 class="section-title">Popular products</h3>
+            </header>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="row">
+                {% for prod in random_prod %}
+                    <div class="col-md-3">
+                        <div class="card card-product-grid mb-4">
+                            <a href="{{ prod.get_url }}" class="img-wrap">
+                                <img src="{{ prod.images.url }}" alt="{{ prod.product_name }}">
+                            </a>
+
+                            <figcaption class="info-wrap">
+                                <a href="{{ prod.get_url }}" class="title">
+                                    {{ prod.product_name }}
+                                </a>
+                                <div class="price mt-1">${{ prod.price }}</div>
+                            </figcaption>
+
+                            <a href="{{ prod.get_url }}" class="btn btn-block btn-primary">
+                                View details
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+    <!-- ========================= SECTION PRODUCTS END ========================= -->
+
+</div>
+
+{% endblock %}
