@@ -225,6 +225,343 @@
             transition: none !important;
         }
     }
+ 
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: clip;
+}
+
+input,
+select,
+textarea,
+button {
+    max-width: 100%;
+}
+
+/* Tablet screens */
+@media (max-width: 991.98px) {
+    .container,
+    .container-fluid {
+        max-width: 100%;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 575.98px) {
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .container,
+    .container-fluid {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        min-height: 40px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+}
+
+/* Responsive GreatKart header */
+.greatkart-header,
+.greatkart-header * {
+    box-sizing: border-box;
+}
+
+.greatkart-header .header-main .row {
+    row-gap: 14px;
+}
+
+.greatkart-header .search-column,
+.greatkart-header .account-column {
+    min-width: 0;
+}
+
+.greatkart-header .search,
+.greatkart-header .search .input-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.greatkart-header .search .form-control {
+    min-width: 0;
+}
+
+.greatkart-header .account-column > .d-flex {
+    gap: 10px;
+}
+
+.greatkart-header .account-widget {
+    white-space: normal;
+}
+
+.greatkart-header .cart-link {
+    flex-shrink: 0;
+}
+
+.greatkart-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tablets and smaller laptops */
+@media (max-width: 991.98px) {
+    .greatkart-header .header-main {
+        padding: 14px 0;
+    }
+
+    .greatkart-header .header-main .row {
+        align-items: center;
+    }
+
+    .greatkart-header .search-column {
+        order: 5;
+    }
+
+    .greatkart-header .account-column {
+        order: 4;
+    }
+
+    .greatkart-header .search .form-control {
+        height: 44px;
+    }
+}
+
+/* Phones */
+@media (max-width: 575.98px) {
+    .greatkart-header .header-main {
+        padding: 12px 0;
+    }
+
+    .greatkart-header .header-main .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .greatkart-header .header-main .row {
+        margin-left: -6px;
+        margin-right: -6px;
+        row-gap: 14px;
+    }
+
+    .greatkart-header .header-main .row > [class*="col-"] {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .greatkart-header .logo {
+        max-width: 112px;
+        max-height: 42px;
+    }
+
+    .greatkart-header .category-wrap .btn {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .greatkart-header .store-button {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    .greatkart-header .search-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .greatkart-header .account-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .greatkart-header .account-column > .d-flex {
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    .greatkart-header .account-widget {
+        font-size: 12px;
+    }
+
+    .greatkart-header .account-widget .welcome-text {
+        font-size: 11px;
+    }
+
+    .greatkart-header .cart-link {
+        width: 40px;
+        height: 40px;
+        margin-left: 0;
+    }
+
+    .greatkart-header .top-navbar .navbar-toggler {
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    .greatkart-header .top-navbar .navbar-collapse {
+        padding-bottom: 8px;
+    }
+}
+
+/* Responsive GreatKart header */
+.greatkart-header,
+.greatkart-header * {
+    box-sizing: border-box;
+}
+
+.greatkart-header .header-main .row {
+    row-gap: 14px;
+}
+
+.greatkart-header .search-column,
+.greatkart-header .account-column {
+    min-width: 0;
+}
+
+.greatkart-header .search,
+.greatkart-header .search .input-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.greatkart-header .search .form-control {
+    min-width: 0;
+}
+
+.greatkart-header .account-column > .d-flex {
+    gap: 10px;
+}
+
+.greatkart-header .account-widget {
+    white-space: normal;
+}
+
+.greatkart-header .cart-link {
+    flex-shrink: 0;
+}
+
+.greatkart-header img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 991.98px) {
+    .greatkart-header .header-main {
+        padding: 14px 0;
+    }
+
+    .greatkart-header .search-column {
+        order: 5;
+    }
+
+    .greatkart-header .account-column {
+        order: 4;
+    }
+
+    .greatkart-header .search .form-control {
+        height: 44px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .greatkart-header .header-main {
+        padding: 12px 0;
+    }
+
+    .greatkart-header .header-main .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .greatkart-header .header-main .row {
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+
+    .greatkart-header .header-main .row > [class*="col-"] {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    .greatkart-header .logo {
+        max-width: 112px;
+        max-height: 42px;
+    }
+
+    .greatkart-header .category-wrap .btn,
+    .greatkart-header .store-button {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .greatkart-header .search-column,
+    .greatkart-header .account-column {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .greatkart-header .account-column > .d-flex {
+        justify-content: space-between !important;
+        width: 100%;
+    }
+
+    .greatkart-header .account-widget {
+        font-size: 12px;
+    }
+
+    .greatkart-header .account-widget .welcome-text {
+        font-size: 11px;
+    }
+
+    .greatkart-header .cart-link {
+        width: 40px;
+        height: 40px;
+        margin-left: 0;
+    }
+
+    .greatkart-header .top-navbar .navbar-toggler {
+        margin-left: auto;
+        margin-right: 8px;
+    }
+
+    .greatkart-header .top-navbar .navbar-collapse {
+        padding-bottom: 8px;
+    }
+}
+
+
+
 </style>
 
 <header class="section-header greatkart-header">
