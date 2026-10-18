@@ -39,28 +39,27 @@ def register(request):
         account.is_active=True
         account.save()
         messages.success(request,"u have successfully registered, you can login ")
-        return redirect('loggedin')
+        return redirect('home')
 
     return render(request, 'accounts/register.html')
 
 
-
 def loggedin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email', '').strip()
+        password = request.POST.get('password', '')
 
-    if request.method=='POST':
-       email=request.POST['email']
-       password=request.POST['password']
-       user=authenticate(email=email,password=password)
-       if user is not None:  #jab user ke credentials database se match ho jayege
-           login(request,user)
-           messages.success(request,"you have successsfully loggedin")
-           return redirect('index')
-       else:
-           messages.error(request,"please enter correct credentials")
-           return redirect('loggedin')
+        user = authenticate(request, email=email, password=password)
 
-    return render (request,'accounts/login.html')
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You have successfully logged in")
+            return redirect('index')
+        else:
+            messages.error(request, "Please enter correct credentials")
+            return redirect('loggedin')
 
+    return render(request, 'accounts/login.html')
 
 def loggedout(request):
     logout(request)
