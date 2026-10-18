@@ -2,13 +2,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from store import views
+from category import views as category_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # Index homepage from the category app
+    path('', category_views.index, name='home'),
 
-    # Store page — separate page
+    # Separate Store page
     path('store/', include('store.urls')),
 
     path('category/', include('category.urls')),
