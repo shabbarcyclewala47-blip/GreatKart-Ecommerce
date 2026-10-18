@@ -35,8 +35,12 @@ ALLOWED_HOSTS = [
     if host.strip()
 ]
 
+# Cloudinary is enabled only when explicitly turned on.
+# Local development remains unchanged by default.
+USE_CLOUDINARY = (
+    os.environ.get("USE_CLOUDINARY", "False").lower() == "true"
+)
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,8 +52,15 @@ INSTALLED_APPS = [
     'store',
     'cart',
     'accounts',
-    'orders'
+    'orders',
 ]
+
+# Add Cloudinary apps only when enabled on Render
+if USE_CLOUDINARY:
+    INSTALLED_APPS += [
+        'cloudinary_storage',
+        'cloudinary',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -174,3 +185,20 @@ PAYPAL_CLIENT_SECRET = os.environ.get("PAYPAL_CLIENT_SECRET", "")
 
 # PayPal Sandbox API
 PAYPAL_BASE_URL = "https://api-m.sandbox.paypal.com"
+# Cloudinary media storage — production only when enabled.
+if USE_CLOUDINARY:
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
+        "API_KEY": os.environ.get("CLOUDINARY_API_KEY", ""),
+        "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", ""),
+        "MEDIA_TAG": "greatkart",
+    }
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
