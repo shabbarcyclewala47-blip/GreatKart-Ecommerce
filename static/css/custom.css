@@ -153,3 +153,66 @@ img {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* GreatKart store layout alignment fix */
+.store-page {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: clip;
+}
+
+.store-page .store-heading {
+    width: 100%;
+}
+
+.store-page .store-heading > .container,
+.store-page > section.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.store-page .store-layout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.store-page .store-layout > aside,
+.store-page .store-layout > main {
+    min-width: 0;
+}
+
+.store-page .filter-card,
+.store-page .product-card,
+.store-page .results-bar,
+.store-page .empty-state {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.store-page .product-column {
+    min-width: 0;
+}
+
+@media (max-width: 767.98px) {
+    .store-page .store-layout {
+        display: block;
+    }
+
+    .store-page .store-layout > aside,
+    .store-page .store-layout > main {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .store-page .store-layout > main {
+        margin-top: 20px;
+    }
+}
+
