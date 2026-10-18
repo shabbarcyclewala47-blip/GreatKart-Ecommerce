@@ -20,15 +20,16 @@ def store(request,category_slug=None):
     else:
 
         products=Product.objects.all()#select * from tablename
-        paginator=Paginator(products,2)#idhar ham specify kar rahe hai ki ek page pe kitne
+        paginator = Paginator(products.order_by('id'), 2)#idhar ham specify kar rahe hai ki ek page pe kitne
         # products dikhege
         page=request.GET.get('page')#yaha manlo main page1 me hu to page me jayega page 1
         paged_products=paginator.get_page(page)#to ham kisme the page 1 mw to layega
         # page1 ke products
         prod_count=products.count()
-    context={
-        'all_prod':paged_products,
-        'all_prod_count':prod_count,
+    context = {
+    'all_prod': paged_products,
+    'all_prod_count': prod_count,
+    'links': Category.objects.all(),
     }
     return render(request,'store/store.html',context)
 

@@ -1,0 +1,282 @@
+[
+{
+  "model": "category.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "shoes",
+    "slug": "shoes",
+    "description": "acha hai",
+    "cat_image": "photos/categories/Puma-Ferrari-Shoes.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "shirt",
+    "slug": "shirt",
+    "description": "acha hai",
+    "cat_image": "photos/categories/Blue-Shirt.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "t-shirt",
+    "slug": "t-shirt",
+    "description": "acha hai",
+    "cat_image": "photos/categories/Great-Tshirt.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "jacket",
+    "slug": "jacket",
+    "description": "acha hai",
+    "cat_image": "photos/categories/US-Polo-Assn_Jacket.jpg"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "jordan-shoes",
+    "slug": "jordan-shoes",
+    "description": "branded",
+    "price": 20,
+    "images": "photos/product/jordan-true-flight-basketball-shoes.jpg",
+    "stock": 199,
+    "is_available": true,
+    "category": 1,
+    "created_date": "2026-08-13T06:52:26.418Z",
+    "modified_date": "2026-10-17T08:28:41.868Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "great-tshirt",
+    "slug": "great-tshirt",
+    "description": "branded",
+    "price": 30,
+    "images": "photos/product/Great-Tshirt.jpg",
+    "stock": 40,
+    "is_available": true,
+    "category": 3,
+    "created_date": "2026-08-13T06:54:12.306Z",
+    "modified_date": "2026-10-17T08:28:27.635Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "us-polo-jacket",
+    "slug": "us-polo-jacket",
+    "description": "branded",
+    "price": 10,
+    "images": "photos/product/US-Polo-Assn_Jacket.jpg",
+    "stock": 18,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2026-08-13T06:54:48.439Z",
+    "modified_date": "2026-10-17T08:28:14.883Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "blue-shirt",
+    "slug": "blue-shirt",
+    "description": "branded",
+    "price": 10,
+    "images": "photos/products/Blue-Shirt.jpg",
+    "stock": 10,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2026-10-17T18:56:47.227Z",
+    "modified_date": "2026-10-17T18:56:47.227Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 5,
+  "fields": {
+    "product": 4,
+    "variation_category": "color",
+    "variation_value": "green",
+    "is_active": true,
+    "created_date": "2026-08-18T16:50:50.027Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 4,
+    "variation_category": "color",
+    "variation_value": "beige",
+    "is_active": true,
+    "created_date": "2026-08-18T16:51:06.102Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 7,
+  "fields": {
+    "product": 4,
+    "variation_category": "size",
+    "variation_value": "xl",
+    "is_active": true,
+    "created_date": "2026-08-18T16:51:29.172Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 8,
+  "fields": {
+    "product": 4,
+    "variation_category": "size",
+    "variation_value": "xxl",
+    "is_active": true,
+    "created_date": "2026-08-18T16:51:54.376Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 9,
+  "fields": {
+    "product": 4,
+    "variation_category": "size",
+    "variation_value": "xxl",
+    "is_active": true,
+    "created_date": "2026-08-18T16:52:22.651Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 10,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "red",
+    "is_active": true,
+    "created_date": "2026-10-17T08:30:43.921Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 11,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2026-10-17T08:30:57.471Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 12,
+  "fields": {
+    "product": 2,
+    "variation_category": "color",
+    "variation_value": "green",
+    "is_active": true,
+    "created_date": "2026-10-17T08:31:13.180Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 13,
+  "fields": {
+    "product": 3,
+    "variation_category": "color",
+    "variation_value": "red",
+    "is_active": true,
+    "created_date": "2026-10-17T08:31:24.887Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 14,
+  "fields": {
+    "product": 3,
+    "variation_category": "color",
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2026-10-17T08:31:43.032Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 15,
+  "fields": {
+    "product": 3,
+    "variation_category": "color",
+    "variation_value": "green",
+    "is_active": true,
+    "created_date": "2026-10-17T08:32:02.203Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 16,
+  "fields": {
+    "product": 2,
+    "variation_category": "size",
+    "variation_value": "medium",
+    "is_active": true,
+    "created_date": "2026-10-17T08:32:22.693Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 17,
+  "fields": {
+    "product": 2,
+    "variation_category": "size",
+    "variation_value": "large",
+    "is_active": true,
+    "created_date": "2026-10-17T08:32:33.426Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 18,
+  "fields": {
+    "product": 3,
+    "variation_category": "size",
+    "variation_value": "medium",
+    "is_active": true,
+    "created_date": "2026-10-17T08:32:43.432Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 19,
+  "fields": {
+    "product": 3,
+    "variation_category": "size",
+    "variation_value": "xxl",
+    "is_active": true,
+    "created_date": "2026-10-17T08:33:01.879Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 20,
+  "fields": {
+    "product": 3,
+    "variation_category": "size",
+    "variation_value": "large",
+    "is_active": true,
+    "created_date": "2026-10-17T08:33:22.748Z"
+  }
+}
+]

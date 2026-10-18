@@ -1,0 +1,134 @@
+
+<!DOCTYPE HTML>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="max-age=604800">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>GreatKart | Modern Online Shopping</title>
+
+    <link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/x-icon">
+
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-2.0.0.min.js' %}" type="text/javascript"></script>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fonts/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- Existing stylesheets -->
+    <link href="{% static 'css/ui.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)">
+
+    <!-- Existing JavaScript -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+
+    <!-- Professional global design -->
+    <style>
+        :root {
+            --page-bg-1: #e8eff9;
+            --page-bg-2: #f8faff;
+            --page-bg-3: #e6edf7;
+            --text-main: #26364a;
+            --surface: #ffffff;
+            --soft-border: #e4eaf2;
+            --accent: #3569c8;
+        }
+
+        html {
+            min-height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text-main);
+            background: linear-gradient(
+                120deg,
+                var(--page-bg-1),
+                var(--page-bg-2),
+                var(--page-bg-3),
+                #f3f6fc
+            );
+            background-size: 300% 300%;
+            animation: pageGradient 22s ease infinite;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        @keyframes pageGradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Keep content above the page background */
+        main,
+        .main-content {
+            position: relative;
+        }
+
+        /* Gentle hover effect for buttons */
+        .btn {
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: #2856a8;
+            border-color: #2856a8;
+            box-shadow: 0 5px 14px rgba(53, 105, 200, 0.2);
+        }
+
+        /* Clean, subtle borders for common content surfaces */
+        .card,
+        .box {
+            border-color: var(--soft-border);
+        }
+
+        /* Respect accessibility settings */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            body {
+                animation: none;
+            }
+
+            .btn {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include 'includes/footer.html' %}
+
+</body>
+</html>

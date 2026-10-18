@@ -214,150 +214,6 @@
             transition: none !important;
         }
     }
-    
-/* Responsive product details */
-.product-detail-page,
-.product-detail-page * {
-    box-sizing: border-box;
-}
-
-.product-detail-page .product-panel {
-    overflow: hidden;
-}
-
-.product-detail-page .product-panel > .row {
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.product-detail-page .product-image-column,
-.product-detail-page .product-info-column {
-    min-width: 0;
-}
-
-.product-detail-page .product-gallery {
-    width: 100%;
-}
-
-.product-detail-page .product-gallery img {
-    max-width: 100%;
-}
-
-.product-detail-page .product-information {
-    min-width: 0;
-}
-
-.product-detail-page .product-description {
-    overflow-wrap: anywhere;
-}
-
-.product-detail-page .product-select {
-    width: 100%;
-    max-width: 100%;
-}
-
-.product-detail-page .add-cart-button {
-    max-width: 100%;
-}
-
-.product-detail-page .review-card {
-    overflow-wrap: anywhere;
-}
-
-/* Tablets */
-@media (max-width: 991.98px) {
-    .product-detail-page {
-        padding: 26px 0 40px;
-    }
-
-    .product-detail-page .product-gallery {
-        min-height: 340px;
-        padding: 20px;
-    }
-
-    .product-detail-page .product-gallery img {
-        max-height: 380px;
-    }
-
-    .product-detail-page .product-information {
-        padding: 25px 22px;
-    }
-
-    .product-detail-page .product-title {
-        font-size: 24px;
-    }
-}
-
-/* Mobile phones */
-@media (max-width: 575.98px) {
-    .product-detail-page {
-        padding: 14px 0 28px;
-    }
-
-    .product-detail-page .product-panel {
-        border-radius: 12px;
-    }
-
-    .product-detail-page .product-gallery {
-        min-height: 230px;
-        height: auto;
-        padding: 18px;
-    }
-
-    .product-detail-page .product-gallery img {
-        width: 100%;
-        max-height: 280px;
-    }
-
-    .product-detail-page .product-information {
-        padding: 20px 16px;
-    }
-
-    .product-detail-page .product-title {
-        margin-bottom: 10px;
-        font-size: 21px;
-        line-height: 1.4;
-    }
-
-    .product-detail-page .product-price {
-        margin-bottom: 12px;
-        font-size: 24px;
-    }
-
-    .product-detail-page .product-description {
-        font-size: 13px;
-        line-height: 1.75;
-    }
-
-    .product-detail-page .detail-divider {
-        margin: 18px 0;
-    }
-
-    .product-detail-page .form-group.mt-4 {
-        margin-top: 18px !important;
-    }
-
-    .product-detail-page .product-select {
-        min-height: 46px;
-        font-size: 16px;
-    }
-
-    .product-detail-page .add-cart-button {
-        display: flex;
-        width: 100%;
-        min-height: 48px;
-    }
-
-    .product-detail-page .reviews-heading {
-        margin-top: 24px;
-        font-size: 19px;
-    }
-
-    .product-detail-page .review-card {
-        padding: 16px;
-    }
-}
-
 </style>
 
 <div class="product-detail-page">
@@ -365,10 +221,10 @@
 
         <!-- Product details -->
         <div class="product-panel">
-            <div class="row">
+            <div class="row no-gutters">
 
                 <!-- Product image -->
-                <aside class="col-12 col-md-6 product-image-column">
+                <aside class="col-md-6">
                     <div class="product-gallery">
                         <img
                             src="{{ single_product.images.url }}"
@@ -377,7 +233,7 @@
                 </aside>
 
                 <!-- Product information -->
-                <main class="col-12 col-md-6 product-info-column">
+                <main class="col-md-6">
                     <form method="POST"
                           action="{% url 'add_cart' single_product.id %}">
                         {% csrf_token %}
