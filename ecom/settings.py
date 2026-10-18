@@ -186,18 +186,18 @@ PAYPAL_CLIENT_SECRET = os.environ.get("PAYPAL_CLIENT_SECRET", "")
 # PayPal Sandbox API
 PAYPAL_BASE_URL = "https://api-m.sandbox.paypal.com"
 # Cloudinary media storage — production only when enabled.
+
+# Cloudinary media storage
 if USE_CLOUDINARY:
     CLOUDINARY_STORAGE = {
         "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
         "API_KEY": os.environ.get("CLOUDINARY_API_KEY", ""),
         "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", ""),
-        "MEDIA_TAG": "greatkart",
-        "PREFIX": "",
     }
 
     STORAGES = {
         "default": {
-            "BACKEND": "store.cloudinary_storage.MediaCloudinaryStorage",
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
         },
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
