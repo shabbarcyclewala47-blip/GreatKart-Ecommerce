@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        
         migrations.AlterField(
             model_name='category',
             name='cat_image',

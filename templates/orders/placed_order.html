@@ -1,563 +1,659 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
 <style>
-/* ===== Order Success Page Styling ===== */
+/* =====================================================
+   GREATKART — PREMIUM ORDER SUCCESS PAGE
+   Blue Grey • White • Emerald
+===================================================== */
 
-.section-content.padding-y.bg {
-    min-height: 100vh;
-    padding: 45px 0;
-    background: linear-gradient(
-        -45deg,
-        #edf3fa,
-        #f8faff,
-        #e6edf7,
-        #f3f6fc
-    );
-    background-size: 300% 300%;
-    animation: successGradient 16s ease infinite;
+.order-success-page,
+.order-success-page * {
+    box-sizing: border-box;
 }
 
-@keyframes successGradient {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+.order-success-page {
+    --success-primary: #3569c8;
+    --success-primary-dark: #244e9e;
+    --success-text: #25364d;
+    --success-muted: #718096;
+    --success-border: #e3eaf3;
+    --success-green: #168458;
+
+    min-height: 100vh;
+    padding: 42px 0 60px;
+    color: var(--success-text);
+    background: linear-gradient(
+        135deg,
+        #edf3fa 0%,
+        #f8faff 45%,
+        #e8eff8 100%
+    );
+}
+
+.order-success-page .success-container {
+    max-width: 1000px;
 }
 
 /* Main card */
-.section-content.padding-y.bg .card {
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    border-radius: 22px;
+
+.order-success-page .success-card {
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: 0 15px 45px rgba(45, 67, 99, 0.12);
-    animation: successCardIn 0.65s ease both;
-    transition: box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, .95);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 16px 48px rgba(40, 62, 94, .10);
 }
 
-.section-content.padding-y.bg .card:hover {
-    box-shadow: 0 20px 55px rgba(45, 67, 99, 0.17);
-}
-
-.section-content.padding-y.bg .card-body {
-    padding: 38px;
-}
-
-@keyframes successCardIn {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.order-success-page .success-header {
+    padding: 38px 24px 32px;
+    text-align: center;
+    background: linear-gradient(
+        145deg,
+        #f2fbf6,
+        #ffffff 75%
+    );
+    border-bottom: 1px solid #e5f1e9;
 }
 
 /* Success icon */
-.section-content.padding-y.bg .fa-check-circle {
-    color: #22a06b !important;
-    font-size: 76px !important;
-    filter: drop-shadow(0 5px 9px rgba(34, 160, 107, 0.18));
-    animation: successIconIn 0.7s ease both;
+
+.order-success-page .success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 20px;
+    border: 8px solid #e3f6eb;
+    border-radius: 50%;
+    background: #d0f2df;
+    color: #168458;
+    font-size: 34px;
+    box-shadow: 0 7px 22px rgba(22, 132, 88, .10);
+    animation: greatkartSuccessIn .55s ease both;
 }
 
-@keyframes successIconIn {
-    0% {
+@keyframes greatkartSuccessIn {
+    from {
         opacity: 0;
-        transform: scale(0.65);
+        transform: scale(.75);
     }
-    70% {
-        transform: scale(1.12);
-    }
-    100% {
+    to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
-/* Heading and text */
-.section-content.padding-y.bg h2.text-success {
-    color: #168458 !important;
-    font-weight: 750;
-    letter-spacing: -0.5px;
+.order-success-page .success-title {
+    margin: 0 0 12px;
+    color: #176b49;
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -.7px;
 }
 
-.section-content.padding-y.bg .text-muted {
-    color: #6b778b !important;
+.order-success-page .success-subtitle {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--success-muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Order number */
+
+.order-success-page .order-reference {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 20px;
+    padding: 10px 16px;
+    border: 1px solid #dce9f9;
+    border-radius: 10px;
+    background: #f1f6ff;
+    color: #3a5e91;
+    font-size: 13px;
+}
+
+.order-success-page .order-reference strong {
+    color: #244e86;
+    overflow-wrap: anywhere;
+}
+
+/* Main content */
+
+.order-success-page .success-content {
+    padding: 30px;
+}
+
+.order-success-page .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    color: #293d57;
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.order-success-page .section-heading i {
+    color: var(--success-primary);
+    font-size: 18px;
+}
+
+/* Detail cards */
+
+.order-success-page .detail-panel {
+    height: 100%;
+    padding: 22px;
+    border: 1px solid var(--success-border);
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.order-success-page .detail-row {
+    display: grid;
+    grid-template-columns: minmax(105px, 40%) minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #edf1f6;
+    font-size: 13px;
     line-height: 1.7;
 }
 
-.section-content.padding-y.bg hr {
+.order-success-page .detail-row:first-child {
+    padding-top: 0;
+}
+
+.order-success-page .detail-row:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.order-success-page .detail-label {
+    color: var(--success-muted);
+    font-weight: 500;
+}
+
+.order-success-page .detail-value {
+    color: #344760;
+    font-weight: 650;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* Status badge */
+
+.order-success-page .status-badge {
+    display: inline-block;
+    padding: 6px 11px;
+    border: 1px solid #f0dda6;
+    border-radius: 30px;
+    background: #fff7df;
+    color: #805c0b;
+    font-size: 11px;
+    font-weight: 750;
+    text-transform: capitalize;
+}
+
+/* Price summary */
+
+.order-success-page .price-panel {
+    padding: 23px;
+    border: 1px solid #dce7f7;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f7faff, #edf4ff);
+}
+
+.order-success-page .price-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+    color: #687991;
+    font-size: 14px;
+}
+
+.order-success-page .price-row:last-child {
+    margin-bottom: 0;
+}
+
+.order-success-page .price-row strong {
+    color: #344963;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.order-success-page .price-divider {
+    margin: 19px 0;
     border: 0;
-    border-top: 1px solid #e8edf5;
-    margin: 25px 0;
+    border-top: 1px solid #dce5f1;
 }
 
-/* Order details */
-.section-content.padding-y.bg .text-left {
-    text-align: left;
+.order-success-page .grand-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: #293e59;
+    font-size: 15px;
+    font-weight: 750;
 }
 
-.section-content.padding-y.bg .text-left h5 {
-    color: #27364b;
-    font-weight: 700;
-}
-
-.section-content.padding-y.bg .text-left .row {
-    padding: 11px 13px;
-    margin-left: 0;
-    margin-right: 0;
-    border-radius: 9px;
-    transition: background 0.2s ease;
-}
-
-.section-content.padding-y.bg .text-left .row:nth-of-type(odd) {
-    background: #f5f8fc;
-}
-
-.section-content.padding-y.bg .text-left .row:hover {
-    background: #eaf1fa;
-}
-
-.section-content.padding-y.bg .text-left strong {
-    color: #35445a;
-}
-
-.section-content.padding-y.bg .text-left .col-md-6:last-child {
+.order-success-page .grand-total strong {
+    color: #2856aa;
+    font-size: 25px;
     overflow-wrap: anywhere;
-    color: #56657a;
 }
 
-/* Order status */
-.section-content.padding-y.bg .badge-warning {
-    padding: 7px 12px;
-    border-radius: 20px;
-    background: #fff1c7;
-    color: #805d08;
-    font-size: 12px;
-    font-weight: 700;
+/* Payment section */
+
+.order-success-page .payment-panel {
+    margin-top: 25px;
+    padding: 24px;
+    border: 1px solid var(--success-border);
+    border-radius: 15px;
+    background: #ffffff;
 }
 
-/* Buttons */
-.section-content.padding-y.bg .btn-primary {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #527fc5, #385e9c);
-    box-shadow: 0 5px 13px rgba(56, 94, 156, 0.2);
-    font-weight: 600;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+.order-success-page .payment-description {
+    margin-bottom: 18px;
+    color: var(--success-muted);
+    font-size: 13px;
+    line-height: 1.8;
 }
 
-.section-content.padding-y.bg .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 9px 20px rgba(56, 94, 156, 0.28);
-}
-
-/* PayPal payment section */
-#paypal-button-container {
+.order-success-page #paypal-button-container {
+    width: 100%;
     max-width: 420px;
-    margin: 22px auto 0;
+    margin: 0 auto;
 }
 
-#payment-success-message {
-    margin-top: 18px;
-    border-radius: 12px;
-    text-align: left;
-    line-height: 1.6;
+.order-success-page #payment-success-message {
+    display: none;
+    margin-top: 16px;
+    padding: 13px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.7;
     overflow-wrap: anywhere;
 }
 
-#payment-success-message.alert-success {
+.order-success-page #payment-success-message.alert-success {
     border: 1px solid #b8e6cf;
     background: #eaf8f0;
     color: #176a45;
 }
 
-#payment-success-message.alert-danger {
+.order-success-page #payment-success-message.alert-danger {
     border: 1px solid #f2c6ca;
     background: #fff0f1;
     color: #a12c36;
 }
 
-#payment-success-message.alert-warning {
+.order-success-page #payment-success-message.alert-warning {
     border: 1px solid #f5dfa0;
     background: #fff8e5;
     color: #805d08;
 }
 
-#payment-success-message.alert-info {
+.order-success-page #payment-success-message.alert-info {
     border: 1px solid #c6dafa;
     background: #edf5ff;
     color: #28558e;
 }
 
-/* Responsive layout */
+/* Buttons */
+
+.order-success-page .success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.order-success-page .success-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 12px 20px;
+    border: 1px solid var(--success-primary);
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        #4279d7,
+        #2f5fb8
+    );
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.order-success-page .success-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(53, 105, 200, .20);
+    color: #ffffff;
+}
+
+.order-success-page .success-button.secondary {
+    border-color: #d9e3ef;
+    background: #ffffff;
+    color: #405570;
+}
+
+.order-success-page .success-button.secondary:hover {
+    background: #f3f7fc;
+    color: #29415f;
+}
+
+.order-success-page .success-button:focus-visible {
+    outline: 3px solid rgba(53, 105, 200, .35);
+    outline-offset: 3px;
+}
+
+/* Responsive */
+
 @media (max-width: 767px) {
-    .section-content.padding-y.bg {
-        padding: 22px 0;
+    .order-success-page {
+        padding: 20px 0 35px;
     }
 
-    .section-content.padding-y.bg .card-body {
-        padding: 24px 18px;
+    .order-success-page .success-card {
+        border-radius: 16px;
     }
 
-    .section-content.padding-y.bg .fa-check-circle {
-        font-size: 64px !important;
+    .order-success-page .success-header {
+        padding: 30px 18px 26px;
     }
 
-    .section-content.padding-y.bg h2.text-success {
-        font-size: 25px;
+    .order-success-page .success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 29px;
     }
 
-    .section-content.padding-y.bg .text-left .row {
-        padding: 10px;
+    .order-success-page .success-content {
+        padding: 18px;
     }
 
-    .section-content.padding-y.bg .text-left .col-md-6 {
-        flex: 0 0 100%;
-        max-width: 100%;
+    .order-success-page .detail-panel,
+    .order-success-page .price-panel,
+    .order-success-page .payment-panel {
+        padding: 17px;
     }
 
-    .section-content.padding-y.bg .text-left .col-md-6 + .col-md-6 {
-        margin-top: 4px;
+    .order-success-page .section-heading {
+        font-size: 17px;
     }
 
-    .section-content.padding-y.bg .btn-primary {
+    .order-success-page .detail-row {
+        grid-template-columns: minmax(90px, 42%) minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .order-success-page .grand-total strong {
+        font-size: 22px;
+    }
+
+    .order-success-page .success-actions {
+        flex-direction: column;
+    }
+
+    .order-success-page .success-button {
         width: 100%;
-        white-space: normal;
     }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .section-content.padding-y.bg,
-    .section-content.padding-y.bg .card,
-    .section-content.padding-y.bg .fa-check-circle {
-        animation: none !important;
+@media (max-width: 380px) {
+    .order-success-page .detail-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
     }
 
-    .section-content.padding-y.bg *,
-    .section-content.padding-y.bg *::before,
-    .section-content.padding-y.bg *::after {
+    .order-success-page .detail-value {
+        text-align: left;
+    }
+
+    .order-success-page .order-reference {
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .order-success-page *,
+    .order-success-page *::before,
+    .order-success-page *::after {
+        animation: none !important;
         transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
 </style>
 
+<section class="order-success-page">
+    <div class="container success-container">
 
-<section class="section-content padding-y bg">
+        <article class="success-card">
 
-    <div class="container">
+            <!-- SUCCESS HEADER -->
+            <header class="success-header">
 
-        <div class="row justify-content-center">
+                <div class="success-icon" aria-hidden="true">
+                    <i class="fas fa-check"></i>
+                </div>
 
-            <div class="col-md-8">
+                <h1 class="success-title">
+                    Order Placed Successfully!
+                </h1>
 
-                <div class="card">
+                <p class="success-subtitle">
+                    Thank you for shopping with GreatKart.
+                    Your order details are shown below.
+                </p>
 
-                    <div class="card-body text-center">
+                <div class="order-reference">
+                    <i class="fas fa-receipt"></i>
+                    Order Number:
+                    <strong>{{ order_number|default:specific_order.order_number|default:specific_order.id }}</strong>
+                </div>
 
-                        <!-- ================= SUCCESS ICON ================= -->
+            </header>
 
-                        <div class="mb-4">
+            <div class="success-content">
 
-                            <i class="fa fa-check-circle"
-                               style="font-size: 70px; color: #28a745;">
-                            </i>
+                <div class="row">
 
-                        </div>
+                    <!-- CUSTOMER AND DELIVERY DETAILS -->
+                    <div class="col-lg-7 mb-4">
 
+                        <section class="detail-panel">
 
-                        <!-- ================= SUCCESS MESSAGE ================= -->
-
-                        <h2 class="text-success mb-3">
-                            Order Placed Successfully!
-                        </h2>
-
-                        <p class="text-muted mb-4">
-
-                            Thank you for shopping with us.
-
-                            Your order has been successfully placed.
-
-                        </p>
-
-
-                        <hr>
-
-
-                        <!-- ================= ORDER INFORMATION ================= -->
-
-                        <div class="text-left mt-4">
-
-                            <h5 class="mb-3">
+                            <h2 class="section-heading">
+                                <i class="fas fa-clipboard-list"></i>
                                 Order Details
-                            </h5>
+                            </h2>
 
-
-                            <!-- ORDER NUMBER -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Order Number:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ order_number }}
-                                </div>
-
-                            </div>
-
-
-                            <!-- CUSTOMER NAME -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Customer Name:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-
+                            <div class="detail-row">
+                                <span class="detail-label">Customer</span>
+                                <span class="detail-value">
                                     {{ specific_order.first_name }}
                                     {{ specific_order.last_name }}
-
-                                </div>
-
+                                </span>
                             </div>
 
-
-                            <!-- EMAIL -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Email:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ specific_order.email }}
-                                </div>
-
+                            <div class="detail-row">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value">
+                                    {{ specific_order.email|default:"Not provided" }}
+                                </span>
                             </div>
 
-
-                            <!-- PHONE -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Phone:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ specific_order.phone_no }}
-                                </div>
-
+                            <div class="detail-row">
+                                <span class="detail-label">Phone</span>
+                                <span class="detail-value">
+                                    {{ specific_order.phone_no|default:"Not provided" }}
+                                </span>
                             </div>
 
-
-                            <!-- ADDRESS -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Address:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    {{ specific_order.address_line_1 }}
+                            <div class="detail-row">
+                                <span class="detail-label">Address</span>
+                                <span class="detail-value">
+                                    {{ specific_order.address_line_1|default:"Not provided" }}
 
                                     {% if specific_order.address_line_2 %}
-
                                         , {{ specific_order.address_line_2 }}
-
                                     {% endif %}
-
-                                </div>
-
+                                </span>
                             </div>
 
-
-                            <!-- CITY -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>City:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ specific_order.city }}
-                                </div>
-
+                            <div class="detail-row">
+                                <span class="detail-label">City</span>
+                                <span class="detail-value">
+                                    {{ specific_order.city|default:"—" }}
+                                </span>
                             </div>
 
-
-                            <!-- STATE -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>State:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ specific_order.state }}
-                                </div>
-
+                            <div class="detail-row">
+                                <span class="detail-label">State</span>
+                                <span class="detail-value">
+                                    {{ specific_order.state|default:"—" }}
+                                </span>
                             </div>
 
-
-                            <!-- PINCODE -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Pincode:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-                                    {{ specific_order.pincode }}
-                                </div>
-
+                            <div class="detail-row">
+                                <span class="detail-label">Pincode</span>
+                                <span class="detail-value">
+                                    {{ specific_order.pincode|default:"—" }}
+                                </span>
                             </div>
 
-
-                            <hr>
-
-
-                            <!-- ================= PRICE DETAILS ================= -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Order Total:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-    $ {{ specific_order.order_total|floatformat:2 }}
-</div>
-
-                            </div>
-
-
-                            <!-- TAX -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Tax:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-    $ {{ specific_order.tax|floatformat:2 }}
-</div>
-
-                            </div>
-
-
-                            <!-- STATUS -->
-
-                            <div class="row mb-2">
-
-                                <div class="col-md-6">
-                                    <strong>Status:</strong>
-                                </div>
-
-                                <div class="col-md-6">
-
-                                    <span class="badge badge-warning">
-
-                                        {{ specific_order.status }}
-
+                            <div class="detail-row">
+                                <span class="detail-label">Order Status</span>
+                                <span class="detail-value">
+                                    <span class="status-badge">
+                                        {{ specific_order.status|default:"Pending" }}
                                     </span>
+                                </span>
+                            </div>
 
-                                </div>
+                        </section>
+
+                    </div>
+
+                    <!-- PRICE SUMMARY -->
+                    <div class="col-lg-5 mb-4">
+
+                        <section class="price-panel">
+
+                            <h2 class="section-heading">
+                                <i class="fas fa-receipt"></i>
+                                Payment Summary
+                            </h2>
+
+                            <div class="price-row">
+                                <span>Order Subtotal</span>
+                                <strong>
+                                    ${{ specific_order.order_total|default_if_none:"0.00"|floatformat:2 }}
+                                </strong>
+                            </div>
+
+                            <div class="price-row">
+                                <span>Tax</span>
+                                <strong>
+                                    ${{ specific_order.tax|default_if_none:"0.00"|floatformat:2 }}
+                                </strong>
+                            </div>
+
+                            <hr class="price-divider">
+
+                            <div class="grand-total">
+                                <span>Total</span>
+                                  
+    $ {{ specific_order.order_total|floatformat:2 }}
 
                             </div>
 
-                        </div>
-
-
-                        <hr>
-
-
-                        <!-- ================= BUTTONS ================= -->
-
-                        <div class="mt-4">
-
-                            <!-- CONTINUE SHOPPING -->
-
-                            <a href="{% url 'store' %}"
-                               class="btn btn-primary mr-2">
-
-                                <i class="fa fa-shopping-cart"></i>
-
-                                Continue Shopping
-
-                            </a>
-
-                        </div>
-
-
-                        <!-- ================= PAYPAL SECTION ================= -->
-
-                        <div class="mt-4">
-
-                            <h5 class="mb-3">
-                                Complete Your Payment
-                            </h5>
-
-                            <p class="text-muted">
-                                Click the PayPal button below to complete
-                                your payment securely.
+                            <p class="text-muted small mt-3 mb-0">
+                                Final payment is subject to successful
+                                verification by the payment provider.
                             </p>
 
-
-                            <!-- PAYPAL BUTTON WILL APPEAR HERE -->
-
-                            <div id="paypal-button-container"></div>
-
-<div id="payment-success-message"
-     class="alert"
-     role="status"
-     aria-live="polite"
-     style="display: none;">
-</div>
-                        </div>
-
+                        </section>
 
                     </div>
 
                 </div>
 
+                <!-- PAYMENT -->
+                <section class="payment-panel">
+
+                    <h2 class="section-heading">
+                        <i class="fab fa-paypal"></i>
+                        Payment
+                    </h2>
+
+                    <p class="payment-description">
+                        {% if specific_order.is_ordered %}
+                            Your order is already marked as completed.
+                            No additional payment is required for this order.
+                        {% else %}
+                            If your order is awaiting payment, use the PayPal
+                            Sandbox button below to approve the payment.
+                            Payment completion will be shown only after your
+                            Django server confirms the transaction.
+                        {% endif %}
+                    </p>
+
+                    <div id="paypal-button-container"></div>
+
+                    <div id="payment-success-message"
+                         class="alert"
+                         role="status"
+                         aria-live="polite"></div>
+
+                </section>
+
+                <!-- ACTIONS -->
+                <div class="success-actions">
+
+                    <a href="{% url 'store' %}" class="success-button">
+                        <i class="fas fa-shopping-bag"></i>
+                        Continue Shopping
+                    </a>
+
+                    <a href="{% url 'home' %}"
+                       class="success-button secondary">
+                        <i class="fas fa-home"></i>
+                        Back to Home
+                    </a>
+
+                </div>
+
             </div>
 
-        </div>
+        </article>
 
     </div>
-
 </section>
 
-
-<!-- ========================================================= -->
-<!-- PAYPAL SANDBOX SDK -->
-<!-- ========================================================= -->
-
 <!--
-    IMPORTANT:
-    Replace YOUR_SANDBOX_CLIENT_ID with your
-    PayPal Sandbox Client ID.
+IMPORTANT:
+Use your own PayPal Sandbox Client ID.
+Never put a PayPal Secret in browser-side code.
 -->
-
-<!-- PayPal Sandbox SDK -->
 
 <script src="https://www.paypal.com/sdk/js?client-id=AU9PEju9tbFoeV7dJOEEg0ELMQ9KZVuRjpxt32Ggd-1YSXk4uJPHHJJZnVT_7mnpuN0_j6M7P4U0ONrG&currency=USD"></script>
 
@@ -565,16 +661,18 @@
 (function () {
     "use strict";
 
-    const amount = "{{ specific_order.order_total|floatformat:2 }}";
+    const amount = Number(
+        "{{ specific_order.order_total|default_if_none:'0.00'|floatformat:2 }}"
+    );
+
+    const orderId = "{{ specific_order.id|escapejs }}";
     const paymentUrl = "{% url 'payments' %}";
-    const orderId = "{{ specific_order.id }}";
     const isOrderCompleted = {{ specific_order.is_ordered|yesno:"true,false" }};
 
     const buttonContainer = document.getElementById(
         "paypal-button-container"
     );
 
-    // Your HTML must contain this exact ID.
     const messageBox = document.getElementById(
         "payment-success-message"
     );
@@ -605,74 +703,71 @@
         return null;
     }
 
-    // Do not offer payment again for an already completed order.
+    if (!buttonContainer || !messageBox) {
+        console.error("PayPal containers were not found.");
+        return;
+    }
+
+    // Never show another payment button for a completed order.
     if (isOrderCompleted) {
-        if (buttonContainer) {
-            buttonContainer.style.display = "none";
-        }
+        buttonContainer.style.display = "none";
 
         showMessage(
             "success",
-            "Order Successful! This order has already been paid."
+            "This order is already marked as completed."
         );
 
         return;
     }
 
-    if (!buttonContainer || !messageBox) {
-        console.error(
-            "PayPal setup error: Check the payment message and button container IDs."
-        );
-        return;
-    }
+    if (!Number.isFinite(amount) || amount <= 0) {
+        buttonContainer.style.display = "none";
 
-    if (typeof paypal === "undefined") {
         showMessage(
             "danger",
-            "PayPal could not load. Please refresh the page and try again."
+            "The order amount is invalid. Please contact support."
         );
+
         return;
     }
 
-    paypal.Buttons({
+    if (typeof window.paypal === "undefined") {
+        showMessage(
+            "danger",
+            "PayPal could not load. Check your connection and refresh the page."
+        );
+
+        return;
+    }
+
+    window.paypal.Buttons({
+
         style: {
             color: "blue",
             shape: "rect",
             label: "pay",
-            height: 40
+            height: 45
         },
 
-        // Create the PayPal Sandbox order.
         createOrder: function (data, actions) {
-            const total = Number(amount);
-
-            if (!Number.isFinite(total) || total <= 0) {
-                showMessage(
-                    "danger",
-                    "The order amount is invalid. Please contact support."
-                );
-
-                throw new Error("Invalid order amount.");
-            }
-
             return actions.order.create({
                 purchase_units: [{
                     reference_id: orderId,
+                    custom_id: orderId,
                     amount: {
                         currency_code: "USD",
-                        value: total.toFixed(2)
+                        value: amount.toFixed(2)
                     }
                 }]
             });
         },
 
-        // Django verifies and captures the approved payment.
         onApprove: async function (data) {
             buttonContainer.style.display = "none";
 
             showMessage(
                 "info",
-                "Payment approved. Verifying your transaction..."
+                "Payment approved. Verifying the transaction with the server..."
             );
 
             try {
@@ -680,7 +775,7 @@
 
                 if (!csrfToken) {
                     throw new Error(
-                        "CSRF token not found. Refresh the page and try again."
+                        "The security token is missing. Refresh the page before retrying."
                     );
                 }
 
@@ -703,58 +798,49 @@
                 try {
                     result = JSON.parse(responseText);
                 } catch (error) {
-                    console.error(
-                        "Django returned a non-JSON response:",
-                        responseText
-                    );
-
                     throw new Error(
-                        "The server could not verify your payment. " +
-                        "Check the Django terminal before retrying."
+                        "The server returned an unexpected response. Check your Django payment view."
                     );
                 }
 
                 if (!response.ok || result.success !== true) {
                     throw new Error(
                         result.error ||
-                        "Payment verification failed. Please check your order."
+                        "The server could not confirm the payment."
                     );
                 }
 
-                // Only show success when Django confirms success.
                 showMessage(
                     "success",
-                    "Order Successful! Your payment has been completed. "
-                    
+                    "Payment verified successfully! Your transaction has been confirmed."
                 );
 
-                // Keep the PayPal button hidden.
-                buttonContainer.style.display = "none";
-
-                
+                // Reload only after server-side verification succeeds.
+                // This lets Django render the latest order status.
+                window.setTimeout(function () {
+                    window.location.reload();
+                }, 1800);
 
             } catch (error) {
                 console.error("Payment verification error:", error);
 
                 showMessage(
                     "danger",
-                    error.message ||
-                    "We could not verify your payment. Please check your order status."
+                    (error && error.message)
+                        ? error.message
+                        : "Payment verification failed. Check your order status before trying again."
                 );
 
-                // Do not immediately offer another payment attempt:
-                // PayPal may have captured the payment already.
-                buttonContainer.style.display = "none";
+                // Do not automatically create another payment attempt.
+                // The previous transaction may already have been captured.
             }
         },
 
         onCancel: function () {
             showMessage(
                 "warning",
-                "Payment was cancelled. Your order is still pending."
+                "Payment was cancelled. Check your order status before trying again."
             );
-
-            buttonContainer.style.display = "block";
         },
 
         onError: function (error) {
@@ -762,23 +848,20 @@
 
             showMessage(
                 "danger",
-                "PayPal checkout encountered an error. Check your connection " +
-                "and the Django terminal before trying again."
+                "PayPal encountered an error. Please check your connection and payment configuration."
             );
         }
 
-    }).render("#paypal-button-container")
-      .catch(function (error) {
-          console.error("Could not render PayPal buttons:", error);
+    }).render("#paypal-button-container").catch(function (error) {
+        console.error("PayPal button rendering failed:", error);
 
-          showMessage(
-              "danger",
-              "PayPal buttons could not be loaded. Please refresh the page."
-          );
-      });
+        showMessage(
+            "danger",
+            "PayPal buttons could not be displayed. Please refresh the page."
+        );
+    });
 
 })();
 </script>
-
 
 {% endblock %}

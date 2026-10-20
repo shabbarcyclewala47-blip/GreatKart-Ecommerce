@@ -5,392 +5,541 @@
 {% block content %}
 
 <style>
-    /* ===== Professional Store Page ===== */
-    .store-page {
-        min-height: 100vh;
-        padding-bottom: 45px;
-        background: linear-gradient(
-            135deg,
-            #eaf0f9,
-            #f8faff,
-            #e5edf8,
-            #f3f6fc
-        );
-        background-size: 300% 300%;
-        animation: storeBackground 20s ease infinite;
-    }
+/* ==========================================
+   LUXEMART STORE
+   Premium Charcoal • Burgundy • Red
+========================================== */
 
-    @keyframes storeBackground {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .store-page .store-heading {
-        padding: 32px 0 26px;
-        margin-bottom: 26px;
-        background: rgba(255, 255, 255, 0.65);
-        border-bottom: 1px solid rgba(210, 221, 237, 0.8);
-    }
-
-    .store-page .store-heading h1 {
-        margin: 0 0 7px;
-        color: #24364b;
-        font-size: 30px;
-        font-weight: 750;
-        letter-spacing: -0.7px;
-    }
-
-    .store-page .store-heading p {
-        margin: 0;
-        color: #718096;
-        font-size: 14px;
-    }
-
-    .store-page .store-layout {
-        align-items: flex-start;
-    }
-
-    /* Sidebar filters */
-    .store-page .filter-card {
-        overflow: hidden;
-        border: 1px solid #e3eaf4;
-        border-radius: 14px;
-        background: #fff;
-        box-shadow: 0 5px 20px rgba(37, 63, 100, 0.045);
-    }
-
-    .store-page .filter-title {
-        display: block;
-        padding: 16px 18px;
-        margin: 0;
-        color: #2e4057;
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .store-page .filter-title:hover {
-        color: #3569c8;
-    }
-
-    .store-page .filter-group {
-        border-bottom: 1px solid #edf1f7;
-    }
-
-    .store-page .filter-group:last-child {
-        border-bottom: 0;
-    }
-
-    .store-page .filter-body {
-        padding: 4px 18px 18px;
-    }
-
-    .store-page .list-menu {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-
-    .store-page .list-menu li {
-        margin: 5px 0;
-    }
-
-    .store-page .list-menu a {
-        display: block;
-        padding: 7px 9px;
-        border-radius: 7px;
-        color: #66758a;
-        font-size: 13px;
-        text-decoration: none;
-        transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .store-page .list-menu a:hover {
-        color: #2859ad;
-        background: #edf4ff;
-    }
-
-    .store-page .size-option {
-        margin: 3px 3px 3px 0;
-        border: 1px solid #dfe6f0;
-        border-radius: 7px;
-        background: #f8faff;
-        color: #44546a;
-        transition: all 0.2s ease;
-    }
-
-    .store-page .size-option:hover {
-        border-color: #3569c8;
-        color: #2859ad;
-        background: #edf4ff;
-    }
-
-    .store-page .filter-body label {
-        color: #758196;
-        font-size: 12px;
-    }
-
-    .store-page .filter-body .form-control {
-        border-color: #dfe6f0;
-        border-radius: 7px;
-        font-size: 13px;
-    }
-
-    /* Product section */
-    .store-page .results-bar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 15px 18px;
-        margin-bottom: 20px;
-        border: 1px solid #e3eaf4;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.85);
-    }
-
-    .store-page .results-count {
-        margin: 0;
-        color: #52637a;
-        font-size: 14px;
-    }
-
-    .store-page .results-count strong {
-        color: #25374d;
-        font-size: 16px;
-    }
-
-    .store-page .product-card {
-        height: calc(100% - 22px);
-        margin-bottom: 22px;
-        overflow: hidden;
-        border: 1px solid #e2e9f3;
-        border-radius: 13px;
-        background: #fff;
-        box-shadow: 0 4px 15px rgba(37, 63, 100, 0.04);
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .store-page .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 28px rgba(37, 63, 100, 0.11);
-    }
-
-    .store-page .product-image {
-        display: flex;
-        height: 220px;
-        align-items: center;
-        justify-content: center;
-        padding: 12px;
-        overflow: hidden;
-        background: #f7f9fd;
-    }
-
-    .store-page .product-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-
-    .store-page .product-card:hover .product-image img {
-        transform: scale(1.045);
-    }
-
-    .store-page .product-info {
-        display: flex;
-        min-height: 155px;
-        flex-direction: column;
-        padding: 16px;
-    }
-
-    .store-page .product-name {
-        display: -webkit-box;
-        overflow: hidden;
-        min-height: 42px;
-        margin-bottom: 8px;
-        color: #2d4058;
-        font-size: 14px;
-        font-weight: 650;
-        line-height: 1.5;
-        text-decoration: none;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-    }
-
-    .store-page .product-name:hover {
-        color: #3569c8;
-    }
-
-    .store-page .product-price {
-        margin-bottom: 14px;
-        color: #2459a8;
-        font-size: 19px;
-        font-weight: 750;
-    }
-
-    .store-page .product-button {
-        width: 100%;
-        margin-top: auto;
-        padding: 9px 12px;
-        border: 0;
-        border-radius: 8px;
-        background: #3569c8;
-        color: #fff;
-        font-size: 13px;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .store-page .product-button:hover {
-        transform: translateY(-1px);
-        background: #254f9d;
-        color: #fff;
-    }
-
-    .store-page .empty-state {
-        padding: 45px 20px;
-        border: 1px dashed #cbd7e7;
-        border-radius: 13px;
-        background: rgba(255, 255, 255, 0.8);
-        color: #6e7d91;
-        text-align: center;
-    }
-
-    .store-page .empty-state i {
-        margin-bottom: 12px;
-        color: #91a5c2;
-        font-size: 34px;
-    }
-
-    /* Pagination */
-    .store-page .pagination {
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    .store-page .page-link {
-        border: 1px solid #e0e7f1;
-        border-radius: 7px;
-        background: #fff;
-        color: #45617f;
-    }
-
-    .store-page .page-item.active .page-link {
-        border-color: #3569c8;
-        background: #3569c8;
-        color: #fff;
-    }
-
-    .store-page .page-item.disabled .page-link {
-        color: #a4afbf;
-    }
-
-    @media (max-width: 767px) {
-        .store-page .store-heading {
-            padding: 24px 0 20px;
-        }
-
-        .store-page .store-heading h1 {
-            font-size: 25px;
-        }
-
-        .store-page .filter-card {
-            margin-bottom: 22px;
-        }
-
-        .store-page .product-image {
-            height: 175px;
-        }
-
-        .store-page .product-info {
-            padding: 12px;
-        }
-
-        .store-page .product-price {
-            font-size: 17px;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .store-page,
-        .store-page * {
-            animation: none !important;
-            transition: none !important;
-        }
-    }
-    
-/* Responsive store layout */
 .store-page,
 .store-page * {
     box-sizing: border-box;
 }
 
+.store-page {
+    min-height: 100vh;
+    padding-bottom: 45px;
+    color: #f5eeee !important;
+    background: #101011 !important;
+}
+
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.store-page .store-heading {
+    padding: 32px 0 26px;
+    margin-bottom: 26px;
+    background: linear-gradient(
+        110deg,
+        #351516,
+        #241213 48%,
+        #171314
+    ) !important;
+    border-bottom: 1px solid #472426;
+}
+
+.store-page .store-heading h1 {
+    margin: 0 0 8px;
+    color: #ffffff !important;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+}
+
+.store-page .store-heading p {
+    margin: 0;
+    color: #c4b5b5 !important;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   MAIN LAYOUT
+========================================== */
+
 .store-page .store-layout {
-    row-gap: 20px;
+    align-items: flex-start;
+    row-gap: 22px;
+}
+
+.store-page .store-sidebar {
+    display: block !important;
+    min-width: 0;
+    align-self: flex-start;
 }
 
 .store-page .product-column {
     min-width: 0;
 }
 
+/* ==========================================
+   SIDEBAR - FORCE DARK BACKGROUND
+========================================== */
+
+.store-page .store-sidebar .filter-card {
+    display: block !important;
+    width: 100%;
+    height: auto !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background: #191617 !important;
+    border: 1px solid #443032 !important;
+    border-radius: 13px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.20);
+}
+
+.store-page .store-sidebar .filter-group {
+    display: block !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #191617 !important;
+    border-bottom: 1px solid #392a2c !important;
+}
+
+.store-page .store-sidebar .filter-group:last-child {
+    border-bottom: none !important;
+}
+
+/* Category and size headings */
+
+.store-page .store-sidebar .filter-title {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 11px;
+    width: 100%;
+    min-height: 55px;
+    margin: 0 !important;
+    padding: 16px 17px !important;
+    background: #24191a !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.4;
+    text-decoration: none !important;
+    border: 0 !important;
+}
+
+/* Sidebar icons */
+
+.store-page .store-sidebar .filter-title i {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 19px;
+    margin: 0 !important;
+    color: #ff5967 !important;
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Sidebar content is always visible */
+
+.store-page .store-sidebar .filter-body {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 12px 15px 17px !important;
+    overflow: visible !important;
+    background: #191617 !important;
+    opacity: 1 !important;
+}
+
+/* ==========================================
+   CATEGORY LINKS
+========================================== */
+
+.store-page .store-sidebar .list-menu {
+    display: block !important;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+.store-page .store-sidebar .list-menu li {
+    display: block !important;
+    width: 100%;
+    margin: 3px 0 !important;
+    padding: 0 !important;
+}
+
+.store-page .store-sidebar .list-menu a {
+    display: flex !important;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 10px 9px !important;
+    background: transparent !important;
+    color: #d8caca !important;
+    border: 0 !important;
+    border-radius: 7px;
+    font-size: 13px;
+    line-height: 1.5;
+    text-decoration: none !important;
+    overflow-wrap: anywhere;
+}
+
+.store-page .store-sidebar .list-menu a i {
+    flex-shrink: 0;
+    color: #ff5967 !important;
+}
+
+.store-page .store-sidebar .empty-category {
+    padding: 10px 8px;
+    color: #c4b5b5 !important;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   SIZE OPTIONS
+========================================== */
+
+.store-page .store-sidebar .size-options {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.store-page .store-sidebar .size-label {
+    position: relative;
+    display: inline-flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.store-page .store-sidebar .size-label input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.store-page .store-sidebar .size-label span {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 43px;
+    min-height: 38px;
+    margin: 0 !important;
+    padding: 8px 11px !important;
+    background: #211b1c !important;
+    color: #f4eaea !important;
+    border: 1px solid #514043 !important;
+    border-radius: 8px !important;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Selected size */
+
+.store-page .store-sidebar .size-label input:checked + span {
+    background: #8f202b !important;
+    color: #ffffff !important;
+    border-color: #ff5967 !important;
+}
+
+/* Keyboard focus */
+
+.store-page .store-sidebar .size-label input:focus-visible + span,
+.store-page .store-sidebar .list-menu a:focus-visible,
+.store-page .product-name:focus-visible,
+.store-page .product-button:focus-visible {
+    outline: 2px solid #ff5967;
+    outline-offset: 3px;
+}
+
+.store-page .store-sidebar .size-note {
+    margin: 13px 0 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: #b9aaaa !important;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   RESULTS BAR
+========================================== */
+
+.store-page .results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    background: #191617 !important;
+    border: 1px solid #302728;
+    border-radius: 11px;
+}
+
+.store-page .results-count {
+    margin: 0;
+    color: #c6b9b9 !important;
+    font-size: 14px;
+}
+
+.store-page .results-count strong {
+    color: #ffffff !important;
+    font-size: 17px;
+}
+
+/* ==========================================
+   PRODUCT CARDS
+========================================== */
+
 .store-page .product-card {
     display: flex;
     flex-direction: column;
     height: calc(100% - 22px);
+    margin-bottom: 22px;
+    overflow: hidden;
+    background: #191617 !important;
+    border: 1px solid #302728;
+    border-radius: 13px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.18);
 }
+
+/* Product images */
 
 .store-page .product-image {
     display: flex;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    width: 100%;
+    height: 220px;
+    padding: 14px;
+    overflow: hidden;
+    background: #eeeeee !important;
+    text-decoration: none !important;
 }
 
 .store-page .product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
     max-width: 100%;
+    object-fit: contain;
 }
+
+.store-page .no-product-image {
+    color: #777777 !important;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Product details */
 
 .store-page .product-info {
+    display: flex;
     flex: 1;
+    flex-direction: column;
     min-width: 0;
+    min-height: 155px;
+    padding: 15px;
+    background: #191617 !important;
 }
 
-.store-page .product-name {
+.store-page .product-info a.product-name {
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 42px;
+    margin: 0 0 8px;
+    padding: 0;
+    background: transparent !important;
+    color: #f8f1f1 !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none !important;
     overflow-wrap: anywhere;
 }
 
-.store-page .product-price {
+.store-page .product-info .product-price {
+    display: block;
+    flex-shrink: 0;
+    margin: 0 0 15px;
+    color: #ff6570 !important;
+    font-size: 19px;
+    font-weight: 750;
+    line-height: 1.5;
     overflow-wrap: anywhere;
 }
 
-.store-page .results-bar {
-    min-width: 0;
+/* View product button */
+
+.store-page .product-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: auto;
+    padding: 10px 12px;
+    background: #d92535 !important;
+    color: #ffffff !important;
+    border: 1px solid #e32e3d !important;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none !important;
 }
+
+.store-page .product-button:active {
+    background: #b91f2c !important;
+}
+
+/* ==========================================
+   EMPTY PRODUCTS MESSAGE
+========================================== */
+
+.store-page .empty-state {
+    padding: 45px 20px;
+    background: #191617 !important;
+    color: #c0b3b3 !important;
+    border: 1px dashed #493638;
+    border-radius: 13px;
+    text-align: center;
+}
+
+.store-page .empty-state i {
+    margin-bottom: 14px;
+    color: #ff5967 !important;
+    font-size: 34px;
+}
+
+.store-page .empty-state h5 {
+    margin-bottom: 10px;
+    color: #f6eeee !important;
+}
+
+.store-page .empty-state p {
+    color: #b9aaaa !important;
+    font-size: 14px;
+}
+
+/* ==========================================
+   PAGINATION
+========================================== */
 
 .store-page .pagination {
+    flex-wrap: wrap;
+    gap: 5px;
     padding-left: 0;
 }
 
-/* Tablets */
+.store-page .page-link {
+    background: #191617 !important;
+    color: #e0d3d3 !important;
+    border: 1px solid #392d2f !important;
+    border-radius: 7px;
+}
+
+.store-page .page-item.active .page-link {
+    background: #d92535 !important;
+    color: #ffffff !important;
+    border-color: #d92535 !important;
+}
+
+.store-page .page-item.disabled .page-link {
+    background: #151213 !important;
+    color: #817575 !important;
+}
+
+.store-page .page-link:focus-visible {
+    outline: 2px solid #ff5967;
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
 @media (max-width: 991.98px) {
     .store-page .store-heading {
         padding: 26px 0 22px;
     }
 
-    .store-page .filter-card {
-        margin-bottom: 8px;
-    }
-
     .store-page .product-image {
         height: 190px;
     }
+
+    .store-page .store-sidebar .filter-title {
+        padding: 14px 12px !important;
+    }
+
+    .store-page .store-sidebar .filter-body {
+        padding: 11px !important;
+    }
 }
 
-/* Mobile phones */
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 767.98px) {
+    .store-page .store-heading {
+        padding: 24px 0 20px;
+    }
+
+    .store-page .store-heading h1 {
+        font-size: 25px;
+    }
+
+    .store-page .store-sidebar {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .store-page .store-sidebar .filter-card {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .store-page .store-sidebar .filter-title {
+        min-height: 52px;
+        padding: 14px 16px !important;
+    }
+
+    .store-page .store-sidebar .filter-body {
+        padding: 12px 15px 15px !important;
+    }
+
+    .store-page .product-image {
+        height: 175px;
+    }
+
+    .store-page .product-info {
+        padding: 12px;
+    }
+
+    .store-page .product-info .product-price {
+        font-size: 17px;
+    }
+}
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
 @media (max-width: 575.98px) {
     .store-page {
         padding-bottom: 24px;
@@ -408,19 +557,6 @@
 
     .store-page .store-heading p {
         font-size: 13px;
-    }
-
-    .store-page .filter-card {
-        margin-bottom: 4px;
-        border-radius: 11px;
-    }
-
-    .store-page .filter-title {
-        padding: 13px 14px;
-    }
-
-    .store-page .filter-body {
-        padding: 4px 14px 14px;
     }
 
     .store-page .results-bar {
@@ -446,14 +582,14 @@
         padding: 10px;
     }
 
-    .store-page .product-name {
+    .store-page .product-info a.product-name {
         min-height: 39px;
         margin-bottom: 7px;
         font-size: 12px;
         line-height: 1.45;
     }
 
-    .store-page .product-price {
+    .store-page .product-info .product-price {
         margin-bottom: 10px;
         font-size: 16px;
     }
@@ -461,10 +597,6 @@
     .store-page .product-button {
         padding: 9px 5px;
         font-size: 11px;
-    }
-
-    .store-page .product-button i {
-        margin-left: 2px !important;
     }
 
     .store-page .pagination {
@@ -478,6 +610,7 @@
 }
 
 /* Very narrow phones */
+
 @media (max-width: 359.98px) {
     .store-page .product-image {
         height: 120px;
@@ -491,14 +624,14 @@
         font-size: 10px;
     }
 }
-
 </style>
 
 <div class="store-page">
 
-    <!-- Page heading -->
+    <!-- PAGE HEADER -->
     <section class="store-heading">
         <div class="container">
+
             {% if 'search' in request.path %}
                 <h1>Search Results</h1>
                 <p>Explore products matching your search.</p>
@@ -506,200 +639,302 @@
                 <h1>Our Store</h1>
                 <p>Discover products selected for you.</p>
             {% endif %}
+
         </div>
     </section>
 
-    <!-- Store content -->
+    <!-- STORE CONTENT -->
     <section class="container padding-y">
+
         <div class="row store-layout">
 
-            <!-- Sidebar -->
-            <aside class="col-md-3">
+            <!-- ==================================
+                 SIDEBAR
+                 NO COLLAPSE - ALWAYS VISIBLE
+            =================================== -->
+
+            <aside class="col-12 col-md-3 store-sidebar">
+
                 <div class="filter-card">
 
-                    <!-- Categories -->
-                    <article class="filter-group">
-                        <a class="filter-title"
-   href="#collapse_1"
-   data-toggle="collapse"
-   aria-expanded="false"
-   aria-controls="collapse_1">
-                            <i class="fas fa-layer-group mr-2"></i>
-                            Categories
-                            <i class="fas fa-chevron-down float-right mt-1"></i>
-                        </a>
+                    <!-- CATEGORIES -->
+                    <section class="filter-group">
 
-                        <div class="collapse" id="collapse_1">
-                            <div class="filter-body">
-                                <ul class="list-menu">
-                                    {% for category in links %}
-                                        <li>
-                                            <a href="{{ category.get_url }}">
+                        <h2 class="filter-title">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Categories</span>
+                        </h2>
+
+                        <div class="filter-body">
+
+                            <ul class="list-menu">
+
+                                {% for category in links %}
+
+                                    <li>
+                                        <a href="{{ category.get_url }}">
+                                            <i class="fas fa-angle-right"></i>
+                                            <span>
                                                 {{ category.category_name }}
-                                            </a>
-                                        </li>
-                                    {% empty %}
-                                        <li class="text-muted small">
-                                            No categories available.
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                                            </span>
+                                        </a>
+                                    </li>
+
+                                {% empty %}
+
+                                    <li class="empty-category">
+                                        No categories available.
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
                         </div>
-                    </article>
 
-                    <!-- Sizes -->
-                    <article class="filter-group">
-                        <a class="filter-title"
-                           href="#collapse_4"
-                           data-toggle="collapse"
-                           aria-expanded="true">
-                            <i class="fas fa-ruler mr-2"></i>
-                            Sizes
-                            <i class="fas fa-chevron-down float-right mt-1"></i>
-                        </a>
+                    </section>
 
-                        <div class="collapse show" id="collapse_4">
-                            <div class="filter-body">
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light size-option">XS</span>
+                    <!-- SIZES -->
+                    <section class="filter-group">
+
+                        <h2 class="filter-title">
+                            <i class="fas fa-ruler"></i>
+                            <span>Sizes</span>
+                        </h2>
+
+                        <div class="filter-body">
+
+                            <div class="size-options">
+
+                                <label class="size-label">
+                                    <input
+                                        type="checkbox"
+                                        name="size"
+                                        value="XS">
+                                    <span>XS</span>
                                 </label>
 
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light size-option">SM</span>
+                                <label class="size-label">
+                                    <input
+                                        type="checkbox"
+                                        name="size"
+                                        value="SM">
+                                    <span>SM</span>
                                 </label>
 
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light size-option">LG</span>
+                                <label class="size-label">
+                                    <input
+                                        type="checkbox"
+                                        name="size"
+                                        value="LG">
+                                    <span>LG</span>
                                 </label>
 
-                                <label class="checkbox-btn">
-                                    <input type="checkbox">
-                                    <span class="btn btn-light size-option">XXL</span>
+                                <label class="size-label">
+                                    <input
+                                        type="checkbox"
+                                        name="size"
+                                        value="XXL">
+                                    <span>XXL</span>
                                 </label>
 
-                                <small class="d-block text-muted mt-2">
-                                    Size selection is visual only until filtering is implemented.
-                                </small>
                             </div>
-                        </div>
-                    </article>
 
-                   
-                   
+                            <p class="size-note">
+                                Size selection is visual only until
+                                product filtering is implemented.
+                            </p>
+
+                        </div>
+
+                    </section>
+
                 </div>
+
             </aside>
 
-            <!-- Products -->
-            <main class="col-md-9">
+            <!-- ==================================
+                 PRODUCT GRID
+            =================================== -->
+
+            <main class="col-12 col-md-9 product-column">
+
+                <!-- RESULTS COUNT -->
 
                 <div class="results-bar">
+
                     <p class="results-count">
-                        <strong>{{ all_prod_count }}</strong> products found
+                        <strong>{{ all_prod_count }}</strong>
+                        products found
                     </p>
+
                 </div>
 
                 {% if all_prod %}
+
                     <div class="row">
+
                         {% for prod in all_prod %}
+
                             <div class="col-6 col-md-6 col-lg-4 product-column">
+
                                 <article class="product-card">
 
-                                    <a href="{{ prod.get_url }}"
-                                       class="product-image"
-                                       aria-label="View {{ prod.product_name }}">
-                                        <img
-                                            src="{{ prod.images.url }}"
-                                            alt="{{ prod.product_name }}"
-                                            loading="lazy">
+                                    <!-- PRODUCT IMAGE -->
+
+                                    <a
+                                        href="{{ prod.get_url }}"
+                                        class="product-image"
+                                        aria-label="View {{ prod.product_name }}">
+
+                                        {% if prod.images %}
+
+                                            <img
+                                                src="{{ prod.images.url }}"
+                                                alt="{{ prod.product_name }}"
+                                                loading="lazy">
+
+                                        {% else %}
+
+                                            <span class="no-product-image">
+                                                No image available
+                                            </span>
+
+                                        {% endif %}
+
                                     </a>
 
+                                    <!-- PRODUCT DETAILS -->
+
                                     <div class="product-info">
-                                        <a href="{{ prod.get_url }}"
-                                           class="product-name">
-                                            {{ prod.product_name }}
+
+                                        <a
+                                            href="{{ prod.get_url }}"
+                                            class="product-name">
+
+                                            {{ prod.product_name|default:"Product name unavailable" }}
+
                                         </a>
 
                                         <div class="product-price">
                                             ${{ prod.price }}
                                         </div>
 
-                                        <a href="{{ prod.get_url }}"
-                                           class="product-button">
-                                            View Details
-                                            <i class="fas fa-arrow-right ml-1"></i>
+                                        <a
+                                            href="{{ prod.get_url }}"
+                                            class="product-button">
+
+                                            <span>View Details</span>
+                                            <i class="fas fa-arrow-right"></i>
+
                                         </a>
+
                                     </div>
 
                                 </article>
+
                             </div>
+
                         {% endfor %}
+
                     </div>
 
                 {% else %}
+
+                    <!-- EMPTY STATE -->
+
                     <div class="empty-state">
+
                         <i class="fas fa-search d-block"></i>
-                        <h5 class="mb-2">No products found</h5>
+
+                        <h5>No products found</h5>
+
                         <p class="mb-0">
-                            Try another search or browse our product categories.
+                            Try another search or browse your product categories.
                         </p>
+
                     </div>
+
                 {% endif %}
 
-                <!-- Pagination -->
+                <!-- ==================================
+                     PAGINATION
+                =================================== -->
+
                 {% if all_prod.has_other_pages %}
+
                     <nav class="mt-4" aria-label="Product pages">
+
                         <ul class="pagination justify-content-center">
 
                             {% if all_prod.has_previous %}
+
                                 <li class="page-item">
-                                    <a class="page-link"
-                                       href="?page={{ all_prod.previous_page_number }}">
+                                    <a
+                                        class="page-link"
+                                        href="?page={{ all_prod.previous_page_number }}">
                                         Previous
                                     </a>
                                 </li>
+
                             {% else %}
+
                                 <li class="page-item disabled">
                                     <span class="page-link">Previous</span>
                                 </li>
+
                             {% endif %}
 
                             {% for i in all_prod.paginator.page_range %}
+
                                 {% if all_prod.number == i %}
+
                                     <li class="page-item active">
                                         <span class="page-link">{{ i }}</span>
                                     </li>
+
                                 {% else %}
+
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ i }}">
+                                        <a
+                                            class="page-link"
+                                            href="?page={{ i }}">
                                             {{ i }}
                                         </a>
                                     </li>
+
                                 {% endif %}
+
                             {% endfor %}
 
                             {% if all_prod.has_next %}
+
                                 <li class="page-item">
-                                    <a class="page-link"
-                                       href="?page={{ all_prod.next_page_number }}">
+                                    <a
+                                        class="page-link"
+                                        href="?page={{ all_prod.next_page_number }}">
                                         Next
                                     </a>
                                 </li>
+
                             {% else %}
+
                                 <li class="page-item disabled">
                                     <span class="page-link">Next</span>
                                 </li>
+
                             {% endif %}
 
                         </ul>
+
                     </nav>
+
                 {% endif %}
 
             </main>
+
         </div>
+
     </section>
 
 </div>

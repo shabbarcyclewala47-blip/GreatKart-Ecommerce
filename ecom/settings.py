@@ -186,6 +186,8 @@ PAYPAL_CLIENT_SECRET = os.environ.get("PAYPAL_CLIENT_SECRET", "")
 # PayPal Sandbox API
 PAYPAL_BASE_URL = "https://api-m.sandbox.paypal.com"
 # Cloudinary media storage — production only when enabled.
+
+# Media storage
 if USE_CLOUDINARY:
     CLOUDINARY_STORAGE = {
         "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
@@ -198,6 +200,15 @@ if USE_CLOUDINARY:
     STORAGES = {
         "default": {
             "BACKEND": "store.cloudinary_storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+else:
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
             "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",

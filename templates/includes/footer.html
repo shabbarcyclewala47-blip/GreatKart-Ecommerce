@@ -2,102 +2,173 @@
 {% load static %}
 
 <style>
+/* ========== GREATKART FOOTER ========== */
+
+.professional-footer {
+    --bg: #191a1e;
+    --surface: #23242a;
+    --accent: #e63946;
+    --text: #f4f4f5;
+    --muted: #a6a8af;
+    --border: rgba(255,255,255,.08);
+
+    padding-top: 32px;
+    color: var(--muted);
+    background:
+        radial-gradient(ellipse at 5% 0%,
+            rgba(111,34,44,.13), transparent 40%),
+        var(--bg);
+    border-top: 1px solid var(--border);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    animation: footerIn .5s ease both;
+}
+
+.professional-footer * {
+    box-sizing: border-box;
+}
+
+@keyframes footerIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Brand */
+
+.professional-footer .footer-brand {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -.7px;
+    transition: transform .25s ease;
+}
+
+.professional-footer .footer-brand:hover {
+    transform: translateY(-2px);
+}
+
+.professional-footer .footer-brand span {
+    color: var(--accent);
+}
+
+.professional-footer .footer-description {
+    max-width: 320px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+/* Headings */
+
+.professional-footer .footer-heading {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 17px;
+    padding-bottom: 8px;
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 1.2px;
+}
+
+.professional-footer .footer-heading::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28px;
+    height: 2px;
+    border-radius: 5px;
+    background: var(--accent);
+    content: "";
+    transition: width .25s ease;
+}
+
+.professional-footer .footer-column:hover .footer-heading::after {
+    width: 48px;
+}
+
+/* Links */
+
+.professional-footer .footer-link {
+    display: inline-block;
+    margin-bottom: 11px;
+    color: var(--muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color .22s ease, transform .22s ease;
+}
+
+.professional-footer .footer-link:hover {
+    color: #ff6974;
+    transform: translateX(4px);
+}
+
+/* Payment icons */
+
+.professional-footer .payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.professional-footer .payment-icons i {
+    color: #a6a8af;
+    transition: color .25s ease, transform .25s ease;
+}
+
+.professional-footer .payment-icons i:hover {
+    color: #ff6974;
+    transform: translateY(-4px) scale(1.06);
+}
+
+/* Bottom bar */
+
+.professional-footer .footer-bottom {
+    margin-top: 24px;
+    padding: 17px 0;
+    border-top: 1px solid var(--border);
+    color: #858791;
+    font-size: 12px;
+}
+
+.professional-footer .footer-bottom span {
+    color: #ff6974;
+    transition: color .2s ease;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
     .professional-footer {
-        position: relative;
-        padding-top: 28px;
-        color: #52647b;
-        background: rgba(255, 255, 255, 0.92);
-        border-top: 1px solid #dfe7f2;
+        padding-top: 25px;
     }
 
-    .professional-footer .footer-brand {
-        color: #263b56;
-        font-size: 21px;
-        font-weight: 750;
-        letter-spacing: -0.5px;
-    }
-
-    .professional-footer .footer-brand span {
-        color: #3569c8;
-    }
-
-    .professional-footer .footer-description {
-        max-width: 310px;
-        margin-top: 9px;
-        color: #77869a;
-        font-size: 13px;
-        line-height: 1.8;
-    }
-
-    .professional-footer .footer-heading {
-        margin-bottom: 12px;
-        color: #344860;
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    .professional-footer .footer-link {
-        display: inline-block;
-        margin-bottom: 9px;
-        color: #738198;
-        font-size: 13px;
-        text-decoration: none;
-        transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .professional-footer .footer-link:hover {
-        color: #3569c8;
-        transform: translateX(3px);
+    .professional-footer .footer-column {
+        margin-bottom: 22px;
     }
 
     .professional-footer .footer-bottom {
-        margin-top: 24px;
-        padding: 18px 0;
-        border-top: 1px solid #e9eef5;
-        color: #8491a3;
-        font-size: 12px;
+        text-align: center;
+        line-height: 2;
     }
 
     .professional-footer .payment-icons {
-        display: flex;
-        justify-content: flex-end;
         gap: 12px;
-        color: #627894;
     }
+}
 
-    .professional-footer .payment-icons i {
-        transition: color 0.2s ease, transform 0.2s ease;
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .professional-footer,
+    .professional-footer * {
+        animation: none !important;
+        transition: none !important;
     }
-
-    .professional-footer .payment-icons i:hover {
-        color: #3569c8;
-        transform: translateY(-3px);
-    }
-
-    @media (max-width: 767px) {
-        .professional-footer {
-            padding-top: 24px;
-        }
-
-        .professional-footer .footer-column {
-            margin-bottom: 22px;
-        }
-
-        .professional-footer .footer-bottom {
-            text-align: center;
-        }
-
-        .professional-footer .payment-icons {
-            justify-content: center;
-            margin-top: 12px;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .professional-footer * {
-            transition: none !important;
-        }
-    }
+}
 </style>
 
 <footer class="professional-footer">
@@ -112,8 +183,9 @@
                 </div>
 
                 <p class="footer-description">
-                    A simple and convenient place to explore products
-                    and enjoy a smooth online shopping experience.
+                    Explore quality products, discover new styles,
+                    and enjoy a smooth online shopping experience
+                    with GreatKart.
                 </p>
             </div>
 
@@ -123,6 +195,7 @@
 
                 <div>
                     <a href="{% url 'store' %}" class="footer-link">
+                        <i class="fas fa-arrow-right mr-1"></i>
                         Browse Products
                     </a>
                 </div>
@@ -133,9 +206,12 @@
                 <h6 class="footer-heading">PAYMENT METHODS</h6>
 
                 <div class="payment-icons">
-                    <i class="fab fa-cc-visa fa-2x" aria-label="Visa"></i>
-                    <i class="fab fa-cc-paypal fa-2x" aria-label="PayPal"></i>
-                    <i class="fab fa-cc-mastercard fa-2x" aria-label="Mastercard"></i>
+                    <i class="fab fa-cc-visa fa-2x"
+                       aria-label="Visa"></i>
+                    <i class="fab fa-cc-paypal fa-2x"
+                       aria-label="PayPal"></i>
+                    <i class="fab fa-cc-mastercard fa-2x"
+                       aria-label="Mastercard"></i>
                 </div>
             </div>
 
@@ -145,11 +221,13 @@
         <div class="footer-bottom">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    &copy; {% now "Y" %} GreatKart. All rights reserved.
+                    &copy; {% now "Y" %} GreatKart.
+                    All rights reserved.
                 </div>
 
                 <div class="col-md-4 text-md-right">
-                    Made for a better shopping experience.
+                    Made with <span>&hearts;</span>
+                    for a better shopping experience.
                 </div>
             </div>
         </div>

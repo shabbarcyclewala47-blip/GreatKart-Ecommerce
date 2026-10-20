@@ -6,649 +6,1134 @@
 
 <style>
 /* ==========================================
-   GREATKART CHECKOUT PAGE
-   Professional Blue-Grey Theme
+   LUXEMART — PREMIUM CHECKOUT
+   Black • Charcoal • Burgundy • Red
 ========================================== */
 
-.section-content.padding-y.bg {
+.lux-checkout,
+.lux-checkout * {
+    box-sizing: border-box;
+}
+
+.lux-checkout {
     min-height: 100vh;
-    padding: 40px 0;
-    background: linear-gradient(
-        -45deg,
-        #edf3fa,
-        #f8faff,
-        #e7eef7,
-        #f3f6fc
-    );
-    background-size: 300% 300%;
-    animation: checkoutGradient 16s ease infinite;
+    padding: 32px 0 55px;
+    background: #101011 !important;
+    color: #f5eeee !important;
 }
 
-@keyframes checkoutGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* PAGE HEADER */
+
+.lux-checkout .checkout-heading {
+    margin-bottom: 26px;
 }
 
-/* Checkout cards */
-.section-content.padding-y.bg .card {
-    border: 1px solid #e0e8f2;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.97);
-    box-shadow: 0 6px 22px rgba(47, 69, 100, 0.06);
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+.lux-checkout .checkout-heading h1 {
+    margin: 0 0 8px;
+    color: #fff !important;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
 }
 
-.section-content.padding-y.bg .card:hover {
-    border-color: #cfdef1;
-    box-shadow: 0 12px 30px rgba(47, 69, 100, 0.10);
+.lux-checkout .checkout-heading h1 i {
+    margin-right: 10px;
+    color: #ff5967 !important;
 }
 
-.section-content.padding-y.bg .card-body {
-    padding: 24px;
-}
-
-/* Section headings */
-.section-content.padding-y.bg .card-title {
-    padding-bottom: 14px;
-    color: #293e59;
-    font-size: 20px;
-    font-weight: 700;
-    border-bottom: 1px solid #edf1f7;
-}
-
-/* Cart items */
-.section-content.padding-y.bg .itemside {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-}
-
-.section-content.padding-y.bg .img-sm {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
-    border: 1px solid #e5ebf4 !important;
-    border-radius: 12px;
-    background: #f5f8fc;
-    transition: transform 0.25s ease;
-}
-
-.section-content.padding-y.bg .itemside:hover .img-sm {
-    transform: scale(1.04);
-}
-
-.section-content.padding-y.bg .itemside .info p {
-    margin-bottom: 8px;
-    color: #344963;
-    font-weight: 600;
-}
-
-.section-content.padding-y.bg .text-muted {
-    color: #7c8ba0 !important;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-/* Form labels */
-.section-content.padding-y.bg label {
-    margin-bottom: 8px;
-    color: #425671;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* Inputs and dropdowns */
-.section-content.padding-y.bg .form-control {
-    min-height: 44px;
-    border: 1px solid #dce5f0;
-    border-radius: 9px;
-    background-color: #f9fbfe;
-    color: #344963;
+.lux-checkout .checkout-heading p {
+    margin: 0;
+    color: #b9aaaa !important;
     font-size: 14px;
-    box-shadow: none;
-    transition: border-color 0.2s ease,
-                background-color 0.2s ease,
-                box-shadow 0.2s ease;
+    line-height: 1.7;
 }
 
-.section-content.padding-y.bg .form-control:focus {
-    border-color: #7da3e5;
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(53, 105, 200, 0.10);
-}
+/* CARDS */
 
-.section-content.padding-y.bg .form-control::placeholder {
-    color: #a0adbd;
-}
-
-/* Payment accordion */
-.section-content.padding-y.bg .accordion .card {
-    margin-bottom: 12px;
+.lux-checkout .checkout-card,
+.lux-checkout .summary-card {
+    margin-bottom: 22px;
     overflow: hidden;
+    background: #191617 !important;
+    border: 1px solid #392b2d !important;
+    border-radius: 13px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
 }
 
-.section-content.padding-y.bg .card-header {
-    padding: 16px 20px;
-    border-bottom: 1px solid #e8eef6;
-    background: #f7f9fd;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.section-content.padding-y.bg .card-header:hover {
-    background: #eef4fc;
-}
-
-.section-content.padding-y.bg .form-check {
-    margin-bottom: 0;
-    cursor: pointer;
-}
-
-.section-content.padding-y.bg .form-check-input {
-    accent-color: #3569c8;
-}
-
-.section-content.padding-y.bg .form-check-label {
-    margin-left: 5px;
-    color: #344963;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.section-content.padding-y.bg .accordion .card-body {
-    color: #65758b;
-    line-height: 1.8;
-}
-
-/* Order summary */
-.section-content.padding-y.bg .dlist-align {
+.lux-checkout .section-heading {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 16px;
-    color: #65758b;
-    font-size: 14px;
+    align-items: center;
+    gap: 11px;
+    padding: 18px 21px;
+    background: linear-gradient(110deg, #351719, #241719) !important;
+    border-bottom: 1px solid #493033;
 }
 
-.section-content.padding-y.bg .dlist-align dt {
-    color: #53657c;
-    font-weight: 500;
+.lux-checkout .section-heading .heading-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 9px;
+    background: #482025 !important;
+    color: #ff6570 !important;
+    font-size: 15px;
 }
 
-.section-content.padding-y.bg .dlist-align dd {
-    margin-bottom: 0;
-    color: #344963;
-    text-align: right;
-}
-
-.section-content.padding-y.bg .dlist-align strong {
-    color: #2856aa;
-    font-size: 21px;
+.lux-checkout .section-heading h2 {
+    margin: 0;
+    color: #fff !important;
+    font-size: 16px;
     font-weight: 750;
 }
 
-.section-content.padding-y.bg hr {
-    margin: 20px 0;
-    border-top: 1px solid #e8eef6;
+.lux-checkout .section-heading p {
+    margin: 4px 0 0;
+    color: #c2aeae !important;
+    font-size: 12px;
 }
 
-/* Buttons */
-.section-content.padding-y.bg .btn-primary {
-    border: 1px solid #3569c8;
+.lux-checkout .section-body {
+    padding: 22px;
+}
+
+/* PRODUCT REVIEW */
+
+.lux-checkout .review-product {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    height: 100%;
+    padding: 13px;
+    background: #211b1c !important;
+    border: 1px solid #392d2f;
     border-radius: 10px;
-    background: linear-gradient(135deg, #4279d7, #2f5fb8);
-    color: #fff;
-    font-weight: 700;
-    transition: transform 0.2s ease,
-                box-shadow 0.2s ease,
-                background 0.2s ease;
 }
 
-.section-content.padding-y.bg .btn-primary:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #3569c8, #244e9e);
-    box-shadow: 0 7px 17px rgba(53, 105, 200, 0.22);
+.lux-checkout .review-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 88px;
+    height: 100px;
+    padding: 7px;
+    overflow: hidden;
+    background: #eeeeee !important;
+    border-radius: 8px;
 }
 
-.section-content.padding-y.bg .btn-primary:active {
-    transform: translateY(0);
-}
-
-/* Payment images */
-.section-content.padding-y.bg img[src*="payment"],
-.section-content.padding-y.bg img[src*="payments"],
-.section-content.padding-y.bg img[src*="paypal"] {
+.lux-checkout .review-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-/* Responsive layout */
-@media (max-width: 767px) {
-    .section-content.padding-y.bg {
-        padding: 22px 0;
+.lux-checkout .review-image .no-image {
+    color: #777;
+    font-size: 11px;
+    text-align: center;
+}
+
+.lux-checkout .review-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.lux-checkout .review-product-name {
+    display: block;
+    margin-bottom: 9px;
+    color: #fff !important;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.lux-checkout .review-meta {
+    display: block;
+    margin-bottom: 5px;
+    color: #b9aaaa !important;
+    font-size: 11px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.lux-checkout .review-meta strong {
+    color: #e9dddd !important;
+    font-weight: 600;
+}
+
+.lux-checkout .review-subtotal {
+    display: block;
+    margin-top: 9px;
+    color: #ff6570 !important;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* FORM FIELDS */
+
+.lux-checkout .field-group {
+    margin-bottom: 19px;
+}
+
+.lux-checkout .field-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e8dddd !important;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.lux-checkout .field-label .required-mark {
+    color: #ff6570 !important;
+}
+
+.lux-checkout .form-control {
+    width: 100%;
+    min-height: 45px;
+    padding: 11px 13px;
+    background: #110f10 !important;
+    color: #f5eeee !important;
+    border: 1px solid #443638 !important;
+    border-radius: 8px;
+    font-size: 13px;
+    box-shadow: none !important;
+}
+
+.lux-checkout textarea.form-control {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.lux-checkout .form-control::placeholder {
+    color: #857777 !important;
+    opacity: 1;
+}
+
+.lux-checkout .form-control:focus {
+    background: #151112 !important;
+    color: #fff !important;
+    border-color: #b82d3a !important;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, .13) !important;
+}
+
+.lux-checkout select.form-control option {
+    background: #191617;
+    color: #fff;
+}
+
+.lux-checkout .field-help {
+    display: block;
+    margin-top: 6px;
+    color: #a99898 !important;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* PAYMENT METHODS */
+
+.lux-checkout .payment-option {
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: #191617 !important;
+    border: 1px solid #443234 !important;
+    border-radius: 10px;
+}
+
+.lux-checkout .payment-option:last-child {
+    margin-bottom: 0;
+}
+
+.lux-checkout .payment-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 65px;
+    padding: 14px 17px;
+    background: #211b1c !important;
+    border: 0;
+    cursor: pointer;
+}
+
+.lux-checkout .payment-header input[type="radio"] {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    margin: 0;
+    accent-color: #e32e3d;
+}
+
+.lux-checkout .payment-header label {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 10px;
+    min-width: 0;
+    margin: 0;
+    color: #f5eeee !important;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.lux-checkout .payment-header img {
+    display: block;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 85px;
+    max-height: 27px;
+    object-fit: contain;
+}
+
+.lux-checkout .payment-body {
+    padding: 17px;
+    border-top: 1px solid #392d2f;
+}
+
+.lux-checkout .payment-description {
+    margin: 0;
+    color: #b9aaaa !important;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.lux-checkout .payment-notice {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #211b1c !important;
+    color: #c8baba !important;
+    border: 1px solid #443234;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.lux-checkout .payment-logo {
+    display: block;
+    max-width: 100%;
+    max-height: 35px;
+    margin: 14px auto 0;
+    object-fit: contain;
+}
+
+/* ORDER SUMMARY */
+
+.lux-checkout .summary-card {
+    position: sticky;
+    top: 20px;
+}
+
+.lux-checkout .summary-body {
+    padding: 21px;
+}
+
+.lux-checkout .summary-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 17px;
+}
+
+.lux-checkout .summary-label {
+    color: #bfaeae !important;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.lux-checkout .summary-value {
+    color: #f5eeee !important;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.lux-checkout .summary-divider {
+    margin: 19px 0;
+    border: 0;
+    border-top: 1px solid #443234;
+    opacity: 1;
+}
+
+.lux-checkout .grand-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 19px;
+}
+
+.lux-checkout .grand-total-label {
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.lux-checkout .grand-total-value {
+    color: #ff6570 !important;
+    font-size: 23px;
+    font-weight: 800;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* PAYMENT ACCEPTED IMAGE */
+
+.lux-checkout .accepted-payments {
+    margin: 17px 0;
+    padding: 13px 10px;
+    background: #211b1c !important;
+    border: 1px solid #392d2f;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.lux-checkout .accepted-payments p {
+    margin-bottom: 10px;
+    color: #b9aaaa !important;
+    font-size: 11px;
+}
+
+.lux-checkout .accepted-payments img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 30px;
+    object-fit: contain;
+}
+
+/* PLACE ORDER BUTTON */
+
+.lux-checkout .place-order-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 15px;
+    background: #d92535 !important;
+    color: #fff !important;
+    border: 1px solid #e32e3d !important;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 750;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lux-checkout .place-order-button:active {
+    background: #b91f2c !important;
+}
+
+.lux-checkout .secure-note {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 7px;
+    margin: 13px 0 0;
+    color: #a99898 !important;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.lux-checkout .secure-note i {
+    margin-top: 2px;
+    color: #ff6570 !important;
+}
+
+/* ACCESSIBILITY */
+
+.lux-checkout button:focus-visible,
+.lux-checkout input:focus-visible,
+.lux-checkout select:focus-visible,
+.lux-checkout textarea:focus-visible,
+.lux-checkout label:focus-visible {
+    outline: 2px solid #ff6570;
+    outline-offset: 3px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991.98px) {
+    .lux-checkout .summary-card {
+        position: static;
     }
 
-    .section-content.padding-y.bg .card-body {
-        padding: 18px;
-    }
-
-    .section-content.padding-y.bg .card-title {
-        font-size: 18px;
-    }
-
-    .section-content.padding-y.bg .img-sm {
-        width: 72px;
-        height: 72px;
+    .lux-checkout .review-image {
+        width: 76px;
+        height: 88px;
     }
 }
 
-/* Accessibility */
+@media (max-width: 767.98px) {
+    .lux-checkout {
+        padding: 23px 0 35px;
+    }
+
+    .lux-checkout .checkout-heading h1 {
+        font-size: 25px;
+    }
+
+    .lux-checkout .checkout-heading p {
+        font-size: 13px;
+    }
+
+    .lux-checkout .section-heading {
+        padding: 15px;
+    }
+
+    .lux-checkout .section-body {
+        padding: 17px;
+    }
+
+    .lux-checkout .review-product {
+        margin-bottom: 12px;
+    }
+
+    .lux-checkout .summary-body {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 359.98px) {
+    .lux-checkout .checkout-heading h1 {
+        font-size: 22px;
+    }
+
+    .lux-checkout .section-body {
+        padding: 13px;
+    }
+
+    .lux-checkout .review-product {
+        gap: 10px;
+        padding: 9px;
+    }
+
+    .lux-checkout .review-image {
+        width: 65px;
+        height: 75px;
+    }
+
+    .lux-checkout .grand-total-value {
+        font-size: 20px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .section-content.padding-y.bg,
-    .section-content.padding-y.bg * {
+    .lux-checkout * {
+        scroll-behavior: auto !important;
         animation: none !important;
         transition: none !important;
     }
 }
 </style>
 
-<section class="section-content padding-y bg">
-<div class="container">
+<section class="lux-checkout">
 
-<!-- ============================ CHECKOUT FORM ================================= -->
+    <div class="container">
 
-<form method="POST" action="{% url 'checkout' %}">
-{% csrf_token %}
+        <!-- PAGE HEADER -->
 
-<div class="row">
+        <header class="checkout-heading">
+            <h1>
+                <i class="fas fa-lock"></i>
+                Secure Checkout
+            </h1>
 
-<!-- ============================ LEFT SIDE ================================= -->
+            <p>
+                Review your order, enter your delivery details,
+                and complete your purchase.
+            </p>
+        </header>
 
-<main class="col-md-8">
+        <!-- CHECKOUT FORM -->
 
-    <!-- ============================ REVIEW CART ================================= -->
-
-    <article class="card mb-4">
-
-        <div class="card-body">
-
-            <h4 class="card-title mb-4">
-                Review cart
-            </h4>
+        <form method="POST" action="{% url 'checkout' %}">
+            {% csrf_token %}
 
             <div class="row">
 
-                {% for item in cart_items %}
+                <!-- LEFT COLUMN -->
 
-                <div class="col-md-6">
+                <main class="col-12 col-lg-8">
 
-                    <figure class="itemside mb-4">
+                    <!-- REVIEW CART -->
 
-                        <div class="aside">
+                    <section class="checkout-card">
 
-                            <img src="{{ item.product.images.url }}"
-                                 class="border img-sm">
+                        <header class="section-heading">
+                            <div class="heading-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+
+                            <div>
+                                <h2>Review Your Order</h2>
+                                <p>Check your selected products and quantities.</p>
+                            </div>
+                        </header>
+
+                        <div class="section-body">
+
+                            <div class="row">
+
+                                {% for item in cart_items %}
+
+                                    <div class="col-12 col-md-6 mb-3">
+
+                                        <article class="review-product">
+
+                                            <div class="review-image">
+
+                                                {% if item.product.images %}
+
+                                                    <img
+                                                        src="{{ item.product.images.url }}"
+                                                        alt="{{ item.product.product_name }}"
+                                                        loading="lazy">
+
+                                                {% else %}
+
+                                                    <span class="no-image">
+                                                        No image
+                                                    </span>
+
+                                                {% endif %}
+
+                                            </div>
+
+                                            <div class="review-info">
+
+                                                <span class="review-product-name">
+                                                    {{ item.product.product_name }}
+                                                </span>
+
+                                                <span class="review-meta">
+                                                    Price:
+                                                    <strong>${{ item.product.price }}</strong>
+                                                </span>
+
+                                                <span class="review-meta">
+                                                    Quantity:
+                                                    <strong>{{ item.quantity }}</strong>
+                                                </span>
+
+                                                {% for variation in item.variations.all %}
+
+                                                    <span class="review-meta">
+                                                        {{ variation.variation_category|title }}:
+                                                        <strong>{{ variation.variation_value }}</strong>
+                                                    </span>
+
+                                                {% endfor %}
+
+                                                <span class="review-subtotal">
+                                                    ${{ item.sub_total }}
+                                                </span>
+
+                                            </div>
+
+                                        </article>
+
+                                    </div>
+
+                                {% empty %}
+
+                                    <div class="col-12">
+                                        <p class="payment-description">
+                                            Your cart is empty.
+                                            Please return to the store to add products.
+                                        </p>
+
+                                        <a href="{% url 'store' %}"
+                                           class="place-order-button mt-3"
+                                           style="text-decoration:none;">
+
+                                            <i class="fas fa-store"></i>
+                                            Continue Shopping
+
+                                        </a>
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
 
                         </div>
 
-                        <figcaption class="info">
+                    </section>
 
-                            <p>
-                                {{ item.product.product_name }}
+                    <!-- CONTACT INFORMATION -->
+
+                    <section class="checkout-card">
+
+                        <header class="section-heading">
+                            <div class="heading-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+
+                            <div>
+                                <h2>Contact Information</h2>
+                                <p>Enter your details for order updates.</p>
+                            </div>
+                        </header>
+
+                        <div class="section-body">
+
+                            <div class="row">
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-fname">
+                                        First Name <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-fname"
+                                        type="text"
+                                        name="fname"
+                                        class="form-control"
+                                        placeholder="Enter first name"
+                                        autocomplete="given-name"
+                                        maxlength="100"
+                                        required>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-lname">
+                                        Last Name <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-lname"
+                                        type="text"
+                                        name="lname"
+                                        class="form-control"
+                                        placeholder="Enter last name"
+                                        autocomplete="family-name"
+                                        maxlength="100"
+                                        required>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-phone">
+                                        Phone Number <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-phone"
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="+91 9876543210"
+                                        class="form-control"
+                                        autocomplete="tel"
+                                        inputmode="tel"
+                                        maxlength="20"
+                                        required>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-email">
+                                        Email Address <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-email"
+                                        type="email"
+                                        name="email"
+                                        placeholder="you@example.com"
+                                        class="form-control"
+                                        autocomplete="email"
+                                        maxlength="254"
+                                        required>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- DELIVERY INFORMATION -->
+
+                    <section class="checkout-card">
+
+                        <header class="section-heading">
+                            <div class="heading-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+
+                            <div>
+                                <h2>Delivery Address</h2>
+                                <p>Provide the address where your order should arrive.</p>
+                            </div>
+                        </header>
+
+                        <div class="section-body">
+
+                            <div class="row">
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-country">
+                                        Country <span class="required-mark">*</span>
+                                    </label>
+
+                                    <select
+                                        id="checkout-country"
+                                        name="country"
+                                        class="form-control"
+                                        autocomplete="country-name"
+                                        required>
+
+                                        <option value="India" selected>India</option>
+                                        <option value="United States">United States</option>
+                                        <option value="France">France</option>
+                                        <option value="Italy">Italy</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-state">
+                                        State <span class="required-mark">*</span>
+                                    </label>
+
+                                    <select
+                                        id="checkout-state"
+                                        name="state"
+                                        class="form-control"
+                                        autocomplete="address-level1"
+                                        required>
+
+                                        <option value="" selected disabled>Select state</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Goa">Goa</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-city">
+                                        City <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-city"
+                                        type="text"
+                                        name="city"
+                                        placeholder="Enter city"
+                                        class="form-control"
+                                        autocomplete="address-level2"
+                                        maxlength="100"
+                                        required>
+                                </div>
+
+                                <div class="col-12 col-sm-6 field-group">
+                                    <label class="field-label" for="checkout-pcode">
+                                        PIN Code <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-pcode"
+                                        type="text"
+                                        name="pcode"
+                                        placeholder="6-digit PIN code"
+                                        class="form-control"
+                                        autocomplete="postal-code"
+                                        inputmode="numeric"
+                                        pattern="[0-9]{6}"
+                                        maxlength="6"
+                                        required>
+
+                                    <small class="field-help">
+                                        Enter your 6-digit Indian PIN code.
+                                    </small>
+                                </div>
+
+                                <div class="col-12 field-group">
+                                    <label class="field-label" for="checkout-address1">
+                                        Address Line 1 <span class="required-mark">*</span>
+                                    </label>
+
+                                    <input
+                                        id="checkout-address1"
+                                        type="text"
+                                        name="add_1"
+                                        placeholder="House / flat number, street, area"
+                                        class="form-control"
+                                        autocomplete="address-line1"
+                                        maxlength="255"
+                                        required>
+                                </div>
+
+                                <div class="col-12 field-group">
+                                    <label class="field-label" for="checkout-address2">
+                                        Address Line 2
+                                    </label>
+
+                                    <input
+                                        id="checkout-address2"
+                                        type="text"
+                                        name="add_2"
+                                        placeholder="Landmark, apartment, etc. (optional)"
+                                        class="form-control"
+                                        autocomplete="address-line2"
+                                        maxlength="255">
+                                </div>
+
+                                <div class="col-12 field-group mb-0">
+                                    <label class="field-label" for="checkout-note">
+                                        Order Notes
+                                    </label>
+
+                                    <textarea
+                                        id="checkout-note"
+                                        name="o_note"
+                                        class="form-control"
+                                        placeholder="Delivery instructions or other notes (optional)"
+                                        maxlength="1000"
+                                        rows="3"></textarea>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- PAYMENT METHOD -->
+
+                    <section class="checkout-card">
+
+                        <header class="section-heading">
+                            <div class="heading-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+
+                            <div>
+                                <h2>Payment Method</h2>
+                                <p>Select your preferred payment option.</p>
+                            </div>
+                        </header>
+
+                        <div class="section-body">
+
+                            <div class="payment-option">
+
+                                <div class="payment-header">
+
+                                    <input
+                                        id="payment-paypal"
+                                        type="radio"
+                                        name="payment_option"
+                                        value="paypal"
+                                        checked
+                                        aria-controls="payment-paypal-details">
+
+                                    <label for="payment-paypal">
+                                        PayPal
+                                    </label>
+
+                                    <img
+                                        src="{% static 'images/misc/payment-paypal.png' %}"
+                                        alt="PayPal">
+
+                                </div>
+
+                                <div
+                                    class="payment-body"
+                                    id="payment-paypal-details">
+
+                                    <p class="payment-description">
+                                        PayPal payment will require a properly
+                                        configured PayPal integration to process
+                                        a real transaction.
+                                    </p>
+
+                                    <img
+                                        src="{% static 'images/misc/btn-paypal.png' %}"
+                                        alt="PayPal payment"
+                                        class="payment-logo">
+
+                                </div>
+
+                            </div>
+
+                            <div class="payment-option">
+
+                                <div class="payment-header">
+
+                                    <input
+                                        id="payment-card"
+                                        type="radio"
+                                        name="payment_option"
+                                        value="card"
+                                        aria-controls="payment-card-details">
+
+                                    <label for="payment-card">
+                                        Credit / Debit Card
+                                    </label>
+
+                                    <img
+                                        src="{% static 'images/misc/payment-card.png' %}"
+                                        alt="Card payment">
+
+                                </div>
+
+                                <div
+                                    class="payment-body"
+                                    id="payment-card-details"
+                                    hidden>
+
+                                    <p class="payment-notice">
+                                        Card payments must be processed through
+                                        a secure payment gateway. Do not enter
+                                        real card details into this demonstration
+                                        form.
+                                    </p>
+
+                                    <p class="payment-description">
+                                        Connect a payment provider such as Stripe
+                                        or PayPal to enable secure card payments.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </main>
+
+                <!-- RIGHT COLUMN: ORDER SUMMARY -->
+
+                <aside class="col-12 col-lg-4">
+
+                    <section class="summary-card">
+
+                        <header class="section-heading">
+                            <div class="heading-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+
+                            <div>
+                                <h2>Order Summary</h2>
+                                <p>Your final order total.</p>
+                            </div>
+                        </header>
+
+                        <div class="summary-body">
+
+                            <div class="summary-row">
+                                <span class="summary-label">Subtotal</span>
+
+                                <span class="summary-value">
+                                    ${{ total }}
+                                </span>
+                            </div>
+
+                            <div class="summary-row">
+                                <span class="summary-label">Tax</span>
+
+                                <span class="summary-value">
+                                    ${{ tax }}
+                                </span>
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <div class="grand-total-row">
+                                <span class="grand-total-label">Grand Total</span>
+
+                                <span class="grand-total-value">
+                                    ${{ final_total }}
+                                </span>
+                            </div>
+
+                            <div class="accepted-payments">
+
+                                <p>Accepted Payment Methods</p>
+
+                                <img
+                                    src="{% static 'images/misc/payments.png' %}"
+                                    alt="Accepted payment methods">
+
+                            </div>
+
+                            <button
+                                type="submit"
+                                class="place-order-button">
+
+                                <i class="fas fa-lock"></i>
+                                <span>Place Order</span>
+
+                            </button>
+
+                            <p class="secure-note">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>
+                                    Your information is submitted securely
+                                    over your site's configured connection.
+                                </span>
                             </p>
 
-                            <span class="text-muted">
-                               Price: ${{ item.product.price }}
-                            </span>
+                            <a
+                                href="{% url 'store' %}"
+                                class="place-order-button mt-3"
+                                style="background:#241c1d !important;border-color:#514043 !important;color:#f2e5e5 !important;text-decoration:none;">
 
-                            <br>
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Continue Shopping</span>
 
-                            <span class="text-muted">
-                                Quantity: {{ item.quantity }}
-                            </span>
+                            </a>
 
-                            <br>
+                        </div>
 
-                            <span class="text-muted">
-                                Sub Total: ${{ item.sub_total }}
-                            </span>
+                    </section>
 
-                            <br><br>
-
-                            {% for variation in item.variations.all %}
-
-                                <span class="text-muted">
-                                    {{ variation.variation_category }}:
-                                    {{ variation.variation_value }}
-                                </span>
-
-                                <br>
-
-                            {% endfor %}
-
-                        </figcaption>
-
-                    </figure>
-
-                </div>
-
-                {% endfor %}
+                </aside>
 
             </div>
 
-        </div>
-
-    </article>
-
-    <!-- ============================ CONTACT INFO ================================= -->
-
-    <article class="card mb-4">
-
-        <div class="card-body">
-
-            <h4 class="card-title mb-4">
-                Contact info
-            </h4>
-
-            <div class="row">
-
-                <div class="form-group col-sm-6">
-                    <label>First name</label>
-                    <input type="text"
-                           name="fname"
-                           placeholder="Type here"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>Last name</label>
-                    <input type="text"
-                           name="lname"
-                           placeholder="Type here"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>Phone</label>
-                    <input type="text"
-                           name="phone"
-                           value="+91"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>Email</label>
-                    <input type="email"
-                           name="email"
-                           placeholder="example@gmail.com"
-                           class="form-control"
-                           required>
-                </div>
-
-            </div>
-
-        </div>
-
-    </article>
-
-    <!-- ============================ DELIVERY INFO ================================= -->
-
-    <article class="card mb-4">
-
-        <div class="card-body">
-
-            <h4 class="card-title mb-4">
-                Delivery info
-            </h4>
-
-            <div class="row">
-
-                <div class="form-group col-sm-6">
-                    <label>Country</label>
-                    <select name="country" class="form-control" required>
-                        <option value="India">India</option>
-                        <option value="United States">United States</option>
-                        <option value="France">France</option>
-                        <option value="Italy">Italy</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>State</label>
-                    <select name="state" class="form-control" required>
-                        <option value="Maharashtra">Maharashtra</option>
-                        <option value="Tamil Nadu">Tamil Nadu</option>
-                        <option value="Rajasthan">Rajasthan</option>
-                        <option value="Goa">Goa</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>City</label>
-                    <input type="text"
-                           name="city"
-                           placeholder="Type here"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label>Pincode</label>
-                    <input type="text"
-                           name="pcode"
-                           placeholder="Type here"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-12">
-                    <label>Address line 1</label>
-                    <input type="text"
-                           name="add_1"
-                           placeholder="Type here"
-                           class="form-control"
-                           required>
-                </div>
-
-                <div class="form-group col-sm-12">
-                    <label>Address Line 2</label>
-                    <input type="text"
-                           name="add_2"
-                           placeholder="Optional"
-                           class="form-control">
-                </div>
-
-                <div class="form-group col-sm-12">
-                    <label>Order Note</label>
-                    <input type="text"
-                           name="o_note"
-                           placeholder="Optional"
-                           class="form-control">
-                </div>
-
-            </div>
-
-        </div>
-
-    </article>
-
-    <!-- ============================ PAYMENT ================================= -->
-
-    <article class="accordion mb-4" id="accordion_pay">
-
-        <!-- ================= PAYPAL ================= -->
-
-        <div class="card">
-
-            <header class="card-header">
-
-                <img src="{% static './images/misc/payment-paypal.png' %}"
-                     class="float-right"
-                     height="24">
-
-                <label class="form-check"
-                       data-toggle="collapse"
-                       data-target="#pay_paynet">
-
-                    <input class="form-check-input"
-                           name="payment_option"
-                           checked
-                           type="radio"
-                           value="paypal">
-
-                    <h6 class="form-check-label">
-                        Paypal
-                    </h6>
-
-                </label>
-
-            </header>
-
-            <div id="pay_paynet"
-                 class="collapse show"
-                 data-parent="#accordion_pay">
-
-                <div class="card-body">
-
-                    <p class="text-center text-muted">
-                        Connect your PayPal account and use it
-                        to pay your bills.
-                    </p>
-
-                    <p class="text-center">
-                        <a href="#">
-                            <img src="{% static './images/misc/btn-paypal.png' %}"
-                                 height="32">
-                        </a>
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- ================= CREDIT CARD ================= -->
-
-        <div class="card">
-
-            <header class="card-header">
-
-                <img src="{% static './images/misc/payment-card.png' %}"
-                     class="float-right"
-                     height="24">
-
-                <label class="form-check"
-                       data-toggle="collapse"
-                       data-target="#pay_payme">
-
-                    <input class="form-check-input"
-                           name="payment_option"
-                           type="radio"
-                           value="card">
-
-                    <h6 class="form-check-label">
-                        Credit Card
-                    </h6>
-
-                </label>
-
-            </header>
-
-            <div id="pay_payme"
-                 class="collapse"
-                 data-parent="#accordion_pay">
-
-                <div class="card-body">
-
-                    <p class="alert alert-success">
-                        Some information or instruction
-                    </p>
-
-                    <input type="text"
-                           class="form-control mb-2"
-                           placeholder="xxxx-xxxx-xxxx-xxxx"
-                           name="card_number">
-
-                    <input type="text"
-                           class="form-control mb-2"
-                           style="width: 150px"
-                           placeholder="MM/YY"
-                           name="card_expiry">
-
-                    <input type="text"
-                           maxlength="3"
-                           class="form-control mb-2"
-                           style="width: 150px"
-                           placeholder="CVC"
-                           name="card_cvc">
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </article>
-
-</main>
-
-<!-- ============================ RIGHT SIDE ================================= -->
-
-<aside class="col-md-4">
-
-    <div class="card">
-
-        <div class="card-body">
-
-            <dl class="dlist-align">
-                <dt>Total price:</dt>
-                <dd class="text-right">${{ total }}</dd>
-            </dl>
-
-            <dl class="dlist-align">
-                <dt>Tax:</dt>
-                <dd class="text-right">${{ tax }}</dd>
-            </dl>
-
-            <dl class="dlist-align">
-                <dt>Final Total:</dt>
-                <dd class="text-right text-dark b">
-                    <strong>${{ final_total }}</strong>
-                </dd>
-            </dl>
-
-            <hr>
-
-            <p class="text-center mb-3">
-                <img src="{% static './images/misc/payments.png' %}"
-                     height="26">
-            </p>
-
-            <!-- PLACE ORDER BUTTON -->
-
-            <button type="submit" class="btn btn-primary btn-block">
-                Place Order
-            </button>
-
-        </div>
+        </form>
 
     </div>
 
-</aside>
-
-</div>
-
-</form>
-
-<!-- ============================ CHECKOUT FORM END ================================= -->
-
-</div>
 </section>
+
+<script>
+/* Payment method display — no external library required */
+(function () {
+    const paypalRadio = document.getElementById("payment-paypal");
+    const cardRadio = document.getElementById("payment-card");
+
+    const paypalDetails = document.getElementById("payment-paypal-details");
+    const cardDetails = document.getElementById("payment-card-details");
+
+    if (!paypalRadio || !cardRadio || !paypalDetails || !cardDetails) {
+        return;
+    }
+
+    function updatePaymentDetails() {
+        paypalDetails.hidden = !paypalRadio.checked;
+        cardDetails.hidden = !cardRadio.checked;
+    }
+
+    paypalRadio.addEventListener("change", updatePaymentDetails);
+    cardRadio.addEventListener("change", updatePaymentDetails);
+
+    updatePaymentDetails();
+})();
+</script>
 
 {% endblock %}

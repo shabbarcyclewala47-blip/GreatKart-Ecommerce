@@ -1,110 +1,915 @@
+
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
-<section class="section-content padding-y bg">
-<div class="container">
+<style>
+/* ==========================================
+   LUXEMART — PREMIUM SHOPPING CART
+   Black • Charcoal • Burgundy • Red
+========================================== */
 
-<!-- ============================ COMPONENT 1 ================================= -->
+.cart-page,
+.cart-page * {
+    box-sizing: border-box;
+}
 
-<div class="row">
-	<aside class="col-lg-9">
-<div class="card">
-<table class="table table-borderless table-shopping-cart">
-<thead class="text-muted">
-<tr class="small text-uppercase">
-  <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" class="text-right" width="200"> </th>
-</tr>
-</thead>
-<tbody>
-{% for item in cart_items %}
-<tr>
-	<td>
-		<figure class="itemside align-items-center">
-			<div class="aside"><img src="{{item.product.images.url}}" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">{{item.product.product_name}}</a>
-				{% if item.variations.all %}
-				{% for variation in item.variations.all %}
-				<p class="text-muted small">{{variation.variation_category}}: {{variation.variation_value}}</p>
-				{% endfor %}
-				{% endif %}
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<!-- col.// -->
-					<div class="col"> 
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<a  href="{% url 'remove_cart_item' item.product.id  item.id %}"class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </a>
-							</div>
-							<input type="text" class="form-control"  value="{{item.quantity}}">
-							<div class="input-group-append">
-							<a href="{% url 'add_cart_item' item.product.id item.id  %}" class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
-							</div>
-						</div> <!-- input-group.// -->
-					</div> <!-- col.// -->
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">${{item.sub_total}}</var> 
-			<small class="text-muted">${{item.product.price}} each </small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a href="{% url 'remove_button_logic' item.product.id item.id %}" class="btn btn-danger"> Remove</a>
-	</td>
-</tr>
-{% endfor %}
+.cart-page {
+    min-height: 100vh;
+    padding: 32px 0 55px;
+    background: #101011 !important;
+    color: #f5eeee !important;
+}
 
+/* ==========================================
+   PAGE HEADER
+========================================== */
 
-</tbody>
-</table>
-</div> <!-- card.// -->
+.cart-page .cart-heading {
+    margin-bottom: 25px;
+}
 
-	</aside> <!-- col.// -->
-	<aside class="col-lg-3">
+.cart-page .cart-heading h1 {
+    margin: 0 0 8px;
+    color: #ffffff !important;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
 
-		<div class="card">
-		<div class="card-body">
-			<dl class="dlist-align">
-			  <dt>Total price:</dt>
-			  <dd class="text-right">${{total}}</dd>
-			</dl>
-			<dl class="dlist-align">
-			  <dt>Tax:</dt>
-			  <dd class="text-right">${{tax}}</dd>
-			</dl>
-			<dl class="dlist-align">
-			  <dt> Grand Total:</dt>
-			  <dd class="text-right text-dark b"><strong>${{final_total}}</strong></dd>
-			</dl>
-			<hr>
-			<p class="text-center mb-3">
-				<img src="{% static './images/misc/payments.png' %}" height="26">
-			</p>
-			<a href="{% url 'checkout' %}" class="btn btn-primary btn-block">
-    Checkout
-</a>
+.cart-page .cart-heading p {
+    margin: 0;
+    color: #b9aaaa !important;
+    font-size: 14px;
+    line-height: 1.7;
+}
 
-<a href="{% url 'store' %}" class="btn btn-light btn-block">
-    Continue Shopping
-</a>
-		</div> <!-- card-body.// -->
-		</div> <!-- card.// -->
+/* ==========================================
+   CART PANELS
+========================================== */
 
-</aside> <!-- col.// -->
+.cart-page .cart-panel {
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #191617 !important;
+    border: 1px solid #392b2d !important;
+    border-radius: 13px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
 
+.cart-page .panel-heading {
+    padding: 18px 20px;
+    background: #24191a !important;
+    border-bottom: 1px solid #392b2d;
+}
 
-</div> <!-- row.// -->
-<!-- ============================ COMPONENT 1 END .// ================================= -->
+.cart-page .panel-heading h2 {
+    margin: 0;
+    color: #ffffff !important;
+    font-size: 17px;
+    font-weight: 700;
+}
 
-</div> <!-- container .//  -->
-</section>
+.cart-page .panel-heading i {
+    margin-right: 9px;
+    color: #ff5967 !important;
+}
+
+/* ==========================================
+   CART TABLE
+========================================== */
+
+.cart-page .cart-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    background: #191617 !important;
+}
+
+.cart-page .cart-table {
+    width: 100%;
+    min-width: 620px;
+    margin: 0 !important;
+    border-collapse: collapse;
+    color: #f5eeee !important;
+    vertical-align: middle;
+}
+
+.cart-page .cart-table thead th {
+    padding: 15px 16px;
+    background: #21191a !important;
+    color: #bbaaaa !important;
+    border: 0 !important;
+    border-bottom: 1px solid #392b2d !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.cart-page .cart-table tbody td {
+    padding: 18px 16px;
+    background: #191617 !important;
+    color: #e9dddd !important;
+    border: 0 !important;
+    border-bottom: 1px solid #302426 !important;
+    vertical-align: middle;
+}
+
+.cart-page .cart-table tbody tr:last-child td {
+    border-bottom: 0 !important;
+}
+
+/* ==========================================
+   PRODUCT INFORMATION
+========================================== */
+
+.cart-page .cart-product {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 210px;
+}
+
+.cart-page .cart-product-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 82px;
+    height: 88px;
+    padding: 7px;
+    overflow: hidden;
+    background: #eeeeee !important;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+}
+
+.cart-page .cart-product-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cart-page .cart-product-image .no-image {
+    color: #777777;
+    font-size: 11px;
+    text-align: center;
+}
+
+.cart-page .cart-product-info {
+    min-width: 0;
+}
+
+.cart-page .cart-product-name {
+    display: block;
+    margin: 0 0 8px;
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none !important;
+    overflow-wrap: anywhere;
+}
+
+.cart-page .cart-variation {
+    display: block;
+    margin: 4px 0 0;
+    color: #b9aaaa !important;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.cart-page .cart-variation strong {
+    color: #e8dada !important;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* ==========================================
+   QUANTITY CONTROLS
+========================================== */
+
+.cart-page .quantity-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 38px;
+    background: #211b1c !important;
+    border: 1px solid #514043;
+    border-radius: 7px;
+}
+
+.cart-page .quantity-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    min-width: 34px;
+    height: 36px;
+    padding: 0;
+    background: #2a2021 !important;
+    color: #ffffff !important;
+    border: 0;
+    font-size: 11px;
+    text-decoration: none !important;
+}
+
+.cart-page .quantity-value {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px;
+    padding: 0 5px;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.cart-page .quantity-button:active {
+    background: #493033 !important;
+}
+
+/* ==========================================
+   PRICES
+========================================== */
+
+.cart-page .item-price {
+    display: block;
+    color: #ff6570 !important;
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.cart-page .item-unit-price {
+    display: block;
+    margin-top: 5px;
+    color: #aa9999 !important;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   REMOVE BUTTON
+========================================== */
+
+.cart-page .remove-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 35px;
+    padding: 8px 11px;
+    background: #32191d !important;
+    color: #ff7580 !important;
+    border: 1px solid #673037 !important;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 650;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+.cart-page .remove-button:active {
+    background: #4a2026 !important;
+}
+
+/* ==========================================
+   ORDER SUMMARY
+========================================== */
+
+.cart-page .summary-card {
+    position: relative;
+    background: #191617 !important;
+    border: 1px solid #392b2d !important;
+    border-radius: 13px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.cart-page .summary-heading {
+    padding: 19px 20px;
+    background: linear-gradient(
+        110deg,
+        #351719,
+        #241719
+    ) !important;
+    border-bottom: 1px solid #493033;
+}
+
+.cart-page .summary-heading h2 {
+    margin: 0;
+    color: #ffffff !important;
+    font-size: 17px;
+    font-weight: 750;
+}
+
+.cart-page .summary-heading i {
+    margin-right: 9px;
+    color: #ff5967 !important;
+}
+
+.cart-page .summary-body {
+    padding: 21px;
+    background: #191617 !important;
+}
+
+.cart-page .summary-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.cart-page .summary-label {
+    color: #bfaeae !important;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.cart-page .summary-value {
+    color: #f5eeee !important;
+    font-size: 13px;
+    font-weight: 650;
+    text-align: right;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.cart-page .summary-divider {
+    margin: 19px 0;
+    border: 0;
+    border-top: 1px solid #443234;
+    opacity: 1;
+}
+
+.cart-page .grand-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cart-page .grand-total-label {
+    color: #ffffff !important;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.cart-page .grand-total-value {
+    color: #ff6570 !important;
+    font-size: 23px;
+    font-weight: 800;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   PAYMENT METHODS
+========================================== */
+
+.cart-page .payment-section {
+    margin: 18px 0 20px;
+    padding: 13px;
+    background: #211b1c !important;
+    border: 1px solid #392d2f;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.cart-page .payment-label {
+    margin-bottom: 10px;
+    color: #b9aaaa !important;
+    font-size: 11px;
+}
+
+.cart-page .payment-image {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    max-height: 30px;
+    object-fit: contain;
+}
+
+/* ==========================================
+   ACTION BUTTONS
+========================================== */
+
+.cart-page .cart-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    min-height: 45px;
+    margin-top: 11px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.cart-page .checkout-button {
+    background: #d92535 !important;
+    color: #ffffff !important;
+    border: 1px solid #e32e3d !important;
+}
+
+.cart-page .shopping-button {
+    background: #241c1d !important;
+    color: #f2e5e5 !important;
+    border: 1px solid #514043 !important;
+}
+
+.cart-page .cart-action:focus-visible,
+.cart-page .quantity-button:focus-visible,
+.cart-page .remove-button:focus-visible,
+.cart-page .cart-product-name:focus-visible {
+    outline: 2px solid #ff5967;
+    outline-offset: 3px;
+}
+
+/* ==========================================
+   EMPTY CART
+========================================== */
+
+.cart-page .empty-cart {
+    padding: 48px 22px;
+    background: #191617 !important;
+    border: 1px solid #392b2d;
+    border-radius: 13px;
+    text-align: center;
+}
+
+.cart-page .empty-cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    background: #321b1e !important;
+    color: #ff6570 !important;
+    border: 1px solid #543034;
+    border-radius: 50%;
+    font-size: 26px;
+}
+
+.cart-page .empty-cart h2 {
+    margin-bottom: 10px;
+    color: #ffffff !important;
+    font-size: 23px;
+    font-weight: 750;
+}
+
+.cart-page .empty-cart p {
+    margin-bottom: 23px;
+    color: #b9aaaa !important;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ==========================================
+   RESPONSIVE TABLET
+========================================== */
+
+@media (max-width: 991.98px) {
+    .cart-page .cart-heading h1 {
+        font-size: 27px;
+    }
+
+    .cart-page .cart-product-image {
+        width: 70px;
+        height: 78px;
+    }
+
+    .cart-page .summary-body {
+        padding: 17px;
+    }
+}
+
+/* ==========================================
+   RESPONSIVE MOBILE
+========================================== */
+
+@media (max-width: 767.98px) {
+    .cart-page {
+        padding: 23px 0 35px;
+    }
+
+    .cart-page .cart-heading {
+        margin-bottom: 19px;
+    }
+
+    .cart-page .cart-heading h1 {
+        font-size: 25px;
+    }
+
+    .cart-page .cart-heading p {
+        font-size: 13px;
+    }
+
+    .cart-page .panel-heading {
+        padding: 15px;
+    }
+
+    .cart-page .cart-table {
+        min-width: 600px;
+    }
+
+    .cart-page .cart-table thead th,
+    .cart-page .cart-table tbody td {
+        padding: 13px 12px;
+    }
+
+    .cart-page .summary-card {
+        margin-top: 2px;
+    }
+
+    .cart-page .summary-body {
+        padding: 19px;
+    }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 359.98px) {
+    .cart-page .cart-heading h1 {
+        font-size: 22px;
+    }
+
+    .cart-page .grand-total-value {
+        font-size: 20px;
+    }
+
+    .cart-page .summary-body {
+        padding: 15px;
+    }
+}
+</style>
+
+<div class="cart-page">
+
+    <div class="container">
+
+        <!-- PAGE HEADER -->
+
+        <header class="cart-heading">
+            <h1>
+                <i class="fas fa-shopping-cart mr-2"
+                   style="color:#ff5967;"></i>
+                Shopping Cart
+            </h1>
+
+            <p>
+                Review your items and complete your order.
+            </p>
+        </header>
+
+        {% if cart_items %}
+
+            <div class="row">
+
+                <!-- ==================================
+                     CART ITEMS
+                =================================== -->
+
+                <div class="col-12 col-lg-9">
+
+                    <section class="cart-panel">
+
+                        <div class="panel-heading">
+                            <h2>
+                                <i class="fas fa-shopping-bag"></i>
+                                Your Items
+                            </h2>
+                        </div>
+
+                        <div class="cart-table-wrap">
+
+                            <table class="table cart-table">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col"
+                                            class="text-right">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    {% for item in cart_items %}
+
+                                        <tr>
+
+                                            <!-- PRODUCT -->
+
+                                            <td>
+
+                                                <div class="cart-product">
+
+                                                    <div class="cart-product-image">
+
+                                                        {% if item.product.images %}
+
+                                                            <img
+                                                                src="{{ item.product.images.url }}"
+                                                                alt="{{ item.product.product_name }}"
+                                                                loading="lazy">
+
+                                                        {% else %}
+
+                                                            <span class="no-image">
+                                                                No image
+                                                            </span>
+
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                    <div class="cart-product-info">
+
+                                                        <a
+                                                            href="{{ item.product.get_url }}"
+                                                            class="cart-product-name">
+
+                                                            {{ item.product.product_name }}
+
+                                                        </a>
+
+                                                        {% if item.variations.all %}
+
+                                                            {% for variation in item.variations.all %}
+
+                                                                <span class="cart-variation">
+
+                                                                    <strong>
+                                                                        {{ variation.variation_category }}:
+                                                                    </strong>
+
+                                                                    {{ variation.variation_value }}
+
+                                                                </span>
+
+                                                            {% endfor %}
+
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+
+                                            <!-- QUANTITY -->
+
+                                            <td>
+
+                                                <div class="quantity-control">
+
+                                                    <a
+                                                        href="{% url 'remove_cart_item' item.product.id item.id %}"
+                                                        class="quantity-button"
+                                                        aria-label="Decrease quantity">
+
+                                                        <i class="fas fa-minus"></i>
+
+                                                    </a>
+
+                                                    <span class="quantity-value">
+                                                        {{ item.quantity }}
+                                                    </span>
+
+                                                    <a
+                                                        href="{% url 'add_cart_item' item.product.id item.id %}"
+                                                        class="quantity-button"
+                                                        aria-label="Increase quantity">
+
+                                                        <i class="fas fa-plus"></i>
+
+                                                    </a>
+
+                                                </div>
+
+                                            </td>
+
+                                            <!-- PRICE -->
+
+                                            <td>
+
+                                                <span class="item-price">
+                                                    ${{ item.sub_total }}
+                                                </span>
+
+                                                <span class="item-unit-price">
+                                                    ${{ item.product.price }} each
+                                                </span>
+
+                                            </td>
+
+                                            <!-- REMOVE -->
+
+                                            <td class="text-right">
+
+                                                <a
+                                                    href="{% url 'remove_button_logic' item.product.id item.id %}"
+                                                    class="remove-button">
+
+                                                    <i class="fas fa-trash-alt"></i>
+                                                    <span>Remove</span>
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+                    <!-- CONTINUE SHOPPING -->
+
+                    <a
+                        href="{% url 'store' %}"
+                        class="cart-action shopping-button"
+                        style="width:auto; display:inline-flex; padding:12px 20px;">
+
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Continue Shopping</span>
+
+                    </a>
+
+                </div>
+
+                <!-- ==================================
+                     ORDER SUMMARY
+                =================================== -->
+
+                <aside class="col-12 col-lg-3">
+
+                    <section class="summary-card">
+
+                        <div class="summary-heading">
+
+                            <h2>
+                                <i class="fas fa-receipt"></i>
+                                Order Summary
+                            </h2>
+
+                        </div>
+
+                        <div class="summary-body">
+
+                            <!-- SUBTOTAL -->
+
+                            <div class="summary-row">
+
+                                <span class="summary-label">
+                                    Total Price
+                                </span>
+
+                                <span class="summary-value">
+                                    ${{ total }}
+                                </span>
+
+                            </div>
+
+                            <!-- TAX -->
+
+                            <div class="summary-row">
+
+                                <span class="summary-label">
+                                    Tax
+                                </span>
+
+                                <span class="summary-value">
+                                    ${{ tax }}
+                                </span>
+
+                            </div>
+
+                            <hr class="summary-divider">
+
+                            <!-- GRAND TOTAL -->
+
+                            <div class="grand-total-row">
+
+                                <span class="grand-total-label">
+                                    Grand Total
+                                </span>
+
+                                <span class="grand-total-value">
+                                    ${{ final_total }}
+                                </span>
+
+                            </div>
+
+                            <!-- PAYMENT METHODS -->
+
+                            <div class="payment-section">
+
+                                <p class="payment-label">
+                                    Accepted Payment Methods
+                                </p>
+
+                                <img
+                                    src="{% static 'images/misc/payments.png' %}"
+                                    alt="Accepted payment methods"
+                                    class="payment-image"
+                                    loading="lazy">
+
+                            </div>
+
+                            <!-- CHECKOUT -->
+
+                            <a
+                                href="{% url 'checkout' %}"
+                                class="cart-action checkout-button">
+
+                                <i class="fas fa-lock"></i>
+                                <span>Proceed to Checkout</span>
+
+                            </a>
+
+                            <!-- CONTINUE SHOPPING -->
+
+                            <a
+                                href="{% url 'store' %}"
+                                class="cart-action shopping-button">
+
+                                <i class="fas fa-store"></i>
+                                <span>Continue Shopping</span>
+
+                            </a>
+
+                        </div>
+
+                    </section>
+
+                </aside>
+
+            </div>
+
+        {% else %}
+
+            <!-- ==================================
+                 EMPTY CART
+            =================================== -->
+
+            <section class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+
+                <h2>Your Cart Is Empty</h2>
+
+                <p>
+                    You haven't added any products to your cart yet.
+                    Explore our store to find something you love.
+                </p>
+
+                <a
+                    href="{% url 'store' %}"
+                    class="cart-action checkout-button"
+                    style="max-width:240px; margin:0 auto;">
+
+                    <i class="fas fa-store"></i>
+                    <span>Explore Store</span>
+
+                </a>
+
+            </section>
+
+        {% endif %}
+
+    </div>
+
+</div>
 
 {% endblock %}

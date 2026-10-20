@@ -2,302 +2,252 @@
 {% load static %}
 
 <style>
-    .greatkart-header {
-        position: relative;
-        z-index: 100;
-        background: rgba(255, 255, 255, 0.96);
-        border-bottom: 1px solid #e1e9f3;
-    }
+/* ========== GREATKART DARK HEADER ========== */
 
-    .greatkart-header .top-navbar {
-        min-height: 38px;
-        background: linear-gradient(100deg, #f0f5fc, #f8faff, #edf3fb);
-        border-bottom: 1px solid #e4ebf5;
-    }
+.greatkart-header {
+    --header-bg: #191a1e;
+    --header-surface: #222329;
+    --header-hover: #2b2c32;
+    --header-text: #f3f3f5;
+    --header-muted: #a6a7ae;
+    --header-accent: #e63946;
+    --header-accent-hover: #c92e3a;
+    --header-border: rgba(255,255,255,.08);
 
-    .greatkart-header .top-navbar .nav-link {
-        padding: 9px 12px;
-        color: #65758b;
-        font-size: 12px;
-        transition: color .2s ease;
-    }
-
-    .greatkart-header .top-navbar .nav-link:hover {
-        color: #3569c8;
-    }
-
-    .greatkart-header .header-main {
-        padding: 18px 0;
-        background: rgba(255, 255, 255, .94);
-    }
-
-    .greatkart-header .brand-wrap {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-    }
-
-    .greatkart-header .logo {
-        display: block;
-        max-width: 150px;
-        max-height: 58px;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        transition: transform .25s ease;
-    }
-
-    .greatkart-header .brand-wrap:hover .logo {
-        transform: translateY(-2px);
-    }
-
-    .greatkart-header .btn {
-        border-radius: 9px;
-        font-weight: 600;
-        transition: transform .2s ease, box-shadow .2s ease,
-                    background-color .2s ease;
-    }
-
-    .greatkart-header .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 13px rgba(53, 105, 200, .14);
-    }
-
-    .greatkart-header .btn-primary {
-        background: #3569c8;
-        border-color: #3569c8;
-    }
-
-    .greatkart-header .btn-primary:hover {
-        background: #2856aa;
-        border-color: #2856aa;
-    }
-
-    .greatkart-header .search .form-control {
-        height: 42px;
-        border: 1px solid #dce5f1;
-        border-right: 0;
-        border-radius: 10px 0 0 10px;
-        background: #f8faff;
-        box-shadow: none;
-        transition: background-color .2s ease, border-color .2s ease;
-    }
-
-    .greatkart-header .search .form-control:focus {
-        border-color: #8baee8;
-        background: #fff;
-        box-shadow: 0 0 0 3px rgba(53, 105, 200, .08);
-    }
-
-    .greatkart-header .search .input-group-append .btn {
-        height: 42px;
-        min-width: 46px;
-        border-radius: 0 10px 10px 0;
-    }
-
-    .greatkart-header .category-wrap .dropdown-menu {
-        margin-top: 10px;
-        padding: 8px;
-        border: 1px solid #e4ebf5;
-        border-radius: 12px;
-        box-shadow: 0 12px 30px rgba(35, 58, 90, .12);
-    }
-
-    .greatkart-header .category-wrap .dropdown-item {
-        padding: 9px 12px;
-        border-radius: 7px;
-        color: #52647b;
-        font-size: 13px;
-        transition: background-color .2s ease, color .2s ease;
-    }
-
-    .greatkart-header .category-wrap .dropdown-item:hover {
-        color: #2856aa;
-        background: #edf4ff;
-    }
-
-    .greatkart-header .account-widget {
-        color: #52647b;
-        font-size: 13px;
-        line-height: 1.8;
-        white-space: nowrap;
-    }
-
-    .greatkart-header .account-widget .welcome-text {
-        display: block;
-        color: #8a97a9;
-        font-size: 11px;
-    }
-
-    .greatkart-header .account-widget a {
-        color: #3569c8;
-        font-weight: 600;
-        text-decoration: none;
-        transition: color .2s ease;
-    }
-
-    .greatkart-header .account-widget a:hover {
-        color: #1f478f;
-    }
-
-    .greatkart-header .cart-link {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 43px;
-        height: 43px;
-        margin-left: 15px;
-        border: 1px solid #e0e8f3;
-        border-radius: 13px;
-        background: #f4f7fc;
-        color: #3569c8;
-        text-decoration: none;
-        transition: transform .2s ease, background-color .2s ease;
-    }
-
-    .greatkart-header .cart-link:hover {
-        transform: translateY(-3px);
-        background: #e8f0ff;
-    }
-
-    .greatkart-header .cart-link .notify {
-        position: absolute;
-        top: -7px;
-        right: -7px;
-        min-width: 19px;
-        padding: 4px 5px;
-        font-size: 10px;
-    }
-
-    @media (max-width: 991px) {
-        .greatkart-header .header-main {
-            padding: 14px 0;
-        }
-
-        .greatkart-header .header-main .row {
-            row-gap: 15px;
-        }
-
-        .greatkart-header .search-column {
-            order: 4;
-        }
-
-        .greatkart-header .account-column {
-            order: 3;
-        }
-    }
-
-    @media (max-width: 575px) {
-        .greatkart-header .logo {
-            max-width: 115px;
-            max-height: 45px;
-        }
-
-        .greatkart-header .category-wrap .btn {
-            padding: 8px 10px;
-            font-size: 12px;
-        }
-
-        .greatkart-header .store-button {
-            padding: 8px 12px;
-            font-size: 12px;
-        }
-
-        .greatkart-header .account-widget {
-            font-size: 12px;
-        }
-
-        .greatkart-header .cart-link {
-            width: 38px;
-            height: 38px;
-            margin-left: 9px;
-        }
-
-        .greatkart-header .top-navbar .nav-link {
-            padding: 8px 7px;
-            font-size: 11px;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .greatkart-header * {
-            transition: none !important;
-        }
-    }
- 
-img,
-video,
-iframe {
-    max-width: 100%;
+    position: relative;
+    z-index: 100;
+    color: var(--header-text);
+    background: rgba(25,26,30,.97);
+    border-bottom: 1px solid var(--header-border);
+    box-shadow: 0 5px 22px rgba(0,0,0,.12);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
-html,
-body {
-    width: 100%;
-    overflow-x: clip;
-}
-
-input,
-select,
-textarea,
-button {
-    max-width: 100%;
-}
-
-/* Tablet screens */
-@media (max-width: 991.98px) {
-    .container,
-    .container-fluid {
-        max-width: 100%;
-    }
-
-    .table-responsive {
-        overflow-x: auto;
-    }
-}
-
-/* Mobile screens */
-@media (max-width: 575.98px) {
-    body {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
-    .container,
-    .container-fluid {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    h1 {
-        font-size: 1.7rem;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-    }
-
-    h3 {
-        font-size: 1.2rem;
-    }
-
-    .btn {
-        min-height: 40px;
-    }
-
-    input,
-    select,
-    textarea {
-        font-size: 16px;
-    }
-}
-
-/* Responsive GreatKart header */
-.greatkart-header,
-.greatkart-header * {
+.greatkart-header *,
+.greatkart-header *::before,
+.greatkart-header *::after {
     box-sizing: border-box;
 }
+
+/* Top navigation */
+
+.greatkart-header .top-navbar {
+    min-height: 38px;
+    background: #202126;
+    border-bottom: 1px solid var(--header-border);
+}
+
+.greatkart-header .top-navbar .nav-link {
+    padding: 9px 12px;
+    color: var(--header-muted);
+    font-size: 12px;
+    transition: color .2s ease;
+}
+
+.greatkart-header .top-navbar .nav-link:hover {
+    color: #ff6974;
+}
+
+/* Main header */
+
+.greatkart-header .header-main {
+    padding: 17px 0;
+    background: rgba(25,26,30,.97);
+}
+
+.greatkart-header .brand-wrap {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.greatkart-header .logo {
+    display: block;
+    width: auto;
+    max-width: 150px;
+    max-height: 58px;
+    height: auto;
+    object-fit: contain;
+    transition: transform .25s ease;
+}
+
+.greatkart-header .brand-wrap:hover .logo {
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+
+.greatkart-header .btn {
+    border-radius: 9px;
+    font-weight: 600;
+    transition: transform .2s ease,
+                box-shadow .2s ease,
+                background-color .2s ease,
+                border-color .2s ease;
+}
+
+.greatkart-header .btn:hover {
+    transform: translateY(-2px);
+}
+
+.greatkart-header .btn-primary {
+    color: #fff;
+    background: var(--header-accent);
+    border-color: var(--header-accent);
+}
+
+.greatkart-header .btn-primary:hover,
+.greatkart-header .btn-primary:focus {
+    color: #fff;
+    background: var(--header-accent-hover);
+    border-color: var(--header-accent-hover);
+    box-shadow: 0 5px 16px rgba(230,57,70,.2);
+}
+
+.greatkart-header .btn-outline-primary {
+    color: #ff6974;
+    background: transparent;
+    border-color: rgba(230,57,70,.65);
+}
+
+.greatkart-header .btn-outline-primary:hover {
+    color: #fff;
+    background: var(--header-accent);
+    border-color: var(--header-accent);
+}
+
+/* Search bar */
+
+.greatkart-header .search,
+.greatkart-header .search .input-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.greatkart-header .search .form-control {
+    min-width: 0;
+    height: 42px;
+    color: var(--header-text);
+    background: #292a30;
+    border: 1px solid #393a42;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+    box-shadow: none;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.greatkart-header .search .form-control::placeholder {
+    color: #9698a2;
+}
+
+.greatkart-header .search .form-control:focus {
+    color: #fff;
+    background: #24252b;
+    border-color: var(--header-accent);
+    box-shadow: 0 0 0 3px rgba(230,57,70,.1);
+}
+
+.greatkart-header .search .input-group-append .btn {
+    min-width: 46px;
+    height: 42px;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Category dropdown */
+
+.greatkart-header .category-wrap .dropdown-menu {
+    min-width: 200px;
+    margin-top: 10px;
+    padding: 8px;
+    color: var(--header-text);
+    background: #25262c;
+    border: 1px solid #393a42;
+    border-radius: 12px;
+    box-shadow: 0 14px 35px rgba(0,0,0,.35);
+}
+
+.greatkart-header .category-wrap .dropdown-item {
+    padding: 10px 12px;
+    color: #d5d6dc;
+    background: transparent;
+    border-radius: 7px;
+    font-size: 13px;
+    transition: background .2s ease, color .2s ease;
+}
+
+.greatkart-header .category-wrap .dropdown-item:hover,
+.greatkart-header .category-wrap .dropdown-item:focus {
+    color: #fff;
+    background: rgba(230,57,70,.15);
+}
+
+/* Account links */
+
+.greatkart-header .account-widget {
+    color: #d6d7dc;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: normal;
+}
+
+.greatkart-header .account-widget .welcome-text {
+    display: block;
+    color: var(--header-muted);
+    font-size: 11px;
+}
+
+.greatkart-header .account-widget a {
+    color: #ff6974;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+.greatkart-header .account-widget a:hover {
+    color: #fff;
+}
+
+/* Cart */
+
+.greatkart-header .cart-link {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    margin-left: 15px;
+    color: #fff;
+    background: #292a30;
+    border: 1px solid #3a3b43;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform .2s ease,
+                background .2s ease,
+                border-color .2s ease;
+}
+
+.greatkart-header .cart-link:hover {
+    color: #fff;
+    background: rgba(230,57,70,.15);
+    border-color: var(--header-accent);
+    transform: translateY(-3px);
+}
+
+.greatkart-header .cart-link .notify {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    min-width: 19px;
+    padding: 4px 5px;
+    color: #fff;
+    background: var(--header-accent);
+    border: 2px solid var(--header-bg);
+    font-size: 10px;
+}
+
+/* Responsive layout */
 
 .greatkart-header .header-main .row {
     row-gap: 14px;
@@ -308,26 +258,8 @@ button {
     min-width: 0;
 }
 
-.greatkart-header .search,
-.greatkart-header .search .input-group {
-    width: 100%;
-    min-width: 0;
-}
-
-.greatkart-header .search .form-control {
-    min-width: 0;
-}
-
 .greatkart-header .account-column > .d-flex {
     gap: 10px;
-}
-
-.greatkart-header .account-widget {
-    white-space: normal;
-}
-
-.greatkart-header .cart-link {
-    flex-shrink: 0;
 }
 
 .greatkart-header img {
@@ -335,14 +267,9 @@ button {
     height: auto;
 }
 
-/* Tablets and smaller laptops */
 @media (max-width: 991.98px) {
     .greatkart-header .header-main {
         padding: 14px 0;
-    }
-
-    .greatkart-header .header-main .row {
-        align-items: center;
     }
 
     .greatkart-header .search-column {
@@ -353,165 +280,31 @@ button {
         order: 4;
     }
 
-    .greatkart-header .search .form-control {
+    .greatkart-header .search .form-control,
+    .greatkart-header .search .input-group-append .btn {
         height: 44px;
     }
 }
 
-/* Phones */
 @media (max-width: 575.98px) {
     .greatkart-header .header-main {
         padding: 12px 0;
     }
 
     .greatkart-header .header-main .container {
-        padding-left: 12px;
         padding-right: 12px;
+        padding-left: 12px;
     }
 
     .greatkart-header .header-main .row {
-        margin-left: -6px;
         margin-right: -6px;
+        margin-left: -6px;
         row-gap: 14px;
     }
 
     .greatkart-header .header-main .row > [class*="col-"] {
-        padding-left: 6px;
         padding-right: 6px;
-    }
-
-    .greatkart-header .logo {
-        max-width: 112px;
-        max-height: 42px;
-    }
-
-    .greatkart-header .category-wrap .btn {
-        padding: 8px 9px;
-        font-size: 12px;
-    }
-
-    .greatkart-header .store-button {
-        padding: 8px 10px;
-        font-size: 12px;
-    }
-
-    .greatkart-header .search-column {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .greatkart-header .account-column {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-
-    .greatkart-header .account-column > .d-flex {
-        justify-content: space-between !important;
-        width: 100%;
-    }
-
-    .greatkart-header .account-widget {
-        font-size: 12px;
-    }
-
-    .greatkart-header .account-widget .welcome-text {
-        font-size: 11px;
-    }
-
-    .greatkart-header .cart-link {
-        width: 40px;
-        height: 40px;
-        margin-left: 0;
-    }
-
-    .greatkart-header .top-navbar .navbar-toggler {
-        margin-left: auto;
-        margin-right: 8px;
-    }
-
-    .greatkart-header .top-navbar .navbar-collapse {
-        padding-bottom: 8px;
-    }
-}
-
-/* Responsive GreatKart header */
-.greatkart-header,
-.greatkart-header * {
-    box-sizing: border-box;
-}
-
-.greatkart-header .header-main .row {
-    row-gap: 14px;
-}
-
-.greatkart-header .search-column,
-.greatkart-header .account-column {
-    min-width: 0;
-}
-
-.greatkart-header .search,
-.greatkart-header .search .input-group {
-    width: 100%;
-    min-width: 0;
-}
-
-.greatkart-header .search .form-control {
-    min-width: 0;
-}
-
-.greatkart-header .account-column > .d-flex {
-    gap: 10px;
-}
-
-.greatkart-header .account-widget {
-    white-space: normal;
-}
-
-.greatkart-header .cart-link {
-    flex-shrink: 0;
-}
-
-.greatkart-header img {
-    max-width: 100%;
-    height: auto;
-}
-
-@media (max-width: 991.98px) {
-    .greatkart-header .header-main {
-        padding: 14px 0;
-    }
-
-    .greatkart-header .search-column {
-        order: 5;
-    }
-
-    .greatkart-header .account-column {
-        order: 4;
-    }
-
-    .greatkart-header .search .form-control {
-        height: 44px;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .greatkart-header .header-main {
-        padding: 12px 0;
-    }
-
-    .greatkart-header .header-main .container {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .greatkart-header .header-main .row {
-        margin-left: -6px;
-        margin-right: -6px;
-    }
-
-    .greatkart-header .header-main .row > [class*="col-"] {
         padding-left: 6px;
-        padding-right: 6px;
     }
 
     .greatkart-header .logo {
@@ -540,19 +333,24 @@ button {
         font-size: 12px;
     }
 
-    .greatkart-header .account-widget .welcome-text {
-        font-size: 11px;
-    }
-
     .greatkart-header .cart-link {
         width: 40px;
         height: 40px;
         margin-left: 0;
     }
 
+    .greatkart-header .top-navbar .nav-link {
+        padding: 8px 7px;
+        font-size: 11px;
+    }
+
     .greatkart-header .top-navbar .navbar-toggler {
-        margin-left: auto;
-        margin-right: 8px;
+        margin: 5px 8px 5px auto;
+        border-color: #494a52;
+    }
+
+    .greatkart-header .top-navbar .navbar-toggler-icon {
+        filter: invert(1);
     }
 
     .greatkart-header .top-navbar .navbar-collapse {
@@ -560,19 +358,28 @@ button {
     }
 }
 
-
-
+@media (prefers-reduced-motion: reduce) {
+    .greatkart-header *,
+    .greatkart-header *::before,
+    .greatkart-header *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
 </style>
 
 <header class="section-header greatkart-header">
 
     <!-- Top navigation -->
-    <nav class="navbar p-0 navbar-expand-sm navbar-light top-navbar">
+    <nav class="navbar p-0 navbar-expand-sm navbar-dark top-navbar">
         <div class="container">
 
-            <button class="navbar-toggler my-1" type="button"
-                    data-toggle="collapse" data-target="#navbarTop4"
-                    aria-controls="navbarTop4" aria-expanded="false"
+            <button class="navbar-toggler my-1"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarTop4"
+                    aria-controls="navbarTop4"
+                    aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -648,7 +455,7 @@ button {
                     </div>
                 </div>
 
-                <!-- Store button -->
+                <!-- Store -->
                 <div class="col-lg-1 col-md-2 col-6">
                     <a href="{% url 'store' %}"
                        class="btn btn-outline-primary store-button">
@@ -657,28 +464,28 @@ button {
                 </div>
 
                 <!-- Search -->
-               
-<!-- Search -->
-<div class="col-lg-4 col-md-6 col-12 search-column">
-    <form action="{% url 'product_search' %}" method="GET" class="search">
-        <div class="input-group w-100">
-            <input type="search"
-                   name="keyword"
-                   class="form-control"
-                   placeholder="Search products, e.g. jeans..."
-                   aria-label="Search products"
-                   value="{{ request.GET.keyword|default:'' }}">
+                <div class="col-lg-4 col-md-6 col-12 search-column">
+                    <form action="{% url 'product_search' %}"
+                          method="GET"
+                          class="search">
+                        <div class="input-group w-100">
+                            <input type="search"
+                                   name="keyword"
+                                   class="form-control"
+                                   placeholder="Search products, e.g. jeans..."
+                                   aria-label="Search products"
+                                   value="{{ request.GET.keyword|default:'' }}">
 
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit"
-                        aria-label="Search">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-
+                            <div class="input-group-append">
+                                <button class="btn btn-primary"
+                                        type="submit"
+                                        aria-label="Search">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
                 <!-- Account and cart -->
                 <div class="col-lg-3 col-md-6 col-12 account-column">
@@ -691,27 +498,28 @@ button {
                                 </small>
                                 <div>
                                     <a href="{% url 'logout' %}">Logout</a>
-                                    <span class="text-muted mx-1">|</span>
+                                    <span class="mx-1">|</span>
                                     <a href="{% url 'store' %}">Dashboard</a>
                                 </div>
                             {% else %}
-                                <small class="welcome-text">Welcome, guest!</small>
+                                <small class="welcome-text">
+                                    Welcome, guest!
+                                </small>
                                 <div>
                                     <a href="{% url 'loggedin' %}">Sign in</a>
-                                    <span class="text-muted mx-1">|</span>
+                                    <span class="mx-1">|</span>
                                     <a href="{% url 'register' %}">Register</a>
                                 </div>
                             {% endif %}
                         </div>
 
-                        <a href="{% url 'cart' %}" class="cart-link"
+                        <a href="{% url 'cart' %}"
+                           class="cart-link"
                            aria-label="Shopping cart">
                             <i class="fa fa-shopping-cart"></i>
-                            
-<span class="badge badge-pill badge-danger notify">
-    {{ cart_count|default:0 }}
-</span>
-
+                            <span class="badge badge-pill badge-danger notify">
+                                {{ cart_count|default:0 }}
+                            </span>
                         </a>
 
                     </div>

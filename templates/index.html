@@ -1,127 +1,450 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
 
 <style>
-    /* Animated background for the index page */
+    /* ========== GREATKART HOMEPAGE ========== */
+
     .index-page {
+        --bg: #191a1e;
+        --surface: #23242a;
+        --accent: #e63946;
+        --text: #f4f4f5;
+        --muted: #a6a8af;
+        --border: rgba(255, 255, 255, .08);
+
         min-height: 100vh;
-        background: linear-gradient(
-            135deg,
-            #e4edf9,
-            #f7f9fd,
-            #e0eaf7,
-            #edf2fa
-        );
-        background-size: 300% 300%;
-        animation: indexBackgroundAnimation 15s ease infinite;
-        padding-bottom: 30px;
+        padding: 20px 0 45px;
+        color: var(--text);
+        background:
+            radial-gradient(ellipse at 5% 5%,
+                rgba(111, 34, 44, .13), transparent 38%),
+            var(--bg);
+        font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+        animation: pageIn .5s ease both;
     }
 
-    @keyframes indexBackgroundAnimation {
-        0% {
-            background-position: 0% 50%;
+    .index-page * {
+        box-sizing: border-box;
+    }
+
+    @keyframes pageIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
         }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 
-    /* Keep product cards clean and white */
-    .index-page .card-product-grid {
-        background-color: #fff;
-        border-radius: 12px;
+    /* ========== WELCOME SECTION ========== */
+
+    .index-page .welcome-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 30px;
+        padding: 23px 27px;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: linear-gradient(110deg, #292329, #222329 65%, #25242b);
+    }
+
+    .index-page .welcome-label {
+        margin-bottom: 5px;
+        color: #ff6974;
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .index-page .welcome-title {
+        margin: 0 0 7px;
+        color: var(--text);
+        font-size: clamp(22px, 3vw, 30px);
+        font-weight: 800;
+        letter-spacing: -.8px;
+    }
+
+    .index-page .welcome-description {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .index-page .welcome-icon {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        width: 62px;
+        height: 62px;
+        border: 1px solid rgba(230, 57, 70, .25);
+        border-radius: 16px;
+        background: rgba(230, 57, 70, .10);
+        color: #ff6974;
+        font-size: 27px;
+    }
+
+    /* ========== SECTION HEADING ========== */
+
+    .index-page .section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 23px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .index-page .section-title {
+        position: relative;
+        margin: 0;
+        padding-left: 13px;
+        color: var(--text);
+        font-size: 24px;
+        font-weight: 750;
+    }
+
+    .index-page .section-title::before {
+        position: absolute;
+        top: 3px;
+        bottom: 3px;
+        left: 0;
+        width: 4px;
+        border-radius: 5px;
+        background: var(--accent);
+        content: "";
+    }
+
+    /* ========== PRODUCT CARDS ========== */
+
+    .index-page .card-product-grid {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: linear-gradient(145deg, #25262c, #1f2025);
+        box-shadow: 0 5px 16px rgba(0, 0, 0, .12);
+        transition: transform .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
     }
 
     .index-page .card-product-grid:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(45, 75, 120, 0.12);
+        transform: translateY(-6px);
+        border-color: rgba(230, 57, 70, .45);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, .25);
     }
 
-    .index-page .intro-banner-wrap img {
-        width: 100%;
-        height: auto;
-        display: block;
+    /* Product image */
+
+    .index-page .img-wrap {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        height: 220px;
+        margin: 9px 9px 0;
+        overflow: hidden;
+        border-radius: 9px;
+        background: #f1f2f4;
     }
+
+    .index-page .img-wrap img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        object-fit: contain;
+        transition: transform .4s ease;
+    }
+
+    .index-page .card-product-grid:hover .img-wrap img {
+        transform: scale(1.06);
+    }
+
+    /* ========== PRODUCT NAME AND PRICE ========== */
+
+    .index-page .card-product-grid .info-wrap {
+        display: block;
+        flex: 1 0 auto;
+        padding: 12px 14px 14px;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Product name always visible */
+
+    .index-page .card-product-grid .info-wrap a.title {
+        display: block;
+        min-height: 42px;
+        margin: 0;
+        padding: 0;
+        color: #f4f4f5 !important;
+        font-size: 14px;
+        font-weight: 650;
+        line-height: 1.5;
+        text-decoration: none;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        overflow: visible;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* Price always appears below the name */
+
+    .index-page .card-product-grid .price {
+        display: block;
+        margin-top: 8px;
+        color: #ff6974 !important;
+        font-size: 17px;
+        font-weight: 750;
+        line-height: 1.5;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    /* ========== BUTTONS ========== */
+
+    .index-page .btn-primary {
+        border-color: var(--accent);
+        border-radius: 8px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 650;
+        transition: all .25s ease;
+    }
+
+    .index-page .btn-primary:hover {
+        transform: translateY(-2px);
+        border-color: #c92e3a;
+        background: #c92e3a;
+        color: #fff;
+        box-shadow: 0 5px 15px rgba(230, 57, 70, .2);
+    }
+
+    .index-page .btn-outline-primary {
+        border-color: rgba(230, 57, 70, .65);
+        border-radius: 8px;
+        color: #ff6974;
+        font-weight: 650;
+        transition: all .25s ease;
+    }
+
+    .index-page .btn-outline-primary:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #fff;
+    }
+
+    .index-page .card-product-grid>.btn {
+        display: block;
+        flex-shrink: 0;
+        width: calc(100% - 22px);
+        margin: 0 11px 13px;
+    }
+
+    /* ========== ALERTS ========== */
+
+    .index-page .alert {
+        border-radius: 9px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+
+    @media (max-width: 767px) {
+        .index-page {
+            padding-top: 14px;
+        }
+
+        .index-page .welcome-section {
+            margin-bottom: 23px;
+            padding: 19px;
+        }
+
+        .index-page .welcome-icon {
+            width: 48px;
+            height: 48px;
+            font-size: 21px;
+        }
+
+        .index-page .welcome-description {
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .index-page .img-wrap {
+            height: 175px;
+        }
+
+        .index-page .section-title {
+            font-size: 21px;
+        }
+
+        .index-page .card-product-grid .info-wrap {
+            padding: 9px 10px 12px;
+        }
+
+        .index-page .card-product-grid .info-wrap a.title {
+            min-height: 39px;
+            font-size: 13px;
+        }
+
+        .index-page .card-product-grid .price {
+            font-size: 15px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .index-page .welcome-section {
+            padding: 15px;
+        }
+
+        .index-page .welcome-icon {
+            display: none;
+        }
+
+        .index-page .img-wrap {
+            height: 140px;
+            margin: 7px 7px 0;
+        }
+
+        .index-page .card-product-grid .info-wrap {
+            padding: 8px;
+        }
+
+        .index-page .card-product-grid .info-wrap a.title {
+            font-size: 12px;
+        }
+
+        .index-page .card-product-grid .price {
+            font-size: 14px;
+        }
+
+        .index-page .card-product-grid>.btn {
+            width: calc(100% - 16px);
+            margin: 0 8px 10px;
+            padding: 7px 3px;
+            font-size: 12px;
+        }
+    }
+
+    /* ========== ACCESSIBILITY ========== */
 
     @media (prefers-reduced-motion: reduce) {
+
         .index-page,
-        .index-page .card-product-grid {
-            animation: none;
-            transition: none;
+        .index-page * {
+            animation: none !important;
+            transition: none !important;
         }
     }
 </style>
 
 <div class="index-page">
+    <div class="container">
 
-    <!-- ========================= SECTION MAIN ========================= -->
-    <section class="section-intro padding-y-sm">
-        <div class="container">
-            <div class="intro-banner-wrap">
-                <img
-                    src="{% static 'images/banners/1.jpg' %}"
-                    class="img-fluid rounded"
-                    alt="Store banner"
-                >
+        <!-- Welcome section -->
+        <section class="welcome-section">
+            <div>
+                <div class="welcome-label">Discover GreatKart</div>
+
+                <h1 class="welcome-title">
+                    Find Your Next Favourite.
+                </h1>
+
+                <p class="welcome-description">
+                    Explore quality products, discover new styles,
+                    and shop your favourites.
+                </p>
             </div>
-        </div>
-    </section>
-    <!-- ========================= SECTION MAIN END ========================= -->
 
-    <!-- ========================= SECTION PRODUCTS ========================= -->
-    <section class="section-name padding-y-sm">
-        <div class="container">
+            <div class="welcome-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+        </section>
+
+        <!-- Popular products -->
+        <section class="section-name">
 
             <header class="section-heading">
-                <a href="{% url 'store' %}" class="btn btn-outline-primary float-right">
-                    See all
+                <h3 class="section-title">Popular Products</h3>
+
+                <a href="{% url 'store' %}" class="btn btn-outline-primary">
+                    Explore All &rarr;
                 </a>
-                <h3 class="section-title">Popular products</h3>
             </header>
 
+            <!-- Django messages -->
             {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
             {% endif %}
 
+            <!-- Product grid -->
             <div class="row">
                 {% for prod in random_prod %}
-                    <div class="col-md-3">
-                        <div class="card card-product-grid mb-4">
-                            <a href="{{ prod.get_url }}" class="img-wrap">
-                                <img src="{{ prod.images.url }}" alt="{{ prod.product_name }}">
-                            </a>
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
 
-                            <figcaption class="info-wrap">
-                                <a href="{{ prod.get_url }}" class="title">
-                                    {{ prod.product_name }}
-                                </a>
-                                <div class="price mt-1">${{ prod.price }}</div>
-                            </figcaption>
+                    <div class="card card-product-grid">
 
-                            <a href="{{ prod.get_url }}" class="btn btn-block btn-primary">
-                                View details
-                            </a>
-                        </div>
+                        <!-- Product image -->
+                        <a href="{{ prod.get_url }}" class="img-wrap">
+                            <img src="{{ prod.images.url }}" alt="{{ prod.product_name|default:'Product image' }}"
+                                loading="lazy">
+                        </a>
+ <div class="product-info">
+
+                                        <a href="{{ prod.get_url }}"
+                                           class="product-name">
+                                            {{ prod.product_name|default:"Product name unavailable" }}
+                                        </a>
+
+                                        <div class="product-price">
+                                            ${{ prod.price }}
+                                        </div>
+
+                                        
+                                    </div>
+
+                        <!-- Product details button -->
+                        <a href="{{ prod.get_url }}" class="btn btn-primary">
+                            View Details
+                        </a>
+
                     </div>
+                </div>
+
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <h5>No products available yet.</h5>
+
+                    <p style="color: var(--muted);">
+                        Please check back soon for new arrivals.
+                    </p>
+                </div>
                 {% endfor %}
             </div>
 
-        </div>
-    </section>
-    <!-- ========================= SECTION PRODUCTS END ========================= -->
-
+        </section>
+    </div>
 </div>
 
 {% endblock %}
