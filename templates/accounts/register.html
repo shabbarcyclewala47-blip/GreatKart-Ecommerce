@@ -1,168 +1,712 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
+<section class="register-page">
 
-<section class="section-content padding-y register-page">
+    <div class="register-glow register-glow-one"></div>
+    <div class="register-glow register-glow-two"></div>
 
-<!-- ============================ COMPONENT REGISTER   ================================= -->
-	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
-      <article class="card-body">
-		<header class="mb-4"><h4 class="card-title">Sign up</h4></header>
-        {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    <div class="register-wrapper">
+
+        <!-- Brand / Welcome Section -->
+        <div class="register-brand">
+            <div class="brand-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+
+            <p class="brand-name">GreatKart</p>
+            <h1>Shopping starts <span>here.</span></h1>
+            <p class="brand-description">
+                Create your account and discover a better shopping experience.
+            </p>
+
+            <div class="register-benefits">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Easy and secure shopping</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Manage your orders easily</span>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Your shopping, all in one place</span>
+                </div>
+            </div>
         </div>
-    {% endfor %}
-{% endif %}    
-		<form method="post" action="{% url 'register' %}">
-            {% csrf_token %}
-				<div class="form-row">
-					<div class="col form-group">
-						<label>First name</label>
-					  	<input type="text" name='first_name'class="form-control" placeholder="">{% comment %}name block ma column name ause {% endcomment %}
-					</div> <!-- form-group end.// -->
-					<div class="col form-group">
-						<label>Last name</label>
-					  	<input type="text" name="last_name" class="form-control" placeholder="">
-					</div> <!-- form-group end.// -->
-				</div> <!-- form-row end.// -->
-				<div class="form-group">
-					<label>Email</label>
-					<input type="email" name='email' class="form-control" placeholder="">
-					<small class="form-text text-muted"></small>
-				</div> <!-- form-group end.// -->
 
-                <div class="col form-group">
-						<label>phone number</label>
-					  	<input type="text" name='phone_no'class="form-control" placeholder="">
-					</div> <!-- form-group end.// -->
+        <!-- Registration Card -->
+        <div class="register-card">
 
-       
-				
-					
-					
-		
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label>Create password</label>
-					    <input type="password" name="password" class="form-control" type="password">
-					</div> <!-- form-group end.// --> 
-					<div class="form-group col-md-6">
-						<label>confirm password</label>
-					    <input type='password' name='confirm_password' class="form-control" type="password">
-					</div> <!-- form-group end.// -->  
-				</div>
-			    <div class="form-group">
-			        <button type="submit" class="btn btn-primary btn-block"> Register  </button>
-			    </div> <!-- form-group// -->      
-			        
-			</form>
-		</article><!-- card-body.// -->
-    </div> <!-- card .// -->
-    <p class="text-center mt-4">Have an account? <a href="{% url 'loggedin' %}">Log In</a></p>
-    <br><br>
-<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+            <div class="register-card-header">
+                <span class="register-eyebrow">JOIN GreatKart</span>
+                <h2>Create account</h2>
+                <p>Enter your details to get started.</p>
+            </div>
 
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="register-alert
+                        {% if message.tags == 'error' %}alert-error{% else %}alert-success{% endif %}">
+                        <i class="fas
+                            {% if message.tags == 'error' %}fa-exclamation-circle{% else %}fa-check-circle{% endif %}">
+                        </i>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+
+                <div class="register-name-row">
+                    <div class="register-field">
+                        <label for="first_name">First name</label>
+                        <div class="register-input-wrap">
+                            <i class="far fa-user"></i>
+                            <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                class="register-input"
+                                placeholder="First name"
+                                autocomplete="given-name"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="register-field">
+                        <label for="last_name">Last name</label>
+                        <div class="register-input-wrap">
+                            <i class="far fa-user"></i>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                class="register-input"
+                                placeholder="Last name"
+                                autocomplete="family-name"
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-field">
+                    <label for="email">Email address</label>
+                    <div class="register-input-wrap">
+                        <i class="far fa-envelope"></i>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="register-input"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="register-field">
+                    <label for="phone_no">Phone number</label>
+                    <div class="register-input-wrap">
+                        <i class="fas fa-phone-alt"></i>
+                        <input
+                            type="tel"
+                            id="phone_no"
+                            name="phone_no"
+                            class="register-input"
+                            placeholder="Enter phone number"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="register-name-row">
+                    <div class="register-field">
+                        <label for="password">Create password</label>
+                        <div class="register-input-wrap">
+                            <i class="fas fa-lock"></i>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="register-input"
+                                placeholder="Create password"
+                                autocomplete="new-password"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="register-field">
+                        <label for="confirm_password">Confirm password</label>
+                        <div class="register-input-wrap">
+                            <i class="fas fa-lock"></i>
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                class="register-input"
+                                placeholder="Confirm password"
+                                autocomplete="new-password"
+                                required
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <p class="register-security-note">
+                    <i class="fas fa-shield-alt"></i>
+                    Your account information stays protected.
+                </p>
+
+                <button type="submit" class="register-submit">
+                    Create my account
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="register-divider">
+                <span>ALREADY SHOPPING WITH US?</span>
+            </div>
+
+            <p class="register-login">
+                Have an account?
+                <a href="{% url 'loggedin' %}">Sign in <i class="fas fa-arrow-right"></i></a>
+            </p>
+
+        </div>
+    </div>
+
+    <div class="register-footer">
+        <span>© {% now "Y" %} GreatKart</span>
+        <span>Made for a better shopping experience.</span>
+    </div>
 
 </section>
 
 <style>
-/* Mobile-only registration improvements */
-@media (max-width: 767px) {
+/* =====================================================
+   LUXEMART — PREMIUM REGISTRATION PAGE
+   Charcoal • Burgundy • Warm White
+   All styles scoped to the registration page
+===================================================== */
+
+.register-page {
+    --reg-bg: #111010;
+    --reg-panel: #191617;
+    --reg-burgundy: #8f263d;
+    --reg-burgundy-light: #b43b53;
+    --reg-text: #f8f2f2;
+    --reg-muted: #a69a9c;
+    --reg-border: rgba(255, 255, 255, 0.10);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 65px 24px 25px;
+    color: var(--reg-text);
+    background:
+        radial-gradient(
+            ellipse at 12% 18%,
+            rgba(112, 27, 47, 0.24),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 88% 80%,
+            rgba(89, 24, 39, 0.19),
+            transparent 34%
+        ),
+        linear-gradient(145deg, #111010, #191516 52%, #100f10);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+.register-page *,
+.register-page *::before,
+.register-page *::after {
+    box-sizing: border-box;
+}
+
+.register-glow {
+    position: absolute;
+    z-index: -1;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.register-glow-one {
+    top: 5%;
+    left: -160px;
+    background: #a42e49;
+}
+
+.register-glow-two {
+    right: -170px;
+    bottom: 5%;
+    background: #702136;
+}
+
+.register-wrapper {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    align-items: center;
+    gap: 65px;
+}
+
+/* Welcome section */
+
+.register-brand {
+    padding: 20px 0;
+}
+
+.brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 57px;
+    height: 57px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(196, 78, 103, 0.45);
+    border-radius: 16px;
+    background: linear-gradient(
+        145deg,
+        rgba(143, 38, 61, 0.36),
+        rgba(77, 24, 36, 0.20)
+    );
+    color: #e8a1b0;
+    font-size: 23px;
+}
+
+.register-brand .brand-name {
+    margin: 0 0 20px;
+    color: #d8a2ad;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.register-brand h1 {
+    max-width: 420px;
+    margin: 0 0 20px;
+    color: #fbf6f6;
+    font-size: clamp(34px, 4vw, 49px);
+    font-weight: 750;
+    line-height: 1.18;
+    letter-spacing: -1.8px;
+}
+
+.register-brand h1 span {
+    color: #d46d83;
+}
+
+.brand-description {
+    max-width: 380px;
+    margin: 0;
+    color: #b3a6a8;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.register-benefits {
+    display: grid;
+    gap: 17px;
+    margin-top: 35px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d2c6c8;
+    font-size: 13px;
+}
+
+.benefit-item i {
+    color: #cb7186;
+    font-size: 16px;
+}
+
+/* Registration card */
+
+.register-card {
+    width: 100%;
+    padding: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+    background: linear-gradient(
+        145deg,
+        rgba(35, 29, 31, 0.97),
+        rgba(24, 20, 21, 0.98)
+    );
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+}
+
+.register-card-header {
+    margin-bottom: 25px;
+}
+
+.register-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #d78396;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+}
+
+.register-card-header h2 {
+    margin: 0 0 8px;
+    color: #fff7f8;
+    font-size: 28px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+}
+
+.register-card-header p {
+    margin: 0;
+    color: var(--reg-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Form layout */
+
+.register-name-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.register-field {
+    min-width: 0;
+    margin-bottom: 18px;
+}
+
+.register-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: #e9dfe1;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.register-input-wrap {
+    position: relative;
+}
+
+.register-input-wrap > i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    z-index: 1;
+    color: #b67b89;
+    font-size: 13px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.register-input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 47px;
+    padding: 0 12px 0 39px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(10, 9, 10, 0.38);
+    color: #fff4f6;
+    font-family: inherit;
+    font-size: 13px;
+    box-shadow: none;
+    transition: border-color 0.15s ease;
+}
+
+.register-input::placeholder {
+    color: #817579;
+    opacity: 1;
+}
+
+.register-input:focus {
+    border-color: #a8465d;
+    background: rgba(10, 9, 10, 0.52);
+    box-shadow: 0 0 0 3px rgba(143, 38, 61, 0.13);
+}
+
+.register-input:-webkit-autofill,
+.register-input:-webkit-autofill:hover,
+.register-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff4f6;
+    -webkit-box-shadow: 0 0 0 1000px #211a1c inset;
+}
+
+/* Messages */
+
+.register-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 12px 13px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.register-alert i {
+    margin-top: 2px;
+}
+
+.register-alert.alert-error {
+    border-color: rgba(237, 91, 111, 0.28);
+    background: rgba(133, 32, 48, 0.18);
+    color: #ffb7c1;
+}
+
+.register-alert.alert-success {
+    border-color: rgba(83, 180, 131, 0.25);
+    background: rgba(39, 119, 80, 0.16);
+    color: #a8e6c2;
+}
+
+/* Security note and submit button */
+
+.register-security-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 18px;
+    color: #a99b9e;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.register-security-note i {
+    color: #d27d91;
+}
+
+.register-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 49px;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    background: linear-gradient(110deg, #85243a, #a8324c);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(111, 24, 43, 0.20);
+}
+
+.register-submit i {
+    font-size: 12px;
+}
+
+/* Login footer */
+
+.register-divider {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 25px 0 17px;
+}
+
+.register-divider::before,
+.register-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.register-divider span {
+    color: #95878a;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.1px;
+    text-align: center;
+}
+
+.register-login {
+    margin: 0;
+    color: #b7aaac;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.register-login a {
+    margin-left: 4px;
+    color: #e49aab;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.register-login a i {
+    margin-left: 3px;
+    font-size: 10px;
+}
+
+/* Bottom footer */
+
+.register-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 1080px;
+    margin: 45px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #827679;
+    font-size: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
     .register-page {
-        box-sizing: border-box;
-        min-height: 75vh;
-        padding: 24px 14px;
+        padding-top: 40px;
     }
 
-    .register-page .card {
-        width: 100%;
-        max-width: 520px;
-        margin: 12px auto 0 !important;
-        border: 1px solid #e2e9f3;
-        border-radius: 13px;
-        box-shadow: 0 5px 20px rgba(37, 63, 100, 0.07);
+    .register-wrapper {
+        max-width: 600px;
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
-    .register-page .card-body {
-        padding: 20px 17px;
+    .register-brand {
+        padding: 0;
+        text-align: center;
     }
 
-    .register-page .card-title {
-        margin-bottom: 0;
-        font-size: 22px;
-        font-weight: 700;
+    .brand-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 15px;
+        font-size: 19px;
     }
 
-    /* Stack first and last name on narrow screens */
-    .register-page .form-row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-right: 0;
-        margin-left: 0;
+    .register-brand .brand-name {
+        margin-bottom: 10px;
     }
 
-    .register-page .form-row > .col,
-    .register-page .form-row > [class*="col-"] {
-        flex: 0 0 100%;
-        width: 100%;
+    .register-brand h1 {
         max-width: 100%;
-        padding-right: 0;
-        padding-left: 0;
+        margin-bottom: 10px;
+        font-size: 34px;
+        letter-spacing: -1px;
     }
 
-    .register-page .form-group {
-        margin-bottom: 15px;
-    }
-
-    .register-page label {
-        margin-bottom: 6px;
+    .brand-description {
+        max-width: 440px;
+        margin: 0 auto;
         font-size: 13px;
-        font-weight: 600;
     }
 
-    .register-page .form-control {
-        box-sizing: border-box;
-        width: 100%;
-        min-width: 0;
-        min-height: 46px;
-        padding: 10px 12px;
-        border-radius: 8px;
-        font-size: 16px;
-    }
-
-    .register-page .btn-primary {
-        width: 100%;
-        min-height: 48px;
-        border-radius: 8px;
-        font-weight: 600;
-    }
-
-    .register-page > p {
-        margin: 18px 0 0 !important;
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-    .register-page > br {
+    .register-benefits {
         display: none;
+    }
+
+    .register-card {
+        padding: 30px;
+    }
+
+    .register-footer {
+        max-width: 600px;
+        margin-top: 30px;
     }
 }
 
-/* Extra-small phones */
-@media (max-width: 380px) {
+/* Mobile */
+
+@media (max-width: 520px) {
     .register-page {
-        padding-right: 10px;
-        padding-left: 10px;
+        min-height: 100vh;
+        padding: 28px 14px 18px;
     }
 
-    .register-page .card-body {
-        padding: 17px 14px;
+    .register-wrapper {
+        gap: 24px;
     }
 
-    .register-page .card-title {
-        font-size: 20px;
+    .register-brand h1 {
+        font-size: 29px;
+    }
+
+    .brand-description {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .register-card {
+        padding: 23px 18px;
+        border-radius: 15px;
+    }
+
+    .register-card-header {
+        margin-bottom: 22px;
+    }
+
+    .register-card-header h2 {
+        font-size: 25px;
+    }
+
+    .register-name-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .register-field {
+        margin-bottom: 16px;
+    }
+
+    .register-input {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .register-submit {
+        min-height: 49px;
+    }
+
+    .register-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        margin-top: 24px;
+        padding-top: 16px;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .register-input {
+        transition: none;
     }
 }
 </style>

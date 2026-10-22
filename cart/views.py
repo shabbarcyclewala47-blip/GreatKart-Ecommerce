@@ -39,29 +39,40 @@ def add_cart(request, product_id):
         )
 
         # Get selected product variations
+        
+        # Get selected product variations
         selected_variations = []
 
         if rang:
-            color_variation = get_object_or_404(
-                Variation,
+            color_variations = Variation.objects.filter(
                 product=product,
-                variation_category='color',
+                variation_category__iexact='color',
                 variation_value__iexact=rang
-            )
+            ).order_by('id')
+
+            if not color_variations.exists():
+                return redirect('cart')
+
+            # Use the first matching record to avoid MultipleObjectsReturned.
+            color_variation = color_variations.first()
             selected_variations.append(color_variation)
 
         if size:
-            size_variation = get_object_or_404(
-                Variation,
+            size_variations = Variation.objects.filter(
                 product=product,
-                variation_category='size',
+                variation_category__iexact='size',
                 variation_value__iexact=size
-            )
-            selected_variations.append(size_variation)
+            ).order_by('id')
 
-        # Get selected variation IDs
+            if not size_variations.exists():
+                return redirect('cart')
+
+            # Use the first matching record to avoid MultipleObjectsReturned.
+            size_variation = size_variations.first()
+            selected_variations.append(size_variation)
+            # Get selected variation IDs
         selected_variation_ids = {
-            variation.id for variation in selected_variations
+         variation.id for variation in selected_variations
         }
 
         # Find existing items for this user or guest

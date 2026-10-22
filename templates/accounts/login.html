@@ -1,125 +1,721 @@
+
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="section-conten padding-y login-page" style="min-height:84vh">
+<section class="lux-login-page">
 
-<!-- ============================ COMPONENT LOGIN   ================================= -->
-	<div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-      <div class="card-body">
-      <h4 class="card-title mb-4">Sign in</h4>
-       {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    <div class="lux-login-glow lux-login-glow-one"></div>
+    <div class="lux-login-glow lux-login-glow-two"></div>
+
+    <div class="lux-login-wrapper">
+
+        <!-- Brand Section -->
+        <div class="lux-login-brand">
+
+            <div class="lux-login-brand-icon">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+
+            <p class="lux-login-brand-name">GreatKart</p>
+
+            <h1>Welcome <span>back.</span></h1>
+
+            <p class="lux-login-description">
+                Your favorite finds are waiting. Sign in to continue
+                your shopping experience.
+            </p>
+
+            <div class="lux-login-benefits">
+                <div class="lux-login-benefit">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Pick up where you left off</span>
+                </div>
+
+                <div class="lux-login-benefit">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Keep track of your orders</span>
+                </div>
+
+                <div class="lux-login-benefit">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Enjoy a seamless shopping experience</span>
+                </div>
+            </div>
+
         </div>
-    {% endfor %}
-{% endif %} 
-      <form method="POST" action="{% url 'loggedin' %}">
-      {% csrf_token %}
-          <div class="form-group">
-			 <input type="email" name='email' class="form-control" placeholder="Email Address" >
-          </div> <!-- form-group// -->
-          <div class="form-group">
-			<input type="password" name="password" class="form-control" placeholder="Password" >
-          </div> <!-- form-group// -->
-          
-          <div class="form-group">
-          	<a href="{% url 'forgotpassword' %}" class="float-right">Forgot password?</a> 
-           
-          </div> <!-- form-group form-check .// -->
-          <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-          </div> <!-- form-group// -->    
-      </form>
-      </div> <!-- card-body.// -->
-    </div> <!-- card .// -->
 
-     <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
-     <br><br>
-<!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+        <!-- Login Card -->
+        <div class="lux-login-card">
 
+            <div class="lux-login-header">
+                <span class="lux-login-eyebrow">YOUR ACCOUNT</span>
+                <h2>Sign in</h2>
+                <p>Enter your credentials to continue.</p>
+            </div>
+
+            <!-- Django Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="lux-login-alert
+                        {% if message.tags == 'error' %}lux-login-error{% else %}lux-login-success{% endif %}">
+                        <i class="fas
+                            {% if message.tags == 'error' %}fa-exclamation-circle{% else %}fa-check-circle{% endif %}">
+                        </i>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'loggedin' %}">
+                {% csrf_token %}
+
+                <div class="lux-login-field">
+                    <label for="login-email">Email address</label>
+
+                    <div class="lux-login-input-wrap">
+                        <i class="far fa-envelope"></i>
+                        <input
+                            type="email"
+                            id="login-email"
+                            name="email"
+                            class="lux-login-input"
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="lux-login-field">
+                    <label for="login-password">Password</label>
+
+                    <div class="lux-login-input-wrap">
+                        <i class="fas fa-lock"></i>
+                        <input
+                            type="password"
+                            id="login-password"
+                            name="password"
+                            class="lux-login-input"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="lux-login-password-toggle"
+                            id="lux-password-toggle"
+                            aria-label="Show password"
+                            aria-pressed="false"
+                        >
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lux-login-options">
+                    <span class="lux-login-secure">
+                        <i class="fas fa-shield-alt"></i>
+                        Secure sign in
+                    </span>
+
+                    <a href="{% url 'forgotpassword' %}">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit" class="lux-login-submit">
+                    Sign in to your account
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <div class="lux-login-divider">
+                <span>NEW TO GreatKart</span>
+            </div>
+
+            <p class="lux-login-signup">
+                Don't have an account?
+                <a href="{% url 'register' %}">
+                    Create account
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="lux-login-footer">
+        <span>© {% now "Y" %} GreatKart</span>
+        <span>Made for a better shopping experience.</span>
+    </div>
 
 </section>
 
 <style>
-/* Mobile-only login page improvements */
-@media (max-width: 767px) {
-    .login-page {
-        box-sizing: border-box;
-        min-height: 75vh !important;
-        padding: 28px 14px 24px;
+/* =====================================================
+   LUXEMART LOGIN — PREMIUM DARK BURGUNDY THEME
+   Scoped styles to avoid affecting base.html
+===================================================== */
+
+.lux-login-page {
+    --ll-text: #f8f2f3;
+    --ll-muted: #a99b9e;
+    --ll-accent: #d78396;
+    --ll-border: rgba(255, 255, 255, 0.10);
+
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 65px 24px 25px;
+    color: var(--ll-text);
+    background:
+        radial-gradient(
+            ellipse at 12% 18%,
+            rgba(112, 27, 47, 0.24),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 88% 80%,
+            rgba(89, 24, 39, 0.19),
+            transparent 34%
+        ),
+        linear-gradient(145deg, #111010, #191516 52%, #100f10);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+.lux-login-page *,
+.lux-login-page *::before,
+.lux-login-page *::after {
+    box-sizing: border-box;
+}
+
+.lux-login-glow {
+    position: absolute;
+    z-index: -1;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.lux-login-glow-one {
+    top: 5%;
+    left: -160px;
+    background: #a42e49;
+}
+
+.lux-login-glow-two {
+    right: -170px;
+    bottom: 5%;
+    background: #702136;
+}
+
+/* Main layout */
+
+.lux-login-wrapper {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    align-items: center;
+    gap: 65px;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* Brand panel */
+
+.lux-login-brand {
+    padding: 20px 0;
+}
+
+.lux-login-brand-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 57px;
+    height: 57px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(196, 78, 103, 0.45);
+    border-radius: 16px;
+    background: linear-gradient(
+        145deg,
+        rgba(143, 38, 61, 0.36),
+        rgba(77, 24, 36, 0.20)
+    );
+    color: #e8a1b0;
+    font-size: 23px;
+}
+
+.lux-login-brand-name {
+    margin: 0 0 20px;
+    color: #d8a2ad;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.lux-login-brand h1 {
+    max-width: 420px;
+    margin: 0 0 20px;
+    color: #fbf6f6;
+    font-size: clamp(34px, 4vw, 49px);
+    font-weight: 750;
+    line-height: 1.18;
+    letter-spacing: -1.8px;
+}
+
+.lux-login-brand h1 span {
+    color: #d46d83;
+}
+
+.lux-login-description {
+    max-width: 380px;
+    margin: 0;
+    color: #b3a6a8;
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.lux-login-benefits {
+    display: grid;
+    gap: 17px;
+    margin-top: 35px;
+}
+
+.lux-login-benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #d2c6c8;
+    font-size: 13px;
+}
+
+.lux-login-benefit i {
+    color: #cb7186;
+    font-size: 16px;
+}
+
+/* Login card */
+
+.lux-login-card {
+    width: 100%;
+    padding: 38px 36px;
+    border: 1px solid var(--ll-border);
+    border-radius: 20px;
+    background: linear-gradient(
+        145deg,
+        rgba(35, 29, 31, 0.97),
+        rgba(24, 20, 21, 0.98)
+    );
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.28);
+}
+
+.lux-login-header {
+    margin-bottom: 30px;
+}
+
+.lux-login-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--ll-accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+}
+
+.lux-login-header h2 {
+    margin: 0 0 8px;
+    color: #fff7f8;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.6px;
+}
+
+.lux-login-header p {
+    margin: 0;
+    color: var(--ll-muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Fields */
+
+.lux-login-field {
+    margin-bottom: 22px;
+}
+
+.lux-login-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: #e9dfe1;
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.lux-login-input-wrap {
+    position: relative;
+}
+
+.lux-login-input-wrap > i:first-child {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    z-index: 1;
+    color: #b67b89;
+    font-size: 14px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.lux-login-input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 50px;
+    padding: 0 43px 0 42px;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 9px;
+    outline: none;
+    background: rgba(10, 9, 10, 0.38);
+    color: #fff4f6;
+    font-family: inherit;
+    font-size: 13px;
+    box-shadow: none;
+}
+
+.lux-login-input::placeholder {
+    color: #817579;
+    opacity: 1;
+}
+
+.lux-login-input:focus {
+    border-color: #a8465d;
+    background: rgba(10, 9, 10, 0.52);
+    box-shadow: 0 0 0 3px rgba(143, 38, 61, 0.13);
+}
+
+.lux-login-input:-webkit-autofill,
+.lux-login-input:-webkit-autofill:hover,
+.lux-login-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff4f6;
+    -webkit-box-shadow: 0 0 0 1000px #211a1c inset;
+}
+
+/* Password visibility */
+
+.lux-login-password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #aa9298;
+    font-size: 14px;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.lux-login-password-toggle:focus-visible {
+    outline: 2px solid #d78396;
+    outline-offset: 2px;
+}
+
+/* Forgot password row */
+
+.lux-login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: -2px 0 25px;
+}
+
+.lux-login-secure {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #a99b9e;
+    font-size: 11px;
+}
+
+.lux-login-secure i {
+    color: #d27d91;
+}
+
+.lux-login-options a {
+    color: #e49aab;
+    font-size: 12px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+/* Submit */
+
+.lux-login-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 51px;
+    padding: 12px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    background: linear-gradient(110deg, #85243a, #a8324c);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(111, 24, 43, 0.20);
+}
+
+.lux-login-submit i {
+    font-size: 12px;
+}
+
+/* Django messages */
+
+.lux-login-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 12px 13px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.lux-login-alert i {
+    margin-top: 2px;
+}
+
+.lux-login-error {
+    border-color: rgba(237, 91, 111, 0.28);
+    background: rgba(133, 32, 48, 0.18);
+    color: #ffb7c1;
+}
+
+.lux-login-success {
+    border-color: rgba(83, 180, 131, 0.25);
+    background: rgba(39, 119, 80, 0.16);
+    color: #a8e6c2;
+}
+
+/* Signup section */
+
+.lux-login-divider {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin: 29px 0 19px;
+}
+
+.lux-login-divider::before,
+.lux-login-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.lux-login-divider span {
+    color: #95878a;
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 1.1px;
+    text-align: center;
+}
+
+.lux-login-signup {
+    margin: 0;
+    color: #b7aaac;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.lux-login-signup a {
+    margin-left: 4px;
+    color: #e49aab;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+.lux-login-signup a i {
+    margin-left: 3px;
+    font-size: 10px;
+}
+
+/* Footer */
+
+.lux-login-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    max-width: 1080px;
+    margin: 45px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #827679;
+    font-size: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .lux-login-page {
+        padding-top: 40px;
     }
 
-    .login-page .card {
-        width: 100%;
-        max-width: 380px;
-        margin: 20px auto 0 !important;
-        border: 1px solid #e2e9f3;
-        border-radius: 13px;
-        box-shadow: 0 5px 20px rgba(37, 63, 100, 0.07);
+    .lux-login-wrapper {
+        max-width: 600px;
+        grid-template-columns: 1fr;
+        gap: 25px;
     }
 
-    .login-page .card-body {
-        padding: 22px 18px;
+    .lux-login-brand {
+        padding: 0;
+        text-align: center;
     }
 
-    .login-page .card-title {
-        margin-bottom: 22px !important;
-        font-size: 22px;
-        font-weight: 700;
+    .lux-login-brand-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 15px;
+        font-size: 19px;
     }
 
-    .login-page .form-group {
-        margin-bottom: 17px;
+    .lux-login-brand-name {
+        margin-bottom: 10px;
     }
 
-    .login-page .form-control {
-        box-sizing: border-box;
-        width: 100%;
-        min-width: 0;
-        min-height: 47px;
-        padding: 11px 13px;
-        border-radius: 8px;
-        font-size: 16px;
+    .lux-login-brand h1 {
+        max-width: 100%;
+        margin-bottom: 10px;
+        font-size: 34px;
+        letter-spacing: -1px;
     }
 
-    .login-page .form-group a {
+    .lux-login-description {
+        max-width: 440px;
+        margin: 0 auto;
         font-size: 13px;
     }
 
-    .login-page .btn-primary {
-        width: 100%;
-        min-height: 47px;
-        border-radius: 8px;
-        font-weight: 600;
+    .lux-login-benefits {
+        display: none;
     }
 
-    .login-page > p {
-        margin: 20px 0 0 !important;
-        font-size: 14px;
+    .lux-login-card {
+        padding: 30px;
+    }
+
+    .lux-login-footer {
+        max-width: 600px;
+        margin-top: 30px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+    .lux-login-page {
+        min-height: 100vh;
+        padding: 28px 14px 18px;
+    }
+
+    .lux-login-wrapper {
+        gap: 24px;
+    }
+
+    .lux-login-brand h1 {
+        font-size: 29px;
+    }
+
+    .lux-login-description {
+        font-size: 12px;
         line-height: 1.7;
     }
 
-    .login-page > br {
-        display: none;
-    }
-}
-
-/* Extra-small phones */
-@media (max-width: 380px) {
-    .login-page {
-        padding-right: 10px;
-        padding-left: 10px;
+    .lux-login-card {
+        padding: 25px 19px;
+        border-radius: 15px;
     }
 
-    .login-page .card-body {
-        padding: 19px 15px;
+    .lux-login-header {
+        margin-bottom: 25px;
     }
 
-    .login-page .card-title {
-        font-size: 20px;
+    .lux-login-header h2 {
+        font-size: 26px;
+    }
+
+    .lux-login-input {
+        height: 49px;
+        font-size: 16px;
+    }
+
+    .lux-login-submit {
+        min-height: 49px;
+    }
+
+    .lux-login-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        margin-top: 24px;
+        padding-top: 16px;
+        text-align: center;
     }
 }
 </style>
+
+<script>
+(function () {
+    const toggle = document.getElementById('lux-password-toggle');
+    const password = document.getElementById('login-password');
+
+    if (!toggle || !password) return;
+
+    toggle.addEventListener('click', function () {
+        const showPassword = password.type === 'password';
+
+        password.type = showPassword ? 'text' : 'password';
+        toggle.setAttribute('aria-pressed', String(showPassword));
+        toggle.setAttribute(
+            'aria-label',
+            showPassword ? 'Hide password' : 'Show password'
+        );
+
+        const icon = toggle.querySelector('i');
+
+        if (icon) {
+            icon.classList.toggle('fa-eye', !showPassword);
+            icon.classList.toggle('fa-eye-slash', showPassword);
+        }
+    });
+})();
+</script>
 
 {% endblock %}
